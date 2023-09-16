@@ -1,0 +1,5 @@
+package LinearAlgebra;
+
+public class Matrix {
+	double [][] Mat = new double[100000000][100000000];
+}
