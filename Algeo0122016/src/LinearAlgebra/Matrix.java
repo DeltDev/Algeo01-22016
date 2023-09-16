@@ -74,10 +74,20 @@ public class Matrix {
 		{
 			for (j=0;j<this.col;j++)
 			{
-				swap = this.Mat[i][j]
+				swap = this.Mat[i][j];
 				this.Mat[i][j] = this.Mat[j][i];
 				this.Mat[j][i] = swap;
 			}
 		}
+	}
+
+	public void plus(Matrix m1, Matrix m2)
+	{
+		int i,j;
+		for(i=0;i<this.row;i++)
+			for(j=0;j<this.col;j++)
+			{
+				this.Mat[i][j] += this
+			}
 	}
 }
