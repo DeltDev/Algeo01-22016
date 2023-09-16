@@ -84,10 +84,20 @@ public class Matrix {
 	public void plus(Matrix m1, Matrix m2)
 	{
 		int i,j;
-		for(i=0;i<this.row;i++)
-			for(j=0;j<this.col;j++)
+		for(i=0;i<m1.row;i++)
+			for(j=0;j<m1.col;j++)
 			{
-				this.Mat[i][j] += this
+				m1.Mat[i][j] += m2.Mat[i][j]; // Penambahan ada di m1
+			}
+	}
+
+	public void minus(Matrix m1, Matrix m2)
+	{
+		int i,j;
+		for(i=0;i<m1.row;i++)
+			for(j=0;j<m1.col;j++)
+			{
+				m1.Mat[i][j] -= m2.Mat[i][j]; // Pengurangan ada di m1
 			}
 	}
 }
