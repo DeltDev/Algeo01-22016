@@ -65,4 +65,19 @@ public class Matrix {
 			this.Mat[row2][i] = swaphelp;
 		}
 	}
+
+	public void transpose()
+	{
+		int i,j;
+		double swap;
+		for(i=0;i<this.row;i++)
+		{
+			for (j=0;j<this.col;j++)
+			{
+				swap = this.Mat[i][j]
+				this.Mat[i][j] = this.Mat[j][i];
+				this.Mat[j][i] = swap;
+			}
+		}
+	}
 }
