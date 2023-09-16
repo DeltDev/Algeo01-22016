@@ -41,18 +41,5 @@ public class Matrix {
 		}
 	}
 	
-	public void printMatrix() {
-		int i,j;
-		for(i = 0; i<this.row; i++) {
-			System.out.print("[");
-			for(j = 0; j<this.col; j++) {
-				if(j == this.col - 1) {
-					System.out.print(this.Mat[i][j]);
-				} else {
-					System.out.print(this.Mat[i][j] + ",");
-				}
-			}
-			System.out.println("]");
-		}
-	}
+	public
 }

@@ -5,11 +5,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int row1,col1;
-		row1 = in.nextInt();
-		col1 = in.nextInt();
-		Matrix mat1 = new Matrix(row1,col1);
-		mat1.inputMatrix();
-		mat1.printMatrix();
+		int row,col;
+		row = in.nextInt();
+		col = in.nextInt();
+		Matrix mat = new Matrix(row,col);
+		mat.inputELMT(5, 1, 1);
+		System.out.println(mat.ELMT(1, 1));
 	}
 }

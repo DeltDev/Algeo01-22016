@@ -10,6 +10,5 @@ public class Main {
 		col1 = in.nextInt();
 		Matrix mat1 = new Matrix(row1,col1);
 		mat1.inputMatrix();
-		mat1.printMatrix();
 	}
 }

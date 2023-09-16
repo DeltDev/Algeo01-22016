@@ -31,28 +31,14 @@ public class Matrix {
 	}
 	
 	//Prosedur untuk input matriks
-	public void inputMatrix() {
+	public void inputMatrix(int row, int col) {
 		Scanner in = new Scanner(System.in);
+		double value;
 		int i,j;
-		for(i = 0; i<this.row; i++) {
-			for(j = 0; j<this.col; j++) {
+		for(i = 0; i<row; i++) {
+			for(j = 0; j<col; j++) {
 				this.Mat[i][j] = in.nextDouble();
 			}
-		}
-	}
-	
-	public void printMatrix() {
-		int i,j;
-		for(i = 0; i<this.row; i++) {
-			System.out.print("[");
-			for(j = 0; j<this.col; j++) {
-				if(j == this.col - 1) {
-					System.out.print(this.Mat[i][j]);
-				} else {
-					System.out.print(this.Mat[i][j] + ",");
-				}
-			}
-			System.out.println("]");
 		}
 	}
 }
