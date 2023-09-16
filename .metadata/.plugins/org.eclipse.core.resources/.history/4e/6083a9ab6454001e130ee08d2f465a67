@@ -57,12 +57,10 @@ public class Matrix {
 	}
 	
 	public void swapRow(int row1, int row2) {
-		int i;
-		double swaphelp;
+		int i,swaphelp;
 		for(i = 0; i<this.col; i++) {
 			swaphelp = this.Mat[row1][i];
 			this.Mat[row1][i] = this.Mat[row2][i];
-			this.Mat[row2][i] = swaphelp;
 		}
 	}
 }

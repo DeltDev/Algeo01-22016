@@ -11,7 +11,6 @@ public class Main {
 		Matrix mat1 = new Matrix(row1,col1);
 		mat1.inputMatrix();
 		mat1.printMatrix();
-		mat1.swapRow(0, 2);
-		mat1.printMatrix();
+		mat1.swapRow(1, 2);
 	}
 }

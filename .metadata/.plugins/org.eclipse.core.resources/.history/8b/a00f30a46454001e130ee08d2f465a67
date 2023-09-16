@@ -55,14 +55,4 @@ public class Matrix {
 			System.out.println("]");
 		}
 	}
-	
-	public void swapRow(int row1, int row2) {
-		int i;
-		double swaphelp;
-		for(i = 0; i<this.col; i++) {
-			swaphelp = this.Mat[row1][i];
-			this.Mat[row1][i] = this.Mat[row2][i];
-			this.Mat[row2][i] = swaphelp;
-		}
-	}
 }

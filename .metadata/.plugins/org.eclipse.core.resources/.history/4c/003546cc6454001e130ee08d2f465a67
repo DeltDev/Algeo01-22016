@@ -12,6 +12,5 @@ public class Main {
 		mat1.inputMatrix();
 		mat1.printMatrix();
 		mat1.swapRow(0, 2);
-		mat1.printMatrix();
 	}
 }

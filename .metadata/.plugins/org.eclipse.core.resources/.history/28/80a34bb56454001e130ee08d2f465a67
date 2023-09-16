@@ -62,7 +62,6 @@ public class Matrix {
 		for(i = 0; i<this.col; i++) {
 			swaphelp = this.Mat[row1][i];
 			this.Mat[row1][i] = this.Mat[row2][i];
-			this.Mat[row2][i] = swaphelp;
 		}
 	}
 }
