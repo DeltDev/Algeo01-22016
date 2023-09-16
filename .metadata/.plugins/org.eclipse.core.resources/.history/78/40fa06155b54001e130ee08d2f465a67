@@ -2,7 +2,7 @@ package LinearAlgebra;
 
 public class Matrix {
 	//Atribut Matrix
-	public double [][] Mat = new double[100000000][100000000];
+	double [][] Mat = new double[100000000][100000000];
 	
 	//Konstruktor
 	public Matrix() {
