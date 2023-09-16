@@ -11,7 +11,7 @@ public class Matrix {
 		this.col = colInput;
 		this.row = rowInput;
 		int i,j;
-		Mat = new double [row][col];
+		
 		for(i = 0; i<rowInput; i++) {
 			for(j = 0; j<colInput; j++) {
 				this.Mat[i][j] = 0;
