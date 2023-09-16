@@ -25,7 +25,7 @@ public class Matrix {
 	
 	public double ELMT(int row, int col){
 		
-		return this.Mat[row][col];
+		
 	}
 	
 	

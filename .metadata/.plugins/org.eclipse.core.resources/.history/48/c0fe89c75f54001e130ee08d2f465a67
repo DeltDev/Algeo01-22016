@@ -9,7 +9,6 @@ public class Main {
 		row = in.nextInt();
 		col = in.nextInt();
 		Matrix mat = new Matrix(row,col);
-		mat.InputELMT(5, 1, 1);
-		System.out.println(mat.ELMT(0, 1));
+
 	}
 }

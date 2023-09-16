@@ -22,11 +22,4 @@ public class Matrix {
 	public void InputELMT(double val, int row, int col) {
 		this.Mat[row][col] = val;
 	}
-	
-	public double ELMT(int row, int col){
-		
-		return this.Mat[row][col];
-	}
-	
-	
 }
