@@ -111,7 +111,6 @@ public class Matrix {
 		return ret;
 	}
 	
-	//prosedur perkalian matriks
 	public static Matrix Multiply(Matrix m1, Matrix m2) {
 		Matrix ret;
 		ret = new Matrix(m1.row,m2.col);
@@ -119,7 +118,7 @@ public class Matrix {
 		for (i = 0; i<m1.row; i++) {
 			for(j = 0; j<m2.row; j++) {
 				ret.Mat[i][j] = 0;
-				for(k = 0; k<m1.col; k++) {
+				for(k = 0; k<m1.row; k++) {
 					ret.Mat[i][j] = ret.Mat[i][j] + m1.Mat[i][k] * m2.Mat[k][j];
 				}
 			}

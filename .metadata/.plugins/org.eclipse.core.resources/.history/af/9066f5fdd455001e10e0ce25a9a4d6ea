@@ -111,7 +111,6 @@ public class Matrix {
 		return ret;
 	}
 	
-	//prosedur perkalian matriks
 	public static Matrix Multiply(Matrix m1, Matrix m2) {
 		Matrix ret;
 		ret = new Matrix(m1.row,m2.col);

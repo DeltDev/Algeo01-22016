@@ -12,15 +12,13 @@ public class Main {
 		col1 = in.nextInt();
 		Matrix mat1 = new Matrix(row1,col1);
 		mat1.inputMatrix();
-		mat1.printMatrix();
 		int row2,col2;
 		row2 = in.nextInt();
 		col2 = in.nextInt();
 		Matrix mat2 =new Matrix(row2,col2);
 		mat2.inputMatrix();
-		mat2.printMatrix();
 		Matrix mat3 = new Matrix(row1,col2);
-		mat3 = Matrix.Multiply(mat1,mat2);
+		mat3 = Matrix.Minus(mat1,mat1);
 		mat3.printMatrix();
 	}
 }
