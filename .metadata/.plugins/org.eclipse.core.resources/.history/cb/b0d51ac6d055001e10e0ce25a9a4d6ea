@@ -41,7 +41,6 @@ public class Matrix {
 		}
 	}
 	
-	//Prosedur untuk output matriks
 	public void printMatrix() {
 		int i,j;
 		for(i = 0; i<this.row; i++) {
@@ -57,7 +56,6 @@ public class Matrix {
 		}
 	}
 	
-	//prosedur untuk menukar baris pada suatu matriks
 	public void swapRow(int row1, int row2) {
 		int i;
 		double swaphelp;
@@ -68,12 +66,13 @@ public class Matrix {
 		}
 	}
 	
-	//prosedur untuk membuat matriks transpose
-	public Matrix Transpose(){
+	public Matrix Transpose()
+	{
 		int i,j;
 		Matrix ret;
 		ret = new Matrix(this.col,this.row);
-		for(i=0;i<this.row;i++){
+		for(i=0;i<this.row;i++)
+		{
 			for (j=0;j<this.col;j++)
 			{
 				ret.Mat[j][i] = this.Mat[i][j];
@@ -81,7 +80,6 @@ public class Matrix {
 		}
 		return ret;
 	}
-	//prosedur untuk menambahkan matriks
 	public static Matrix Plus(Matrix m1, Matrix m2)
 	{
 		int i,j;
@@ -90,31 +88,19 @@ public class Matrix {
 		for(i=0;i<m1.row;i++) {
 			for(j=0;j<m1.col;j++)
 			{
-				ret.Mat[i][j] = m1.Mat[i][j] + m2.Mat[i][j]; 
+				ret.Mat[i][j] = m1.Mat[i][j] + m2.Mat[i][j]; // Penambahan ada di m1
 			}
 		}
 		return ret;
 	}
-	
-	//prosedur untuk mengurangi matriks
-	public static Matrix Minus(Matrix m1, Matrix m2)
+
+	/*public void minus(Matrix m1, Matrix m2)
 	{
 		int i,j;
-		Matrix ret;
-		ret = new Matrix(m1.row,m1.col);
-		for(i=0;i<m1.row;i++) {
+		for(i=0;i<m1.row;i++)
 			for(j=0;j<m1.col;j++)
 			{
-				ret.Mat[i][j] = m1.Mat[i][j] - m2.Mat[i][j]; 
+				m1.Mat[i][j] -= m2.Mat[i][j]; // Pengurangan ada di m1
 			}
-		}
-		return ret;
-	}
-	
-	public static Matrix Multiply(Matrix m1, Matrix m2) {
-		Matrix ret;
-		ret = new Matrix(m1.row,m2.col);
-		int i,j;
-		return ret;
-	}
+	}*/
 }

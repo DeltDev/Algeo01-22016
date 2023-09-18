@@ -13,7 +13,6 @@ public class Main {
 		Matrix mat1 = new Matrix(row1,col1);
 		mat1.inputMatrix();
 		Matrix mat3 = new Matrix(row1,col1);
-		mat3 = Matrix.Minus(mat1,mat1);
-		mat3.printMatrix();
+		mat3 = Matrix.Plus(mat1,mat1);
 	}
 }

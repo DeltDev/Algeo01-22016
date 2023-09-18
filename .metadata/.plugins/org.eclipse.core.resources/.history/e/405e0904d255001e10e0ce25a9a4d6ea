@@ -113,8 +113,6 @@ public class Matrix {
 	
 	public static Matrix Multiply(Matrix m1, Matrix m2) {
 		Matrix ret;
-		ret = new Matrix(m1.row,m2.col);
-		int i,j;
 		return ret;
 	}
 }
