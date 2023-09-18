@@ -65,33 +65,36 @@ public class Matrix {
 			this.Mat[row2][i] = swaphelp;
 		}
 	}
-
-	public void transpose()
+	
+	public Matrix Transpose()
 	{
 		int i,j;
-		double swap;
+		Matrix ret;
+		ret = new Matrix(this.col,this.row);
 		for(i=0;i<this.row;i++)
 		{
 			for (j=0;j<this.col;j++)
 			{
-				swap = this.Mat[i][j];
-				this.Mat[i][j] = this.Mat[j][i];
-				this.Mat[j][i] = swap;
+				ret.Mat[j][i] = this.Mat[i][j];
 			}
 		}
+		return ret;
 	}
-
-	public void plus(Matrix m1, Matrix m2)
+	/*public static Matrix Plus(Matrix m1, Matrix m2)
 	{
 		int i,j;
-		for(i=0;i<m1.row;i++)
+		Matrix ret;
+		ret = new Matrix(m1.row,m1.col);
+		for(i=0;i<m1.row;i++) {
 			for(j=0;j<m1.col;j++)
 			{
-				m1.Mat[i][j] += m2.Mat[i][j]; // Penambahan ada di m1
+				ret.Mat[i][j] = m1.Mat[i][j] + m2.Mat[i][j]; // Penambahan ada di m1
 			}
+		}
+		return ret;
 	}
 
-	public void minus(Matrix m1, Matrix m2)
+	/*public void minus(Matrix m1, Matrix m2)
 	{
 		int i,j;
 		for(i=0;i<m1.row;i++)
@@ -99,5 +102,5 @@ public class Matrix {
 			{
 				m1.Mat[i][j] -= m2.Mat[i][j]; // Pengurangan ada di m1
 			}
-	}
+	}*/
 }

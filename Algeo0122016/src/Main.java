@@ -1,5 +1,7 @@
 import java.io.*;
-import LinearAlgebra.Matrix;
+
+import LinearAlgebra.*;
+
 import java.util.Scanner;
 public class Main {
 	
@@ -10,8 +12,8 @@ public class Main {
 		col1 = in.nextInt();
 		Matrix mat1 = new Matrix(row1,col1);
 		mat1.inputMatrix();
-		mat1.printMatrix();
-		mat1.swapRow(0, 2);
-		mat1.printMatrix();
+		Matrix mat2 = new Matrix(col1,row1);
+		mat2 = mat1.Transpose();
+		mat2.printMatrix();
 	}
 }
