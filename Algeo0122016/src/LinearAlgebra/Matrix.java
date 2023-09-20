@@ -127,12 +127,11 @@ public class Matrix {
 		return ret;
 	}
 
-	//prosedur mengubah matriks menjadi matriks segitiga bawah
-	//asumsi tidak ada yang nilainya 0 dan hanya melakukan operasi menambah baris dengan baris lain
-	//nanti kalau ada yang tahu caranya update
-	public static Matrix ConvertSegitigaBawah(Matrix m){
+	//fungsi mengubah matriks menjadi matriks segitiga ATAS
+	public static Matrix ConvertSegitigaAtas(Matrix m){
 		int i, j, k;
 		Matrix mSegitiga;
+		int swap = 0; //menghitung berapa kali operasi tukar baris dilakukan
 		mSegitiga = new Matrix(m.row,m.col);
 
 		//copy
@@ -144,17 +143,46 @@ public class Matrix {
 		};
 
 		//ubah
-    	for (i = 0;i < (mSegitiga.col - 1);i++){
-        	for (j = i+1;j < mSegitiga.row;j++){
-            	double multiply = mSegitiga.Mat[j][i];
-            	double divide = mSegitiga.Mat[i][i];
-            	for (k = 0;k < mSegitiga.col;k++){
-                	mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*(mSegitiga.Mat[i][k])/divide);
-            	};
-        	};
-    	};
+		for (i = 0;i < (mSegitiga.row - 1);i++){ //mSegitiga.row "just in case"
+
+			// mencari apakah nilainya 0 dan apakah ada baris lain yang nilainya bukan 0
+			if (mSegitiga.Mat[i][i] == 0){
+				for (j = i+1;j < mSegitiga.row;j++){
+					if (mSegitiga.Mat[j][i] != 0){
+						mSegitiga.swapRow(i, j);
+						swap += 1;
+						break;
+					};
+				};
+			};
+
+			// kalau masih 0, skip
+			if (mSegitiga.Mat[i][i] != 0){
+				for (j = i+1;j < mSegitiga.row;j++){
+					double multiply = mSegitiga.Mat[j][i];
+					double divide = mSegitiga.Mat[i][i];
+					for (k = 0;k < mSegitiga.col;k++){
+						mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*(mSegitiga.Mat[i][k])/divide); // agak ribet but it works trust me bro
+					};
+				};
+			};
+		};
+
+		// kalau jumlah operasi tukar baris ganjil, kalikan baris terakhir dengan -1 supaya determinannya sama "just in case"
+		if (swap % 2 == 1){
+			for(i = 0;i < mSegitiga.col;i++){
+				mSegitiga.Mat[mSegitiga.row - 1][i] = (mSegitiga.Mat[mSegitiga.row - 1][i]) * (-1);
+			};
+		};
+
 		return mSegitiga;
 		// test case 1 2 3 4 2 9 11 15 3 11 22 28 31 112 223 294
 		// hasilnya 1 2 3 4 0 5 5 7 0 0 8 9 0 0 0 10
+
+		/* ternyata buat jadi matriks eselon bukan cuma membagi baris saja, misalnya matriks 
+		1 2 3 4                   1 2 3 4          1 2 3 4
+		0 0 0 5                   0 0 0 1          0 0 0 1
+		0 0 0 6                   0 0 0 1          0 0 0 0
+		0 0 0 7 itu nanti jadinya 0 0 0 1 harusnya 0 0 0 0 nanti kalau ada yang bisa pikirin caranya gimana*/
 	}
 }
