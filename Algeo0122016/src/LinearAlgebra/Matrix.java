@@ -162,7 +162,7 @@ public class Matrix {
 					double multiply = mSegitiga.Mat[j][i];
 					double divide = mSegitiga.Mat[i][i];
 					for (k = 0;k < mSegitiga.col;k++){
-						mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*(mSegitiga.Mat[i][k])/divide); // agak ribet but it works trust me bro
+						mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*((mSegitiga.Mat[i][k])/divide)); // agak ribet but it works trust me bro
 					};
 				};
 			};
@@ -184,5 +184,28 @@ public class Matrix {
 		0 0 0 5                   0 0 0 1          0 0 0 1
 		0 0 0 6                   0 0 0 1          0 0 0 0
 		0 0 0 7 itu nanti jadinya 0 0 0 1 harusnya 0 0 0 0 nanti kalau ada yang bisa pikirin caranya gimana*/
+	}
+
+	//fungsi menghitung determinan dengan ekspansi kofaktor
+	public static double DeterminanKofaktor(Matrix m){
+		if (m.row == 1){return m.Mat[0][0];} else { // kasus matriks ukuran 1x1
+			double Sum = 0;
+			Matrix ReCursed;
+			ReCursed = new Matrix((m.row - 1), (m.col - 1)); //matriks yang akan digunakan untuk rekursi jadi row dan col nya dikurangi 1
+			int i, j;
+			for (i = 1;i < m.row;i++){
+				for (j = 1;j < m.col;j++){
+					ReCursed.Mat[i-1][j-1] = m.Mat[i][j]; // copy tapi tanpa baris dan kolom pertama
+				};
+			};
+			Sum += (DeterminanKofaktor(ReCursed) * m.Mat[0][0]); // first
+			for (i = 1;i < m.row;i++){
+				for (j = 1;j < m.col;j++){
+					ReCursed.Mat[i-1][j-1] = m.Mat[i-1][j]; // untuk yang selanjutnya copy 1 baris
+				};
+				if (i % 2 == 0){Sum += (DeterminanKofaktor(ReCursed) * m.Mat[i][0]);} else {Sum -= (DeterminanKofaktor(ReCursed) * m.Mat[i][0]);}
+			};
+			return Sum;
+		}
 	}
 }
