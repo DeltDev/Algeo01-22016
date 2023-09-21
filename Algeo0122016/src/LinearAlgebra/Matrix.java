@@ -162,7 +162,7 @@ public class Matrix {
 					double multiply = mSegitiga.Mat[j][i];
 					double divide = mSegitiga.Mat[i][i];
 					for (k = 0;k < mSegitiga.col;k++){
-						mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*(mSegitiga.Mat[i][k])/divide); // agak ribet but it works trust me bro
+						mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*((mSegitiga.Mat[i][k])/divide)); // agak ribet but it works trust me bro
 					};
 				};
 			};
