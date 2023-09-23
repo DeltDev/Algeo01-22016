@@ -3,9 +3,13 @@ import java.io.*;
 import LinearAlgebra.*;
 
 import java.util.Scanner;
+
 public class Main {
-	
-	public static void main(String[] args) {
+
+	public static void main(String[] args) {	
+		Matrix m;
+		int baris;
+		int kolom;
 		Scanner in = new Scanner(System.in);
 		int inputMenu, inputSubmenu;
 		while (true){
@@ -49,7 +53,41 @@ public class Main {
 					};
 					break;
 				case 2:
-					System.out.println("DETERMINAN"); // nanti
+					while (true) {
+						System.out.println("DETERMINAN");
+						System.out.println("1. Metode Matriks Segitiga Atas");
+						System.out.println("2. Metode Ekspansi Kofaktor");
+						inputSubmenu = in.nextInt();
+						switch(inputSubmenu) {
+							case 1:
+								System.out.print("Masukkan banyak baris matriks: ");
+								baris = in.nextInt();
+								System.out.print("Masukkan banyak kolom matriks: ");
+								kolom = in.nextInt();
+								m = new Matrix(baris,kolom);
+								System.out.println("Input isi matriks:");
+								m.inputMatrix();
+								System.out.print("Determinan dari matriks tersebut adalah: ");
+								System.out.println(Matrix.DeterminanSegitigaAtas(m));
+								break;
+							case 2:
+								System.out.print("Masukkan banyak baris matriks: ");
+								baris = in.nextInt();
+								System.out.print("Masukkan banyak kolom matriks: ");
+								kolom = in.nextInt();
+								m = new Matrix(baris,kolom);
+								System.out.println("Input isi matriks:");
+								m.inputMatrix();
+								System.out.print("Determinan dari matriks tersebut adalah: ");
+								System.out.println(Matrix.DeterminanKofaktor(m));
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
+						};
+						if ((inputSubmenu > 0) && (inputSubmenu < 2)){
+							break;
+						};
+					};
 					break;
 				case 3:
 					System.out.println("MATRIKS BALIKAN"); // nanti

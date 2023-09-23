@@ -1,6 +1,7 @@
 package LinearAlgebra;
 import java.io.*;
 import java.util.Scanner;
+
 public class Matrix {
 	//Atribut Matrix
 	int row,col;
@@ -128,62 +129,47 @@ public class Matrix {
 	}
 
 	//fungsi mengubah matriks menjadi matriks segitiga ATAS
-	public static Matrix ConvertSegitigaAtas(Matrix m){
-		int i, j, k;
-		Matrix mSegitiga;
-		int swap = 0; //menghitung berapa kali operasi tukar baris dilakukan
-		mSegitiga = new Matrix(m.row,m.col);
-
-		//copy
-		for(i=0;i<m.row;i++) {
-			for(j=0;j<m.col;j++)
-			{
-				mSegitiga.Mat[i][j] = m.Mat[i][j]; 
+	public static double DeterminanSegitigaAtas(Matrix m){
+		int n = m.row;
+		Matrix m1 = new Matrix(n,n);
+		double ratio,temp;
+		int swapcount;
+		swapcount = 0;
+		for(int i = 0; i<n; i++) {
+			for(int j = 0; j<n; j++) {
+				m1.Mat[i][j] = m.Mat[i][j];
 			}
-		};
-
-		//ubah
-		for (i = 0;i < (mSegitiga.row - 1);i++){ //mSegitiga.row "just in case"
-
-			// mencari apakah nilainya 0 dan apakah ada baris lain yang nilainya bukan 0
-			if (mSegitiga.Mat[i][i] == 0){
-				for (j = i+1;j < mSegitiga.row;j++){
-					if (mSegitiga.Mat[j][i] != 0){
-						mSegitiga.swapRow(i, j);
-						swap += 1;
-						break;
-					};
-				};
-			};
-
-			// kalau masih 0, skip
-			if (mSegitiga.Mat[i][i] != 0){
-				for (j = i+1;j < mSegitiga.row;j++){
-					double multiply = mSegitiga.Mat[j][i];
-					double divide = mSegitiga.Mat[i][i];
-					for (k = 0;k < mSegitiga.col;k++){
-						mSegitiga.Mat[j][k] = mSegitiga.Mat[j][k] - (multiply*((mSegitiga.Mat[i][k])/divide)); // agak ribet but it works trust me bro
-					};
-				};
-			};
-		};
-
-		// kalau jumlah operasi tukar baris ganjil, kalikan baris terakhir dengan -1 supaya determinannya sama "just in case"
-		if (swap % 2 == 1){
-			for(i = 0;i < mSegitiga.col;i++){
-				mSegitiga.Mat[mSegitiga.row - 1][i] = (mSegitiga.Mat[mSegitiga.row - 1][i]) * (-1);
-			};
-		};
-
-		return mSegitiga;
-		// test case 1 2 3 4 2 9 11 15 3 11 22 28 31 112 223 294
-		// hasilnya 1 2 3 4 0 5 5 7 0 0 8 9 0 0 0 10
-
-		/* ternyata buat jadi matriks eselon bukan cuma membagi baris saja, misalnya matriks 
-		1 2 3 4                   1 2 3 4          1 2 3 4
-		0 0 0 5                   0 0 0 1          0 0 0 1
-		0 0 0 6                   0 0 0 1          0 0 0 0
-		0 0 0 7 itu nanti jadinya 0 0 0 1 harusnya 0 0 0 0 nanti kalau ada yang bisa pikirin caranya gimana*/
+		}
+		for(int i = 0; i<n-1; i++) { //copy matrix m ke m1 lokal
+			for(int j = n-1; j>i; j--) {
+				if(m1.Mat[j][i] == 0) {
+					continue;
+				} else {
+					if(m1.Mat[j-1][i] == 0) {
+						m1.swapRow(j,j-1);
+						swapcount++;
+						continue;
+					}
+						
+					ratio = m1.Mat[j][i] / m1.Mat[j-1][i];
+					for(int l = 0; l<n; l++) {
+						m1.Mat[j][l] = m1.Mat[j][l] - ratio * m1.Mat[j-1][l];
+					}
+				}
+			}
+		}
+		
+		double det;
+		det = 1;
+		for(int i = 0; i<n; i++) {
+			det *= m1.Mat[i][i];
+		}
+		
+		if(swapcount % 2 == 0) {
+			return det;
+		} else {
+			return det * (-1);
+		}
 	}
 
 	//fungsi menghitung determinan dengan ekspansi kofaktor
