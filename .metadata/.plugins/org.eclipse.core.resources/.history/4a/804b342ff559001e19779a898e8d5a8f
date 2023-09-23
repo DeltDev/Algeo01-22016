@@ -195,7 +195,7 @@ public class Matrix {
 		}
 	}
 */
-	/*public static void CramerSolve(Matrix m) {
+	public static void CramerSolve(Matrix m) {
 		double D;
 		D = Matrix.DeterminanKofaktor(m);
 		
@@ -220,5 +220,5 @@ public class Matrix {
 				clone.Mat[j][i] = reset.Mat[j][i];
 			}
 		}
-	}*/
+	}
 }

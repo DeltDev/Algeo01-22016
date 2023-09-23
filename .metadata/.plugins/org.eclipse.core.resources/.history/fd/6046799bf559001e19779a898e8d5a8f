@@ -90,7 +90,7 @@ public class Main {
 								System.out.println(Determinant.EkspansiKofaktor(m));
 								break;
 							default:
-								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
 						};
 						if ((inputSubmenu > 0) && (inputSubmenu < 2)){
 							break;

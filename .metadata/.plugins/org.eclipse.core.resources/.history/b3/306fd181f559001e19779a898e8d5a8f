@@ -50,7 +50,7 @@ public class Main {
 								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
 								System.out.print("dengan format : a[1] a[2] ... a[n] b sebanyak n kali: ");
 								m.inputMatrix();
-								EquationSystem.CramerRule(m);
+								Matrix.CramerSolve(m);
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
@@ -90,7 +90,7 @@ public class Main {
 								System.out.println(Determinant.EkspansiKofaktor(m));
 								break;
 							default:
-								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
 						};
 						if ((inputSubmenu > 0) && (inputSubmenu < 2)){
 							break;

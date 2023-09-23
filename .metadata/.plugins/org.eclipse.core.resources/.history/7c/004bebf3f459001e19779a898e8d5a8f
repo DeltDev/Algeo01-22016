@@ -172,7 +172,7 @@ public class Matrix {
 		}
 	}
 
-/*	//fungsi menghitung determinan dengan ekspansi kofaktor
+	//fungsi menghitung determinan dengan ekspansi kofaktor
 	public static double DeterminanKofaktor(Matrix m){
 		if (m.row == 1){return m.Mat[0][0];} else { // kasus matriks ukuran 1x1
 			double Sum = 0;
@@ -194,8 +194,8 @@ public class Matrix {
 			return Sum;
 		}
 	}
-*/
-	/*public static void CramerSolve(Matrix m) {
+	
+	public static void CramerSolve(Matrix m) {
 		double D;
 		D = Matrix.DeterminanKofaktor(m);
 		
@@ -220,5 +220,5 @@ public class Matrix {
 				clone.Mat[j][i] = reset.Mat[j][i];
 			}
 		}
-	}*/
+	}
 }
