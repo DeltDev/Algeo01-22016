@@ -44,13 +44,9 @@ public class Main {
 								break;
 							case 4:
 								// fungsi SPL Cramer
-								System.out.print("Masukkan banyak variabel persamaan (n): ");
+								System.out.print("Masukkan banyak persamaan linear: ");
 								banyakPersamaan = in.nextInt();
 								m = new Matrix(banyakPersamaan,banyakPersamaan+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.print("dengan format : a[1] a[2] ... a[n] b sebanyak n kali: ");
-								m.inputMatrix();
-								Matrix.CramerSolve(m);
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
