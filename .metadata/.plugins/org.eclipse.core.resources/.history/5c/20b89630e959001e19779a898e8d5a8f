@@ -202,10 +202,10 @@ public class Matrix {
 			System.out.println("Sistem Persamaan Linear berikut tidak memiliki solusi.");
 			return;
 		}
-		Matrix clone,reset;
+		Matrix clone;
 		clone = new Matrix(m.row,m.col);
 		clone = m;
-		reset = m;
+
 		double [] solution = new double[m.row];
 		clone.printMatrix();
 		for(int i = 0; i<m.col-1; i++) {
@@ -214,7 +214,7 @@ public class Matrix {
 			}
 			clone.printMatrix();
 			for(int j = 0; j<m.row; j++) {
-				clone.Mat[j][i] = reset.Mat[j][i];
+				clone.Mat[j][i] = m.Mat[j][i];
 			}
 		}
 	}
