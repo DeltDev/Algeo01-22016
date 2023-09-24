@@ -51,10 +51,11 @@ public class Echelon {
 		for(int i = 1; i<m.row; i++) {
 			for(int j = 0; j<i; j++) {
 				mul = REF1.Mat[j][i];
-				for(int k = 0; k<m.col; k++) {
+				for(int k = 0; j<m.col; j++) {
 					REF1.Mat[j][k] = REF1.Mat[j][k] - mul * REF1.Mat[i][k];
 				}
 			}
+
 		}
 		return REF1;
 	}

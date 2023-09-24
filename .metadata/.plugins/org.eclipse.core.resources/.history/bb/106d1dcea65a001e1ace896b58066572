@@ -47,12 +47,15 @@ public class Echelon {
 		Matrix REF1;
 		REF1 = new Matrix(m.row,m.col);
 		REF1 = Echelon.REF(m);
-		double mul;
-		for(int i = 1; i<m.row; i++) {
-			for(int j = 0; j<i; j++) {
-				mul = REF1.Mat[j][i];
-				for(int k = 0; k<m.col; k++) {
-					REF1.Mat[j][k] = REF1.Mat[j][k] - mul * REF1.Mat[i][k];
+		double reduce;
+		for(int i = m.row-1; i>0; i--) {
+			if(REF1.Mat[i][i] == 0) {
+				continue;
+			}
+			for(int j = i-1; j>=0; j--) {
+				reduce = REF1.Mat[j][i];
+				for(int k = i; k<m.col; k++) {
+					REF1.Mat[j][k] = REF1.Mat[j][k] - reduce;
 				}
 			}
 		}

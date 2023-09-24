@@ -49,11 +49,9 @@ public class Echelon {
 		REF1 = Echelon.REF(m);
 		double mul;
 		for(int i = 1; i<m.row; i++) {
-			for(int j = 0; j<i; j++) {
-				mul = REF1.Mat[j][i];
-				for(int k = 0; k<m.col; k++) {
-					REF1.Mat[j][k] = REF1.Mat[j][k] - mul * REF1.Mat[i][k];
-				}
+			mul = REF1.Mat[i-1][i];
+			for(int j = 0; j<m.col; j++) {
+				REF1.Mat[i-1][j] = REF1.Mat[i-1][j] - mul * REF1.Mat[i][j];
 			}
 		}
 		return REF1;
