@@ -1,0 +1,7 @@
+package LinearAlgebra;
+import LinearAlgebra.*;
+public class Inverse {
+	public static void GaussJordan(Matrix m) {
+		
+	}
+}

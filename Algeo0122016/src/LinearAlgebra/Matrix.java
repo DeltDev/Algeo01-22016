@@ -106,4 +106,15 @@ public class Matrix {
 		}
 		return ret;
 	}
+	
+	public static boolean AllBottomZero(Matrix m) {
+
+		for(int i = 0; i<m.row; i++) {
+			if(m.Mat[m.row-1][i] != 0) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }

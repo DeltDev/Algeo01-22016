@@ -3,7 +3,7 @@ import java.io.*;
 import LinearAlgebra.*;
 
 import java.util.Scanner;
-
+import Menu.*;
 public class Main {
 
 	public static void main(String[] args) {	
@@ -66,26 +66,13 @@ public class Main {
 						System.out.println("1. Metode Reduksi Baris");
 						System.out.println("2. Metode Ekspansi Kofaktor");
 						inputSubmenu = in.nextInt();
+						m = Input.SquareMatrix();
 						switch(inputSubmenu) {
 							case 1:
-								System.out.print("Masukkan banyak baris matriks: ");
-								baris = in.nextInt();
-								System.out.print("Masukkan banyak kolom matriks: ");
-								kolom = in.nextInt();
-								m = new Matrix(baris,kolom);
-								System.out.println("Input isi matriks:");
-								m.inputMatrix();
 								System.out.print("Determinan dari matriks tersebut adalah: ");
 								System.out.println(Determinant.ReduksiBaris(m));
 								break;
 							case 2:
-								System.out.print("Masukkan banyak baris matriks: ");
-								baris = in.nextInt();
-								System.out.print("Masukkan banyak kolom matriks: ");
-								kolom = in.nextInt();
-								m = new Matrix(baris,kolom);
-								System.out.println("Input isi matriks:");
-								m.inputMatrix();
 								System.out.print("Determinan dari matriks tersebut adalah: ");
 								System.out.println(Determinant.EkspansiKofaktor(m));
 								break;
@@ -98,7 +85,27 @@ public class Main {
 					};
 					break;
 				case 3:
-					System.out.println("MATRIKS BALIKAN"); // nanti
+					while (true){
+						System.out.println("MATRIKS BALIKAN");
+						System.out.println("1. Metode eliminasi Gauss-Jordan");
+						System.out.println("2. Metode matriks adjoin");
+
+						inputSubmenu = in.nextInt();
+						m = Input.SquareMatrix();
+						switch (inputSubmenu){
+							case 1:
+								Inverse.GaussJordan(m);
+								break;
+							case 2:
+								// invers matriks adjoin
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+						};
+						if ((inputSubmenu > 0) && (inputSubmenu < 2)){
+							break;
+						};
+					};
 					break;
 				case 4:
 					System.out.println("INTERPOLASI POLINOM"); // nanti
