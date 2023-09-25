@@ -92,7 +92,7 @@ public class Main {
 						System.out.println("2. Metode matriks adjoin");
 
 						inputSubmenu = in.nextInt();
-						m = EnhancedIO.InputSquareMatrix();
+						m = Input.SquareMatrix();
 						switch (inputSubmenu){
 							case 1:
 								Inverse.GaussJordan(m);

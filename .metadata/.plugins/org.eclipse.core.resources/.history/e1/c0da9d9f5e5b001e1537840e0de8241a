@@ -41,8 +41,7 @@ public class Matrix {
 				if(j == this.col - 1) {
 					EnhancedIO.OutputDoublePrecision4(this.Mat[i][j]);
 				} else {
-					EnhancedIO.OutputDoublePrecision4(this.Mat[i][j]);
-					System.out.print(",");
+					System.out.print(this.Mat[i][j] + ",");
 				}
 			}
 			System.out.println("]");

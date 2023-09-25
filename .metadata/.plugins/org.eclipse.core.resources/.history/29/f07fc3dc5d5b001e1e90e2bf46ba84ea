@@ -2,7 +2,6 @@ package LinearAlgebra;
 import java.io.*;
 import java.util.Scanner;
 import java.math.*;
-import Menu.EnhancedIO;
 public class Matrix {
 	//Atribut Matrix
 	int row,col;
@@ -39,10 +38,9 @@ public class Matrix {
 			System.out.print("[");
 			for(j = 0; j<this.col; j++) {
 				if(j == this.col - 1) {
-					EnhancedIO.OutputDoublePrecision4(this.Mat[i][j]);
+					System.out.print(BigDecimal.valueOf(this.Mat[i][j]).set);
 				} else {
-					EnhancedIO.OutputDoublePrecision4(this.Mat[i][j]);
-					System.out.print(",");
+					System.out.print(this.Mat[i][j] + ",");
 				}
 			}
 			System.out.println("]");

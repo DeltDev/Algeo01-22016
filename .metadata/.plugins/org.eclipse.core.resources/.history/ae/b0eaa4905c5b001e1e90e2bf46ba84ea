@@ -67,15 +67,15 @@ public class Main {
 						System.out.println("1. Metode Reduksi Baris");
 						System.out.println("2. Metode Ekspansi Kofaktor");
 						inputSubmenu = in.nextInt();
-						m = EnhancedIO.InputSquareMatrix();
+						m = Input.SquareMatrix();
 						switch(inputSubmenu) {
 							case 1:
 								System.out.print("Determinan dari matriks tersebut adalah: ");
-								EnhancedIO.OutputDoublePrecision4(Determinant.ReduksiBaris(m));
+								System.out.println(Determinant.ReduksiBaris(m));
 								break;
 							case 2:
 								System.out.print("Determinan dari matriks tersebut adalah: ");
-								EnhancedIO.OutputDoublePrecision4(Determinant.EkspansiKofaktor(m));
+								System.out.println(BigDecimal.valueOf(Determinant.EkspansiKofaktor(m)).setScale(2,RoundingMode.HALF_EVEN).toPlainString());
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
@@ -92,7 +92,7 @@ public class Main {
 						System.out.println("2. Metode matriks adjoin");
 
 						inputSubmenu = in.nextInt();
-						m = EnhancedIO.InputSquareMatrix();
+						m = Input.SquareMatrix();
 						switch (inputSubmenu){
 							case 1:
 								Inverse.GaussJordan(m);
