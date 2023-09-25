@@ -20,11 +20,20 @@ public class EquationSystem {
 			for(int j = 0; j<m.row; j++) {
 				clone.Mat[j][i] = m.Mat[j][m.col-1];
 			}
-			clone.printMatrix();
-			System.out.println("");
+			
+			solution[i] = (Determinant.EkspansiKofaktor(clone))/D;
+			
 			for(int j = 0; j<m.row; j++) {
 				clone.Mat[j][i] = reset.Mat[j][i];
 			}
 		}
+		
+		// Print solusi
+		printf("Solusi:\n");
+		for (int k = 0 ; k<m.col-1 ; k++)
+		{
+			printf("x[%d] : = %d\n",k+1,Solusi[k]);
+		}
+		
 	}
 }
