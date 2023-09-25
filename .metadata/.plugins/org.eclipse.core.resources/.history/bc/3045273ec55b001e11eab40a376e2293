@@ -68,11 +68,9 @@ public class Inverse {
 				};
 			};
 		//transpose
-			Inv = Inv.Transpose();
-			System.out.println("Invers matriks tersebut adalah:");
-			Inv.printMatrix();
-		}
+		Inv = Inv.Transpose();
 		return;
+		}
 	}
 	
 }

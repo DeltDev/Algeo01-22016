@@ -37,8 +37,7 @@ public class Inverse {
 	public static void Adjoin(Matrix m){
 		double det = Determinant.EkspansiKofaktor(m);
 		if(det == 0) {
-			System.out.println("Matriks tersebut tidak memiliki invers.");
-			return;
+			
 		}
 		int i, j, i2, j2;
 		//asumsi matriks persegi dan ada invers (determinan != 0)
@@ -68,11 +67,9 @@ public class Inverse {
 				};
 			};
 		//transpose
-			Inv = Inv.Transpose();
-			System.out.println("Invers matriks tersebut adalah:");
-			Inv.printMatrix();
-		}
+		Inv = Inv.Transpose();
 		return;
+		}
 	}
 	
 }

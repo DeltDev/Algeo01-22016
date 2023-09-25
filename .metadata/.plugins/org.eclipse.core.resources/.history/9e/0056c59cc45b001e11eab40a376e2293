@@ -64,7 +64,7 @@ public class Main {
 							case 3:
 								// fungsi SPL matriks balikan
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
-								//maka banyak persamaan linear wajib sama dengan banyak variabel
+								//maka input banyak persamaan wajib sama dengan banyak variabel
 								System.out.print("Masukkan banyak persamaan (n): ");
 								banyakPersamaan = in.nextInt();
 								m = new Matrix(banyakPersamaan,banyakPersamaan+1);
@@ -76,7 +76,7 @@ public class Main {
 							case 4:
 								// fungsi SPL Cramer
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
-								//maka banyak persamaan linear wajib sama dengan banyak variabel
+								//maka input banyak persamaan wajib sama dengan banyak variabel
 								System.out.print("Masukkan banyak persamaan (n): ");
 								banyakPersamaan = in.nextInt();
 								m = new Matrix(banyakPersamaan,banyakPersamaan+1);
@@ -138,7 +138,9 @@ public class Main {
 								break;
 							case 2:
 								// invers matriks adjoin
-								Inverse.Adjoin(m);
+								Matrix m2;
+								m2 = Inverse.Adjoin(m);
+								m2.printMatrix();
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
