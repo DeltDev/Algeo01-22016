@@ -44,17 +44,17 @@ public class EquationSystem {
 		
 		if(D == 0) {
 			if(allDetZero) {
-				System.out.println("Sistem persamaan linear berikut memiliki solusi banyak/parametrik.");
+				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
 				return;
 			} else {
-				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
+				System.out.println("Sistem persamaan linear berikut memiliki solusi parametrik");
 				return;
 			}
 		} else {
 			System.out.println("Solusi persamaan linear berikut adalah:");
 			for(int i = 0; i<m.row; i++) {
 				solution[i] = Det[i]/D;
-				System.out.print("x["+ (i+1) + "] =");
+				System.out.print("x["+ i + "] =");
 				EnhancedIO.OutputDoublePrecision4(solution[i]);
 				System.out.println("");
 			}
