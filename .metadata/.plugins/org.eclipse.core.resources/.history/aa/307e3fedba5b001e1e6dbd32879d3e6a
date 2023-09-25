@@ -12,7 +12,6 @@ public class Main {
 		int baris;
 		int kolom;
 		int banyakPersamaan;
-		int banyakVariabel;
 		Scanner in = new Scanner(System.in);
 		int inputMenu, inputSubmenu;
 		while (true){
@@ -37,29 +36,23 @@ public class Main {
 						switch (inputSubmenu){
 							case 1:
 								// fungsi SPL Gauss
-								
+								int banyakVariabel;
 								System.out.print("Masukkan banyak persamaan: ");
 								banyakPersamaan = in.nextInt();
-								System.out.print("Masukkan banyak variabel peubah (n): ");
+								System.out.print("Masukkan banyak variabel peubah): ");
 								banyakVariabel = in.nextInt();
 								m = new Matrix(banyakPersamaan,banyakVariabel+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
-								m.inputMatrix();
 								EquationSystem.Gauss(m);
 								break;
 							case 2:
 								// fungsi SPL Gauss-Jordan
-								
+								int banyakVariabel;
 								System.out.print("Masukkan banyak persamaan: ");
 								banyakPersamaan = in.nextInt();
-								System.out.print("Masukkan banyak variabel peubah (n): ");
+								System.out.print("Masukkan banyak variabel peubah): ");
 								banyakVariabel = in.nextInt();
 								m = new Matrix(banyakPersamaan,banyakVariabel+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
-								m.inputMatrix();
-								EquationSystem.GaussJordan(m);
+								EquationSystem.Gauss(m);
 								break;
 							case 3:
 								// fungsi SPL matriks balikan
@@ -71,7 +64,7 @@ public class Main {
 								banyakPersamaan = in.nextInt();
 								m = new Matrix(banyakPersamaan,banyakPersamaan+1);
 								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
+								System.out.println("dengan format : a[1] a[2] ... a[n] b sebanyak n kali: ");
 								m.inputMatrix();
 								EquationSystem.CramerRule(m);
 								break;

@@ -70,10 +70,8 @@ public class EquationSystem {
 		if(Matrix.AllBottomZero(m1)) {
 			if(m1.Mat[m.row-1][m.col-1] != 0) {
 				System.out.println("Sistem persamaan berikut tidak memiliki solusi.");
-				return;
 			} else {
 				System.out.println("Sistem persamaan berikut memiliki solusi parametrik");
-				return;
 			}
 		} else {
 			double [] Solution = new double [m.row];
@@ -82,15 +80,8 @@ public class EquationSystem {
 			for(int i = m.row-2; i>=0; i--) {
 				Solution[i] = m1.Mat[i][m.col-1];
 				for(int j = i+1; j<m.col-1; j++) {
-					Solution[i] = Solution[i] - m1.Mat[i][j]*Solution[j];
+					Solution[i] = Solution[i] - m1.m;
 				}
-			}
-			System.out.println("Solusi persamaan linear berikut adalah:");
-			
-			for(int i = 0; i<m.row; i++) {
-				System.out.print("x["+ (i+1) + "] =");
-				EnhancedIO.OutputDoublePrecision4(Solution[i]);
-				System.out.println("");
 			}
 		}
 	}
@@ -99,23 +90,5 @@ public class EquationSystem {
 		Matrix m1;
 		m1 = new Matrix(m.row,m.col);
 		m1 = Echelon.RREF(m);
-		
-		if(Matrix.AllBottomZero(m1)) {
-			if(m1.Mat[m.row-1][m.col-1] != 0) {
-				System.out.println("Sistem persamaan berikut tidak memiliki solusi.");
-				return;
-			} else {
-				System.out.println("Sistem persamaan berikut memiliki solusi parametrik");
-				return;
-			}
-		} else {
-			System.out.println("Solusi persamaan linear berikut adalah:");
-			
-			for(int i = 0; i<m.row; i++) {
-				System.out.print("x["+ (i+1) + "] =");
-				EnhancedIO.OutputDoublePrecision4(m1.Mat[i][m.col-1]);
-				System.out.println("");
-			}
-		}
 	}
 }

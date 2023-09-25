@@ -82,7 +82,7 @@ public class EquationSystem {
 			for(int i = m.row-2; i>=0; i--) {
 				Solution[i] = m1.Mat[i][m.col-1];
 				for(int j = i+1; j<m.col-1; j++) {
-					Solution[i] = Solution[i] - m1.Mat[i][j]*Solution[j];
+					Solution[i] = Solution[i] - m1.Mat[i][j];
 				}
 			}
 			System.out.println("Solusi persamaan linear berikut adalah:");
