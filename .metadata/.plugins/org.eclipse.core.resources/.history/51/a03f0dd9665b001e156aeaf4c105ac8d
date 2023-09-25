@@ -1,5 +1,6 @@
 package Menu;
 import java.io.*;
+import EnhancedIO.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -40,7 +41,6 @@ public class EnhancedIO {
 	
 	public static void OutputDet(double d) {
 		System.out.print("Determinan dari matriks tersebut adalah: ");
-		EnhancedIO.OutputDoublePrecision4(d);
-		System.out.println("");
+		EnhancedIO.OutputDoublePrecision4(Determinant.EkspansiKofaktor(d));
 	}
 }

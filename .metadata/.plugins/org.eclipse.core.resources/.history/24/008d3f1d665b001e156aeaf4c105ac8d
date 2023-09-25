@@ -70,10 +70,12 @@ public class Main {
 						m = EnhancedIO.InputSquareMatrix();
 						switch(inputSubmenu) {
 							case 1:
-								EnhancedIO.OutputDet(Determinant.ReduksiBaris(m));
+								System.out.print("Determinan dari matriks tersebut adalah: ");
+								EnhancedIO.OutputDoublePrecision4(Determinant.ReduksiBaris(m));
 								break;
 							case 2:
-								EnhancedIO.OutputDet(Determinant.EkspansiKofaktor(m));
+								System.out.print("Determinan dari matriks tersebut adalah: ");
+								EnhancedIO.OutputDoublePrecision4(Determinant.EkspansiKofaktor(m));
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
@@ -95,14 +97,6 @@ public class Main {
 							case 1:
 								Matrix m1;
 								m1 = Inverse.GaussJordan(m);
-								if(Matrix.AllBottomZero(m1)) {
-									System.out.println("Matriks tersebut tidak memiliki invers.");
-								} else {
-									Matrix m2;
-									m2 = Inverse.GetInverseGJ(m1);
-									System.out.println("Invers matriks tersebut adalah:");
-									m2.printMatrix();
-								}
 								break;
 							case 2:
 								// invers matriks adjoin

@@ -1,8 +1,7 @@
 package LinearAlgebra;
 import LinearAlgebra.*;
 public class Inverse {
-	public static Matrix GaussJordan(Matrix m) {
-		//asumsikan m punya invers
+	public static void GaussJordan(Matrix m) {
 		Matrix doubleM,doubleInv;
 		doubleM = new Matrix(m.row,2*m.col);
 		doubleInv = new Matrix(m.row,2*m.col);
@@ -18,19 +17,21 @@ public class Inverse {
 		
 
 		doubleInv = Echelon.RREF(doubleM);
-		return doubleInv;
-	}
-	
-	public static Matrix GetInverseGJ(Matrix m) {
 
+		
+		if(Matrix.AllBottomZero(doubleInv)) {
+			System.out.println("Matriks tersebut tidak punya invers.");
+		} else {
+			System.out.println("Invers matriks tersebut adalah: ");
 			Matrix Inv;
-			Inv = new Matrix (m.row,m.row);
+			Inv = new Matrix (m.row,m.col);
 			
 			for(int i = 0; i<m.row; i++) {
-				for(int j = 0; j<m.row; j++) {
-					Inv.Mat[i][j] = m.Mat[i][j+m.row];
+				for(int j = 0; j<m.col; j++) {
+					Inv.Mat[i][j] = doubleInv.Mat[i][j+m.row];
 				}
 			}
-			return Inv;
+			Inv.printMatrix();
+		}
 	}
 }

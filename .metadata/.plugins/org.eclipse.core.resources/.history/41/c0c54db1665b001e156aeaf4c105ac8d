@@ -37,10 +37,4 @@ public class EnhancedIO {
 	public static void OutputDoublePrecision4(double d) {
 		System.out.print(BigDecimal.valueOf(d).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 	}
-	
-	public static void OutputDet(double d) {
-		System.out.print("Determinan dari matriks tersebut adalah: ");
-		EnhancedIO.OutputDoublePrecision4(d);
-		System.out.println("");
-	}
 }
