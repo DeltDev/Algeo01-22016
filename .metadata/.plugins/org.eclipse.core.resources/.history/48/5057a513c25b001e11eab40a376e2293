@@ -118,37 +118,4 @@ public class EquationSystem {
 			}
 		}
 	}
-	public static void Inverse(Matrix m) {
-		Matrix m1,m2,konstan,solution,variabel;
-		m1 = new Matrix(m.row,2*m.row);
-		variabel = new Matrix(m.row,m.row);
-		for(int i = 0; i<m.row; i++) {
-			for(int j = 0; j<m.row; j++) {
-				variabel.Mat[i][j] = m.Mat[i][j];
-			}
-		}
-		m1 = Inverse.GaussJordan(variabel);
-
-		if(Matrix.AllBottomZero(m1)) {
-			System.out.println("Sistem persamaan linear tersebut mungkin memiliki solusi parametrik atau tidak memiliki solusi");
-			return;
-		} 
-		m2 = Inverse.GetInverseGJ(m1);
-
-		konstan = new Matrix(m.row,1);
-		
-		for(int i = 0; i<m.row; i++) {
-			konstan.Mat[i][0] = m.Mat[i][m.col-1];
-		}
-
-		solution = new Matrix(m.row,1);
-		solution = Matrix.Multiply(m2, konstan);
-		System.out.println("Solusi persamaan linear berikut adalah:");
-		
-		for(int i = 0; i<m.row; i++) {
-			System.out.print("x["+ (i+1) + "]= ");
-			EnhancedIO.OutputDoublePrecision4(solution.Mat[i][0]);
-			System.out.println("");
-		}
-	}
 }

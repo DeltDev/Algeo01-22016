@@ -4,8 +4,8 @@ public class Inverse {
 	public static Matrix GaussJordan(Matrix m) {
 		//asumsikan m punya invers
 		Matrix doubleM,doubleInv;
-		doubleM = new Matrix(m.row,2*m.row);
-		doubleInv = new Matrix(m.row,2*m.row);
+		doubleM = new Matrix(m.row,2*m.col);
+		doubleInv = new Matrix(m.row,2*m.col);
 		for(int i = 0; i<m.row; i++) {
 			for(int j = 0; j<m.col; j++) {
 				doubleM.Mat[i][j] = m.Mat[i][j];
