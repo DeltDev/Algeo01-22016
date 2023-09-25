@@ -29,10 +29,10 @@ public class EquationSystem {
 		}
 		
 		// Print solusi
-		printf("Solusi:\n");
+		System.out.println("Solusi:");
 		for (int k = 0 ; k<m.col-1 ; k++)
 		{
-			printf("x[%d] : = %d\n",k+1,Solusi[k]);
+			System.out.println("x[" + (k+1) + "] = " + solution[k]);
 		}
 		
 	}

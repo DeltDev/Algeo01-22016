@@ -47,7 +47,9 @@ public class Determinant {
 
 	//fungsi menghitung determinan dengan ekspansi kofaktor
 	public static double EkspansiKofaktor(Matrix m){
-		if (m.row == 1){return m.Mat[0][0];} else { // kasus matriks ukuran 1x1
+		if (m.row == 1)
+			{return m.Mat[0][0];} 
+		else { // kasus matriks ukuran 1x1
 			double Sum = 0;
 			Matrix ReCursed;
 			ReCursed = new Matrix((m.row - 1), (m.col - 1)); //matriks yang akan digunakan untuk rekursi jadi row dan col nya dikurangi 1
@@ -67,4 +69,5 @@ public class Determinant {
 			return Sum;
 		}
 	}
+	
 }
