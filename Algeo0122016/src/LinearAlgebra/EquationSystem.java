@@ -6,33 +6,46 @@ public class EquationSystem {
 		D = Determinant.EkspansiKofaktor(m);
 		
 		if(D == 0) {
-			System.out.println("Sistem Persamaan Linear berikut tidak memiliki solusi.");
+			System.out.println("Sistem Persamaan Linear berikut tidak memiliki solusi atau memiliki solusi parametrik.");
 			return;
 		}
-		Matrix clone,reset;
-		clone = new Matrix(m.row,m.col);
-		clone = m;
-		reset = new Matrix(m.row,m.col);
-		reset = m;
-		double [] solution = new double[m.row];
-		clone.printMatrix();
-		for(int i = 0; i<m.col-1; i++) {
-			for(int j = 0; j<m.row; j++) {
-				clone.Mat[j][i] = m.Mat[j][m.col-1];
-			}
-			
-			solution[i] = (Determinant.EkspansiKofaktor(clone))/D;
-			
-			for(int j = 0; j<m.row; j++) {
-				clone.Mat[j][i] = reset.Mat[j][i];
+		Matrix clone,konstan,reset;
+		clone = new Matrix(m.row,m.row);
+		reset = new Matrix(m.row,m.row);
+		konstan = new Matrix(m.row,1);
+		for(int i = 0; i<m.row; i++){
+			for(int j = 0; j<m.row; j++){
+				clone.Mat[i][j] = m.Mat[i][j];
 			}
 		}
+		for(int i = 0; i<m.row; i++){
+			for(int j = 0; j<m.row; j++){
+				reset.Mat[i][j] = m.Mat[i][j];
+			}
+		}
+		for(int i = 0; i<m.row; i++){
+			konstan.Mat[i][0] = m.Mat[i][m.col-1];
+		}
 		
-		// Print solusi
+		double [] solution = new double[m.row];
+		double [] Det = new double[m.row];
+		
 		System.out.println("Solusi:");
-		for (int k = 0 ; k<m.col-1 ; k++)
-		{
-			System.out.println("x[" + (k+1) + "] = " + solution[k]);
+		for(int i = 0; i<m.row; i++) {
+			for(int j = 0; j<m.row; j++) {
+				clone.Mat[j][i] = konstan.Mat[j][0];
+			}
+			
+			Det[i] = Determinant.ReduksiBaris(clone);
+			solution[i] = (Determinant.EkspansiKofaktor(clone))/D;
+			
+			
+			System.out.println("x[" + (i+1) + "] = " + solution[i]);
+			
+			for(int j = 0; j<m.row; j++){
+				clone.Mat[j][i] = reset.Mat[j][i];
+			}
+
 		}
 		
 	}
