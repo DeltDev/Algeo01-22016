@@ -125,7 +125,73 @@ public class Main {
 					};
 					break;
 				case 4:
-					System.out.println("INTERPOLASI POLINOM"); // nanti
+					
+					int banyakTitik;
+					System.out.println("INTERPOLASI POLINOM");
+					System.out.print("Masukkan banyak titik: ");
+					banyakTitik = in.nextInt();
+					double [] x = new double[banyakTitik];
+					double [] y = new double[banyakTitik];
+					System.out.println("Masukkan titik: ");
+					for(int i = 0; i<banyakTitik; i++) {
+						x[i] = in.nextDouble();
+						y[i] = in.nextDouble();
+					}
+					
+					Matrix aug;
+					aug = new Matrix(banyakTitik,banyakTitik+1);
+					
+					for(int i = 0; i<banyakTitik; i++) {
+						for(int j = 0; j<banyakTitik+1; j++) {
+							if(j == banyakTitik) {
+								aug.Mat[i][j] = y[i];
+							} else {
+								aug.Mat[i][j] = Math.pow(x[i], j);
+							}
+						}
+					}
+
+					SPL = EquationSystem.GaussJordan(aug);
+					System.out.println("Polinomial interpolasi yang didapat adalah:");
+					System.out.print("f(x) = ");
+
+					
+					for(int i = 0; i<SPL.Solution.length; i++) {
+						if(i != 0) {
+							if(SPL.Solution[i] >=0) {
+								System.out.print(" + ");
+							} else {
+								System.out.print(" ");
+							}
+						}
+						EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
+						if(i !=0) {
+							if(i == 1) {
+								System.out.print("x");
+							} else {
+								System.out.print("x^");
+								System.out.print(i);
+							}
+						}
+					}
+					System.out.println("");
+					
+					double masukan,taksiran;
+					System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial di atas: ");
+					masukan = in.nextDouble();
+					taksiran = 0.0;
+					for(int i = 0; i<SPL.Solution.length; i++) {
+						if(i == 0) {
+							taksiran = SPL.Solution[i];
+						} else {
+							taksiran = taksiran + Math.pow(masukan, i) * SPL.Solution[i];
+						}
+					}
+					System.out.print("f(");
+					System.out.print(masukan);
+					System.out.print(") = ");
+					EnhancedIO.OutputDoublePrecision4(taksiran);
+					System.out.println("");
 					break;
 				case 5:
 					System.out.println("INTERPOLASI BICUBIC SPLINE"); // nanti

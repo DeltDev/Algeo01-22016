@@ -5,8 +5,8 @@ import java.math.*;
 import Menu.EnhancedIO;
 public class Matrix {
 	//Atribut Matrix
-	int row,col;
-	double [][] Mat = new double[row][col];
+	public int row,col;
+	public double [][] Mat = new double[row][col];
 	
 	//Konstruktor
 	public Matrix(int rowInput, int colInput) {
