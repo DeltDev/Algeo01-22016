@@ -1,10 +1,12 @@
 import java.io.*;
 
+
 import LinearAlgebra.*;
 
 import java.util.Scanner;
 import Menu.*;
 import java.math.*;
+import SPLTuples.*;
 public class Main {
 
 	public static void main(String[] args) {	
@@ -15,6 +17,7 @@ public class Main {
 		int banyakVariabel;
 		Scanner in = new Scanner(System.in);
 		int inputMenu, inputSubmenu;
+		SPLTuples SPL;
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
@@ -34,55 +37,28 @@ public class Main {
 						System.out.println("3. Metode matriks balikan");
 						System.out.println("4. Kaidah Cramer");
 						inputSubmenu = in.nextInt();
+						m = EnhancedIO.InputSPL();
 						switch (inputSubmenu){
 							case 1:
 								// fungsi SPL Gauss
-								
-								System.out.print("Masukkan banyak persamaan: ");
-								banyakPersamaan = in.nextInt();
-								System.out.print("Masukkan banyak variabel peubah (n): ");
-								banyakVariabel = in.nextInt();
-								m = new Matrix(banyakPersamaan,banyakVariabel+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
-								m.inputMatrix();
-								EquationSystem.Gauss(m);
+								SPL = EquationSystem.Gauss(m);
+								EnhancedIO.OutputSPL(SPL);
 								break;
 							case 2:
 								// fungsi SPL Gauss-Jordan
-								
-								System.out.print("Masukkan banyak persamaan: ");
-								banyakPersamaan = in.nextInt();
-								System.out.print("Masukkan banyak variabel peubah (n): ");
-								banyakVariabel = in.nextInt();
-								m = new Matrix(banyakPersamaan,banyakVariabel+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
-								m.inputMatrix();
-								EquationSystem.GaussJordan(m);
+								SPL = EquationSystem.GaussJordan(m);
+								EnhancedIO.OutputSPL(SPL);
 								break;
 							case 3:
 								// fungsi SPL matriks balikan
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
 								//maka banyak persamaan linear wajib sama dengan banyak variabel
-								System.out.print("Masukkan banyak persamaan (n): ");
-								banyakPersamaan = in.nextInt();
-								m = new Matrix(banyakPersamaan,banyakPersamaan+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
-								m.inputMatrix();
 								EquationSystem.Inverse(m);
 								break;
 							case 4:
 								// fungsi SPL Cramer
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
 								//maka banyak persamaan linear wajib sama dengan banyak variabel
-								System.out.print("Masukkan banyak persamaan (n): ");
-								banyakPersamaan = in.nextInt();
-								m = new Matrix(banyakPersamaan,banyakPersamaan+1);
-								System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-								System.out.println("dengan format : a[1] a[2] ... a[n] b");
-								m.inputMatrix();
 								EquationSystem.CramerRule(m);
 								break;
 							default:

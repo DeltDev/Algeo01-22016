@@ -1,8 +1,9 @@
 package LinearAlgebra;
 import LinearAlgebra.*;
+import SPLTuples.*;
 import Menu.EnhancedIO;
 public class EquationSystem {
-	public static void CramerRule(Matrix m) {
+	public static void CramerRule(Matrix m) { //tidak feasible untuk di daur ulang untuk menyelesaikan solusi parametrik
 		double D;
 		D = Determinant.ReduksiBaris(m);
 		
@@ -26,16 +27,16 @@ public class EquationSystem {
 		double [] Det = new double[m.row];
 		double [] solution = new double[m.row];
 
-		boolean allDetZero;
-		allDetZero = true;
+		boolean allDetNotZero;
+		allDetNotZero = true;
 		System.out.println("Solusi:");
 		for(int i = 0; i<m.row; i++) {
 			for(int j = 0; j<m.row; j++) {
 				clone.Mat[j][i] = konstan.Mat[j][0];
 			}
 			Det[i] = Determinant.ReduksiBaris(clone);
-			if(Det[i] != 0) {
-				allDetZero = false;
+			if(Det[i] == 0) {
+				allDetNotZero = false;
 			}
 			for(int j = 0; j<m.row; j++){
 				clone.Mat[j][i] = reset.Mat[j][i];
@@ -43,18 +44,18 @@ public class EquationSystem {
 		}			
 		
 		if(D == 0) {
-			if(allDetZero) {
-				System.out.println("Sistem persamaan linear berikut memiliki solusi banyak/parametrik.");
+			if(allDetNotZero) {
+				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
 				return;
 			} else {
-				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
+				System.out.println("Sistem persamaan linear berikut memiliki solusi banyak/parametrik.");
 				return;
 			}
 		} else {
-			System.out.println("Solusi persamaan linear berikut adalah:");
+			System.out.println("Solusinya adalah:");
 			for(int i = 0; i<m.row; i++) {
 				solution[i] = Det[i]/D;
-				System.out.print("x["+ (i+1) + "] =");
+				System.out.print("x["+ (i+1) + "]= ");
 				EnhancedIO.OutputDoublePrecision4(solution[i]);
 				System.out.println("");
 			}
@@ -62,21 +63,29 @@ public class EquationSystem {
 		}
 	}
 	
-	public static void Gauss(Matrix m) {
+	public static SPLTuples Gauss(Matrix m) {
 		Matrix m1;
 		m1 = new Matrix(m.row,m.col);
 		m1 = Echelon.REF(m);
 		
+		boolean isSol;
+		boolean isPara;
+		double [] Solution = new double [m.row];
+		for(int i = 0; i<m.row; i++) {
+			Solution[i] = Double.NaN;
+		}
 		if(Matrix.AllBottomZero(m1)) {
 			if(m1.Mat[m.row-1][m.col-1] != 0) {
-				System.out.println("Sistem persamaan berikut tidak memiliki solusi.");
-				return;
+				isSol = false;
+				isPara = false;
 			} else {
-				System.out.println("Sistem persamaan berikut memiliki solusi parametrik");
-				return;
+				isSol = true;
+				isPara = true;
 			}
 		} else {
-			double [] Solution = new double [m.row];
+			isSol = true;
+			isPara = false;
+			
 			Solution[m.row-1] = m1.Mat[m.row-1][m.col-1];
 			
 			for(int i = m.row-2; i>=0; i--) {
@@ -85,40 +94,43 @@ public class EquationSystem {
 					Solution[i] = Solution[i] - m1.Mat[i][j]*Solution[j];
 				}
 			}
-			System.out.println("Solusi persamaan linear berikut adalah:");
-			
-			for(int i = 0; i<m.row; i++) {
-				System.out.print("x["+ (i+1) + "] =");
-				EnhancedIO.OutputDoublePrecision4(Solution[i]);
-				System.out.println("");
-			}
 		}
+		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
+		return ret;
 	}
 	
-	public static void GaussJordan(Matrix m) {
+	public static SPLTuples GaussJordan(Matrix m) {
 		Matrix m1;
 		m1 = new Matrix(m.row,m.col);
 		m1 = Echelon.RREF(m);
-		
+		boolean isSol;
+		boolean isPara;
+		double [] Solution = new double [m.row];
+		for(int i = 0; i<m.row; i++) {
+			Solution[i] = Double.NaN;
+		}
 		if(Matrix.AllBottomZero(m1)) {
 			if(m1.Mat[m.row-1][m.col-1] != 0) {
-				System.out.println("Sistem persamaan berikut tidak memiliki solusi.");
-				return;
+				isSol = false;
+				isPara = false;
 			} else {
-				System.out.println("Sistem persamaan berikut memiliki solusi parametrik");
-				return;
+				isSol = true;
+				isPara = true;
 			}
 		} else {
-			System.out.println("Solusi persamaan linear berikut adalah:");
+			isSol = true;
+			isPara = false;
 			
 			for(int i = 0; i<m.row; i++) {
-				System.out.print("x["+ (i+1) + "] =");
-				EnhancedIO.OutputDoublePrecision4(m1.Mat[i][m.col-1]);
-				System.out.println("");
+
+				Solution[i] = m1.Mat[i][m.col-1];
 			}
 		}
+		
+		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
+		return ret;
 	}
-	public static void Inverse(Matrix m) {
+	public static void Inverse(Matrix m) { //tidak feasible untuk di daur ulang karena tidak bisa menentukan solusi parametrik
 		Matrix m1,m2,konstan,solution,variabel;
 		m1 = new Matrix(m.row,2*m.row);
 		variabel = new Matrix(m.row,m.row);
@@ -143,7 +155,7 @@ public class EquationSystem {
 
 		solution = new Matrix(m.row,1);
 		solution = Matrix.Multiply(m2, konstan);
-		System.out.println("Solusi persamaan linear berikut adalah:");
+		System.out.println("Solusinya adalah:");
 		
 		for(int i = 0; i<m.row; i++) {
 			System.out.print("x["+ (i+1) + "]= ");

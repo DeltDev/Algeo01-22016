@@ -1,0 +1,8 @@
+package SPLTuples;
+import LinearAlgebra.*;
+public class SPLTuples {
+	Matrix Mat;
+	double [] Solution;
+	boolean isSolvable;
+	boolean isParametric;
+}

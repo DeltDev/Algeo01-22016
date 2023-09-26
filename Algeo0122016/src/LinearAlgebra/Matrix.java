@@ -22,11 +22,11 @@ public class Matrix {
 	}
 	
 	//Prosedur untuk input matriks
-	public void inputMatrix() {
+	public void inputMatrix(int r, int c) {
 		Scanner in = new Scanner(System.in);
 		int i,j;
-		for(i = 0; i<this.row; i++) {
-			for(j = 0; j<this.col; j++) {
+		for(i = 0; i<r; i++) {
+			for(j = 0; j<c; j++) {
 				this.Mat[i][j] = in.nextDouble();
 			}
 		}
