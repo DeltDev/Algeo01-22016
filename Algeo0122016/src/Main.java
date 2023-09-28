@@ -211,8 +211,31 @@ public class Main {
 			};
 		};
 	}
+	
+	public static Matrix MatriksUntukRegresiLinierBerganda(){ // copy paste this dan fungsi di bawahnya!!11!1!1!
+		int n, k, i, j;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Masukkan banyak variabel peubah k: ");
+		k = in.nextInt();
+		System.out.print("Masukkan banyak variabel peubah n: ");
+		n = in.nextInt();
+		Matrix inputNK = new Matrix (n, (k+1));
+		Matrix NormalEstimationEquationforMultipleLinierRegression = new Matrix ((k+1), (k+2));
+		System.out.println("Masukkan dengan format");
+		System.out.println("x[1][1] x[2][1] ... x[k][1] y[1]");
+		System.out.println("x[1][2] x[2][2] ... x[k][2] y[2]");
+		System.out.println("   :       :     :     :     :  ");
+		System.out.println("x[1][n] x[2][n] ... x[k][n] y[n]");
+		inputNK.inputMatrix(n, (k+1));
+		for (i = 0;i < (k+1);i++){ // i loop row
+			for (j = 0;j < (k+2);j++){ // j loop col
+				NormalEstimationEquationforMultipleLinierRegression.Mat[i][j] = Sigma(inputNK, i, j);
+			};
+		};
+		return NormalEstimationEquationforMultipleLinierRegression;
+	}
 
-	public static  double Sigma(Matrix m, int kiri, int kanan){ //copy paste this function11!11!11
+	public static double Sigma(Matrix m, int kiri, int kanan){
 		double Sum = 0;
 		int i;
 		if (kiri == 0){
