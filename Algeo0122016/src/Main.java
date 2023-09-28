@@ -9,7 +9,7 @@ import java.math.*;
 import SPLTuples.*;
 public class Main {
 
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
 		Matrix m;
 		int baris;
 		int kolom;
@@ -18,6 +18,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		int inputMenu, inputSubmenu;
 		SPLTuples SPL;
+
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
@@ -64,7 +65,7 @@ public class Main {
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
 						};
-						if ((inputSubmenu > 0) && (inputSubmenu < 5)){
+						if ((inputSubmenu > 0) && (inputSubmenu <= 4)){
 							break;
 						};
 					};
@@ -86,7 +87,7 @@ public class Main {
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
 						};
-						if ((inputSubmenu > 0) && (inputSubmenu < 2)){
+						if ((inputSubmenu > 0) && (inputSubmenu <= 2)){
 							break;
 						};
 					};
@@ -119,7 +120,7 @@ public class Main {
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
 						};
-						if ((inputSubmenu > 0) && (inputSubmenu < 2)){
+						if ((inputSubmenu > 0) && (inputSubmenu <= 2)){
 							break;
 						};
 					};
@@ -209,5 +210,22 @@ public class Main {
 				break;
 			};
 		};
+	}
+
+	public static  double Sigma(Matrix m, int kiri, int kanan){ //copy paste this function11!11!11
+		double Sum = 0;
+		int i;
+		if (kiri == 0){
+			if (kanan == 0){Sum = m.row;} else {
+				for (i = 0;i < m.row;i++){Sum += m.Mat[i][kanan-1];};
+			};
+		} else {
+			if (kanan == 0){
+				for (i = 0;i < m.row;i++){Sum += m.Mat[i][kiri-1];};
+			} else {
+				for (i = 0;i < m.row;i++){Sum += (m.Mat[i][kiri-1] * m.Mat[i][kanan-1]);};
+			};
+		};
+		return Sum;
 	}
 }
