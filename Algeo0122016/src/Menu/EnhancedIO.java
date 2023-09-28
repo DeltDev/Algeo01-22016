@@ -76,4 +76,38 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			System.out.println("Solusinya tidak ada");
 		}
 	}
+	
+	public static void OutputFunction(SPLTuples SPL, boolean regressionfunction) {
+		int i;
+		for(i = 0; i<SPL.Solution.length; i++) {
+			if(i != 0) {
+				if(SPL.Solution[i] >=0) {
+					System.out.print(" + ");
+				} else {
+					System.out.print(" ");
+				}
+			}
+			EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
+			if(regressionfunction) {
+				if(i !=0) {
+					System.out.print("x");
+					System.out.print("["+i+"]");
+					if(i != 1) {
+						System.out.print("^");
+						System.out.print(i);
+					}
+				}
+			} else {
+				if(i !=0) {
+					System.out.print("x");
+					if(i != 1) {
+						System.out.print("^");
+						System.out.print(i);
+					}
+				}
+			}
+
+		}
+		System.out.println("");
+	}
 }

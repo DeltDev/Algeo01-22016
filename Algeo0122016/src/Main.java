@@ -7,6 +7,7 @@ import java.util.Scanner;
 import Menu.*;
 import java.math.*;
 import SPLTuples.*;
+import Misc.*;
 public class Main {
 
 	public static void main(String[] args) {
@@ -138,7 +139,8 @@ public class Main {
 						x[i] = in.nextDouble();
 						y[i] = in.nextDouble();
 					}
-					
+					System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial yang akan dicari: ");
+					double masukan;
 					Matrix aug;
 					aug = new Matrix(banyakTitik,banyakTitik+1);
 					
@@ -152,34 +154,16 @@ public class Main {
 						}
 					}
 
+					masukan = in.nextDouble();
 					SPL = EquationSystem.GaussJordan(aug);
 					System.out.println("Polinomial interpolasi yang didapat adalah:");
 					System.out.print("f(x) = ");
 
-					
-					for(int i = 0; i<SPL.Solution.length; i++) {
-						if(i != 0) {
-							if(SPL.Solution[i] >=0) {
-								System.out.print(" + ");
-							} else {
-								System.out.print(" ");
-							}
-						}
-						EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
-						if(i !=0) {
-							if(i == 1) {
-								System.out.print("x");
-							} else {
-								System.out.print("x^");
-								System.out.print(i);
-							}
-						}
-					}
+					EnhancedIO.OutputFunction(SPL,false);
 					System.out.println("");
 					
-					double masukan,taksiran;
-					System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial di atas: ");
-					masukan = in.nextDouble();
+					double taksiran;
+					
 					taksiran = 0.0;
 					for(int i = 0; i<SPL.Solution.length; i++) {
 						if(i == 0) {
@@ -198,7 +182,30 @@ public class Main {
 					System.out.println("INTERPOLASI BICUBIC SPLINE"); // nanti
 					break;
 				case 6:
-					System.out.println("REGRESI LINIER BERGANDA"); // nanti
+					System.out.println("REGRESI LINIER BERGANDA"); 
+					int n, k, i, j;
+					System.out.print("Masukkan banyak variabel peubah k: ");
+					k = in.nextInt();
+					System.out.print("Masukkan banyak variabel peubah n: ");
+					n = in.nextInt();
+					Matrix inputNK = new Matrix (n, (k+1));
+					Matrix NEE = new Matrix ((k+1), (k+2));
+					System.out.println("Masukkan dengan format");
+					System.out.println("x[1][1] x[2][1] ... x[k][1] y[1]");
+					System.out.println("x[1][2] x[2][2] ... x[k][2] y[2]");
+					System.out.println("   :       :     :     :     :  ");
+					System.out.println("x[1][n] x[2][n] ... x[k][n] y[n]");
+					inputNK.inputMatrix(n, (k+1));
+					for (i = 0;i < (k+1);i++){ // i loop row
+						for (j = 0;j < (k+2);j++){ // j loop col
+							NEE.Mat[i][j] = Misc.Sigma(inputNK, i, j);
+						};
+					};
+					SPL = EquationSystem.GaussJordan(NEE);
+					
+					System.out.println("Persamaan regresi linear yang didapat adalah:");
+					System.out.print("y = ");
+					EnhancedIO.OutputFunction(SPL,true);
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti
@@ -210,45 +217,5 @@ public class Main {
 				break;
 			};
 		};
-	}
-	
-	public static Matrix MatriksUntukRegresiLinierBerganda(){ // copy paste this dan fungsi di bawahnya!!11!1!1!
-		int n, k, i, j;
-		Scanner in = new Scanner(System.in);
-		System.out.print("Masukkan banyak variabel peubah k: ");
-		k = in.nextInt();
-		System.out.print("Masukkan banyak variabel peubah n: ");
-		n = in.nextInt();
-		Matrix inputNK = new Matrix (n, (k+1));
-		Matrix NormalEstimationEquationforMultipleLinierRegression = new Matrix ((k+1), (k+2));
-		System.out.println("Masukkan dengan format");
-		System.out.println("x[1][1] x[2][1] ... x[k][1] y[1]");
-		System.out.println("x[1][2] x[2][2] ... x[k][2] y[2]");
-		System.out.println("   :       :     :     :     :  ");
-		System.out.println("x[1][n] x[2][n] ... x[k][n] y[n]");
-		inputNK.inputMatrix(n, (k+1));
-		for (i = 0;i < (k+1);i++){ // i loop row
-			for (j = 0;j < (k+2);j++){ // j loop col
-				NormalEstimationEquationforMultipleLinierRegression.Mat[i][j] = Sigma(inputNK, i, j);
-			};
-		};
-		return NormalEstimationEquationforMultipleLinierRegression;
-	}
-
-	public static double Sigma(Matrix m, int kiri, int kanan){
-		double Sum = 0;
-		int i;
-		if (kiri == 0){
-			if (kanan == 0){Sum = m.row;} else {
-				for (i = 0;i < m.row;i++){Sum += m.Mat[i][kanan-1];};
-			};
-		} else {
-			if (kanan == 0){
-				for (i = 0;i < m.row;i++){Sum += m.Mat[i][kiri-1];};
-			} else {
-				for (i = 0;i < m.row;i++){Sum += (m.Mat[i][kiri-1] * m.Mat[i][kanan-1]);};
-			};
-		};
-		return Sum;
 	}
 }
