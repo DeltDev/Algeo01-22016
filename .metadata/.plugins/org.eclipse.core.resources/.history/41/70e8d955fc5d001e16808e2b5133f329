@@ -213,7 +213,7 @@ public class Main {
 						if(i == 0) {
 							taksiran = SPL.Solution[i];
 						} else {
-							taksiran = taksiran + xTest[i-1] * SPL.Solution[i];
+							taksiran = taksiran + Math.pow(xTest[i-1], i) * SPL.Solution[i];
 						}
 					}
 					System.out.println("Persamaan regresi linear yang didapat adalah:");
@@ -229,8 +229,7 @@ public class Main {
 							System.out.print(", ");
 						}
 					}
-					EnhancedIO.OutputDoublePrecision4(taksiran);
-					System.out.println("");
+					System.out.println(taksiran);
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti

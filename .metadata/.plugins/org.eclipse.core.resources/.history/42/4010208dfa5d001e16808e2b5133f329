@@ -19,7 +19,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		int inputMenu, inputSubmenu;
 		SPLTuples SPL;
-		double taksiran;
+
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
@@ -162,7 +162,7 @@ public class Main {
 					EnhancedIO.OutputFunction(SPL,false);
 					System.out.println("");
 					
-
+					double taksiran;
 					
 					taksiran = 0.0;
 					for(int i = 0; i<SPL.Solution.length; i++) {
@@ -184,9 +184,9 @@ public class Main {
 				case 6:
 					System.out.println("REGRESI LINIER BERGANDA"); 
 					int n, k, i, j;
-					System.out.print("Masukkan banyak variabel peubah: ");
+					System.out.print("Masukkan banyak variabel peubah k: ");
 					k = in.nextInt();
-					System.out.print("Masukkan banyak sampel: ");
+					System.out.print("Masukkan banyak variabel peubah n: ");
 					n = in.nextInt();
 					Matrix inputNK = new Matrix (n, (k+1));
 					Matrix NEE = new Matrix ((k+1), (k+2));
@@ -203,34 +203,9 @@ public class Main {
 					};
 					SPL = EquationSystem.GaussJordan(NEE);
 					double [] xTest = new double[k];
-					System.out.print("Masukkan sampel baru yang ingin ditaksir: ");
-					for(i = 0; i<k; i++) {
-						xTest[i] = in.nextDouble();
-					}
-					
-					taksiran = 0.0;
-					for(i = 0; i<SPL.Solution.length; i++) {
-						if(i == 0) {
-							taksiran = SPL.Solution[i];
-						} else {
-							taksiran = taksiran + xTest[i-1] * SPL.Solution[i];
-						}
-					}
 					System.out.println("Persamaan regresi linear yang didapat adalah:");
 					System.out.print("y = ");
 					EnhancedIO.OutputFunction(SPL,true);
-					System.out.print("f(");
-					for(i = 0; i<k; i++) {
-						if(i == k-1) {
-							System.out.print(xTest[i]);
-							System.out.print(") =");
-						} else {
-							System.out.print(xTest[i]);
-							System.out.print(", ");
-						}
-					}
-					EnhancedIO.OutputDoublePrecision4(taksiran);
-					System.out.println("");
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti

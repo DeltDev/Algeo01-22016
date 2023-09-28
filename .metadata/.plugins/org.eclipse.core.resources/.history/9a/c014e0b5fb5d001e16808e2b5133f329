@@ -202,9 +202,9 @@ public class Main {
 						};
 					};
 					SPL = EquationSystem.GaussJordan(NEE);
-					double [] xTest = new double[k];
+					double [] xTest = new double[k+1];
 					System.out.print("Masukkan sampel baru yang ingin ditaksir: ");
-					for(i = 0; i<k; i++) {
+					for(i = 1; i<=k; i++) {
 						xTest[i] = in.nextDouble();
 					}
 					
@@ -213,15 +213,15 @@ public class Main {
 						if(i == 0) {
 							taksiran = SPL.Solution[i];
 						} else {
-							taksiran = taksiran + xTest[i-1] * SPL.Solution[i];
+							taksiran = taksiran + Math.pow(xTest[i], i) * SPL.Solution[i];
 						}
 					}
 					System.out.println("Persamaan regresi linear yang didapat adalah:");
 					System.out.print("y = ");
 					EnhancedIO.OutputFunction(SPL,true);
-					System.out.print("f(");
-					for(i = 0; i<k; i++) {
-						if(i == k-1) {
+					System.out.println("f(");
+					for(i = 1; i<=k; i++) {
+						if(i == k) {
 							System.out.print(xTest[i]);
 							System.out.print(") =");
 						} else {
@@ -229,8 +229,7 @@ public class Main {
 							System.out.print(", ");
 						}
 					}
-					EnhancedIO.OutputDoublePrecision4(taksiran);
-					System.out.println("");
+					System.out.println(taksiran);
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti

@@ -230,7 +230,6 @@ public class Main {
 						}
 					}
 					EnhancedIO.OutputDoublePrecision4(taksiran);
-					System.out.println("");
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti
