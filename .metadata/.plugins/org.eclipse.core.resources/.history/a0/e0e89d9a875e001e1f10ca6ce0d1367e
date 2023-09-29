@@ -19,30 +19,4 @@ public class Misc {
 		};
 		return Sum;
 	}
-	
-	public static Matrix GenerateBCubicSplineMat() {
-		
-		Matrix ret;
-		ret = new Matrix(16,16);
-		
-		
-		return ret;
-	}
-	
-	public static double f(double x, double y) {
-		
-		
-	}
-	
-	public static double fx(double x, double y) {
-		
-	}
-	
-	public static double fy(double x, double y) {
-		
-	}
-	
-	public static double fxy(double x, double y) {
-		
-	}
 }
