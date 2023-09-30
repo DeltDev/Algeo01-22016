@@ -76,7 +76,7 @@ public class Main {
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
 								//maka banyak persamaan linear wajib sama dengan banyak variabel
 								SPL = EquationSystem.Inverse(m);
-								EnhancedIO.OutputSPLInverse(SPL);
+								EnhancedIO.OutputSPL(SPL);
 								break;
 							case 4:
 								// fungsi SPL Cramer
@@ -190,7 +190,6 @@ public class Main {
 					System.out.println("INTERPOLASI POLINOM");
 					System.out.print("Masukkan banyak titik: ");
 					banyakTitik = in.nextInt();
-					
 					double [] x = new double[banyakTitik];
 					double [] y = new double[banyakTitik];
 					System.out.println("Masukkan titik: ");
@@ -200,7 +199,6 @@ public class Main {
 					}
 					System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial yang akan dicari: ");
 					double masukan;
-					masukan = in.nextDouble();
 					Matrix aug;
 					aug = new Matrix(banyakTitik,banyakTitik+1);
 					
@@ -214,7 +212,7 @@ public class Main {
 						}
 					}
 
-					
+					masukan = in.nextDouble();
 					SPL = EquationSystem.GaussJordan(aug);
 					System.out.println("Polinomial interpolasi yang didapat adalah:");
 					System.out.print("f(x) = ");

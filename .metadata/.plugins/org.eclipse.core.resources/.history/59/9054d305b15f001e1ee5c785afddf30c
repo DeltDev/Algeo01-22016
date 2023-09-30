@@ -77,6 +77,8 @@ public class Main {
 								//maka banyak persamaan linear wajib sama dengan banyak variabel
 								SPL = EquationSystem.Inverse(m);
 								EnhancedIO.OutputSPLInverse(SPL);
+								SPL.Mat.printMatrix();
+								
 								break;
 							case 4:
 								// fungsi SPL Cramer

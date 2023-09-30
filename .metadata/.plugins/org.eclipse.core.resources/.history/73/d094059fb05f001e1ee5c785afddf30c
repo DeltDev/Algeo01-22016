@@ -76,7 +76,10 @@ public class Main {
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
 								//maka banyak persamaan linear wajib sama dengan banyak variabel
 								SPL = EquationSystem.Inverse(m);
-								EnhancedIO.OutputSPLInverse(SPL);
+								EnhancedIO.OutputSPL(SPL);
+								SPL.Mat.printMatrix();
+								System.out.println(SPL.isParametric);
+								System.out.println(SPL.isSolvable);
 								break;
 							case 4:
 								// fungsi SPL Cramer

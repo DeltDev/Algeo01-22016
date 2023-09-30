@@ -177,6 +177,7 @@ public class EquationSystem {
 			}
 		}
 		m1 = Inverse.GaussJordan(variabel);
+
 		if(Matrix.AllRowZero(m1,m1.row-1)) { //beda dengan gauss/gj, kalo inverse dia gak bisa ditentuin punya solusi parametrik atau gak punya solusi
 			isSolvable = false;
 			isPara = false;

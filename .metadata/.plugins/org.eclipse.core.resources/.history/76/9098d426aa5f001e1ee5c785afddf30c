@@ -29,6 +29,7 @@ public class EquationSystem {
 
 		boolean allDetNotZero;
 		allDetNotZero = true;
+		System.out.println("Solusi:");
 		for(int i = 0; i<m.row; i++) {
 			for(int j = 0; j<m.row; j++) {
 				clone.Mat[j][i] = konstan.Mat[j][0];
@@ -177,11 +178,11 @@ public class EquationSystem {
 			}
 		}
 		m1 = Inverse.GaussJordan(variabel);
-		if(Matrix.AllRowZero(m1,m1.row-1)) { //beda dengan gauss/gj, kalo inverse dia gak bisa ditentuin punya solusi parametrik atau gak punya solusi
+
+		if(Matrix.AllRowZero(m1,m.row-1)) { //beda dengan gauss/gj, kalo inverse dia gak bisa ditentuin punya solusi parametrik atau gak punya solusi
 			isSolvable = false;
 			isPara = false;
 			ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);
-			return ret;
 		} 
 		m2 = Inverse.GetInverseGJ(m1);
 

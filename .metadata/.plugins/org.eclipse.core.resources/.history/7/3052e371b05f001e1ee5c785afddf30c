@@ -110,7 +110,7 @@ public class Matrix {
 	}
 	
 	public static boolean AllRowZero(Matrix m, int row) {
-		for(int i = 0; i<m.row; i++) {
+		for(int i = 0; i<m.col; i++) {
 			if(m.Mat[row][i] != 0) {
 				return false;
 			}
