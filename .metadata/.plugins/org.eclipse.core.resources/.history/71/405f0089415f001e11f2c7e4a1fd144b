@@ -55,8 +55,7 @@ public class Main {
 								// fungsi SPL matriks balikan
 								// Karena matriks invers terdefinisi hanya pada matriks persegi,
 								//maka banyak persamaan linear wajib sama dengan banyak variabel
-								SPL = EquationSystem.Inverse(m);
-								EnhancedIO.OutputSPL(SPL);
+								EquationSystem.Inverse(m);
 								break;
 							case 4:
 								// fungsi SPL Cramer

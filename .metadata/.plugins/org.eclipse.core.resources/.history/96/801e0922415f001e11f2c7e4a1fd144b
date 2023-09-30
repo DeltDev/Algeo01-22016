@@ -169,6 +169,5 @@ public class EquationSystem {
 		isSolvable = true;
 		isPara = false;
 		ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);
-		return ret;
 	}
 }

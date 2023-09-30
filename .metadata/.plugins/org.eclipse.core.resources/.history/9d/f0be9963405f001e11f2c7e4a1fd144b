@@ -151,7 +151,7 @@ public class EquationSystem {
 		if(Matrix.AllBottomZero(m1)) {
 			isSolvable = false;
 			isPara = false;
-			ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);
+			ret = new SPLTuples(m1,solution,isSolvable,isPara);
 		} 
 		m2 = Inverse.GetInverseGJ(m1);
 
@@ -163,12 +163,12 @@ public class EquationSystem {
 
 		
 		solution = Matrix.Multiply(m2, konstan);
-		for (int i = 0; i<m.row; i++) {
-			solutionarr[i] = solution.Mat[i][0];
+		System.out.println("Solusinya adalah:");
+		
+		for(int i = 0; i<m.row; i++) {
+			System.out.print("x["+ (i+1) + "]= ");
+			EnhancedIO.OutputDoublePrecision4(solution.Mat[i][0]);
+			System.out.println("");
 		}
-		isSolvable = true;
-		isPara = false;
-		ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);
-		return ret;
 	}
 }
