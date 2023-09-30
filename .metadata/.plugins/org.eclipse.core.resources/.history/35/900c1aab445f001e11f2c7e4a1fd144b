@@ -180,8 +180,7 @@ public class Main {
 					Matrix MatF = new Matrix(4,4);
 					Matrix X = new Matrix(16,16);
 					Matrix MatFCol = new Matrix(16,1);
-					Matrix augment = new Matrix(16,17);
-					Matrix a = new Matrix(4,4);
+					Matrix aug = new Matrix(16,17);
 					System.out.println("INTERPOLASI BICUBIC SPLINE");
 					System.out.println("Masukkan matriks 4x4 dengan format:");
 					System.out.println("f(0,0) f(1,0) f(0,1) f(1,1)");
@@ -191,10 +190,8 @@ public class Main {
 					MatF.inputMatrix(4, 4);
 					X = Misc.GenerateBCubicSplineMat();
 					MatFCol = Matrix.toColMatrix(MatF);
-					augment = Matrix.Augment(X, MatFCol);
-					SPL = EquationSystem.Inverse(augment);
-					EnhancedIO.OutputSPL(SPL);
 					
+					SPL = EquationSystem.Inverse(MatFCol)
 					break;
 				case 6:
 					System.out.println("REGRESI LINIER BERGANDA"); 

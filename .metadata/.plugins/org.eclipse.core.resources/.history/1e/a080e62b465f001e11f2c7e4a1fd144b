@@ -181,7 +181,6 @@ public class Main {
 					Matrix X = new Matrix(16,16);
 					Matrix MatFCol = new Matrix(16,1);
 					Matrix augment = new Matrix(16,17);
-					Matrix a = new Matrix(4,4);
 					System.out.println("INTERPOLASI BICUBIC SPLINE");
 					System.out.println("Masukkan matriks 4x4 dengan format:");
 					System.out.println("f(0,0) f(1,0) f(0,1) f(1,1)");
@@ -194,7 +193,6 @@ public class Main {
 					augment = Matrix.Augment(X, MatFCol);
 					SPL = EquationSystem.Inverse(augment);
 					EnhancedIO.OutputSPL(SPL);
-					
 					break;
 				case 6:
 					System.out.println("REGRESI LINIER BERGANDA"); 
