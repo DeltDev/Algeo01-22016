@@ -109,12 +109,14 @@ public class Matrix {
 		return ret;
 	}
 	
-	public static boolean AllRowZero(Matrix m, int row) {
+	public static boolean AllRowmZero(Matrix m, int row) {
+
 		for(int i = 0; i<m.col; i++) {
 			if(m.Mat[row][i] != 0) {
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	public static Matrix Augment(Matrix m1, Matrix m2) {

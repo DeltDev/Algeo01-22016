@@ -174,7 +174,7 @@ public class EquationSystem {
 		}
 		m1 = Inverse.GaussJordan(variabel);
 
-		if(Matrix.AllRowZero(m1,m.row-1)) { //beda dengan gauss/gj, kalo inverse dia gak bisa ditentuin punya solusi parametrik atau gak punya solusi
+		if(Matrix.AllRowZero(m1,m.row-1)) {
 			isSolvable = false;
 			isPara = false;
 			ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);

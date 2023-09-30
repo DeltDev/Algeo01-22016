@@ -123,25 +123,25 @@ public class EquationSystem {
 		isSol = true;
 		isPara = true;
 		for(int i = m.row-1; i>=0; i--) {
-			if(i == m.row-1) { //lagi di baris paling bawah
-				if(!Matrix.AllRowZero(m1, i)) { //baris paling bawah tidak 0 semua
-					 isPara = false; //solusinya cuma 1
+			if(i == m.row-1) {
+				if(!Matrix.AllRowZero(m1, i)) {
+					 isPara = false;
 					 break;
-				} else { //baris paling bawah 0 semua
-					if(m1.Mat[i][m.col-1] != 0) { //pojok kanan bawah bukan nol 
-						isSol = false; //solusinya gak ada
-						isPara = false;
-						break;
-					}
-				} //cek terus sampai barisnya gak 0 semua
-			} else { // bukan di baris paling bawah
-				if(Matrix.AllRowZero(m1, i)) { //kalo baris ke-i 0 semua
-					if(m1.Mat[i][m.col-1] != 0) { //kalo konstantanya bukan 0, solusinya gak ada
+				} else {
+					if(m1.Mat[i][m.col-1] != 0) {
 						isSol = false;
 						isPara = false;
 						break;
 					}
-				} else { //kalo ada yang gak nol, berhentiin iterasinya biar ketahuan parametrik apa bukan
+				}
+			} else {
+				if(Matrix.AllRowZero(m1, i)) {
+					if(m1.Mat[i][m.col-1] != 0) {
+						isSol = false;
+						isPara = false;
+						break;
+					}
+				} else {
 					break;
 				}
 			}
@@ -174,7 +174,7 @@ public class EquationSystem {
 		}
 		m1 = Inverse.GaussJordan(variabel);
 
-		if(Matrix.AllRowZero(m1,m.row-1)) { //beda dengan gauss/gj, kalo inverse dia gak bisa ditentuin punya solusi parametrik atau gak punya solusi
+		if(Matrix.AllBottomZero(m1)) {
 			isSolvable = false;
 			isPara = false;
 			ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);

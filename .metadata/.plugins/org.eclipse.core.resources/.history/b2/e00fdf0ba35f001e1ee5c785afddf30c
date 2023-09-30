@@ -20,7 +20,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		return m;
 	}
 	
-	/*public static Matrix InputRectMatrix() {
+	public static Matrix InputRectMatrix() {
 		int baris,kolom;
 		Matrix m;
 		Scanner in = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		m.inputMatrix(baris,kolom);
 		
 		return m;
-	}*/
+	}
 	
 	public static Matrix InputSPLKeyboard() {
 		int banyakPersamaan,banyakVariabel;

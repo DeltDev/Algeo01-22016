@@ -163,7 +163,7 @@ public class Main {
 							case 1:
 								Matrix m1;
 								m1 = Inverse.GaussJordan(m);
-								if(Matrix.AllRowZero(m1,m1.row-1)) {
+								if(Matrix.AllBottomZero(m1)) {
 									System.out.println("Matriks tersebut tidak memiliki invers.");
 								} else {
 									Matrix m2;
