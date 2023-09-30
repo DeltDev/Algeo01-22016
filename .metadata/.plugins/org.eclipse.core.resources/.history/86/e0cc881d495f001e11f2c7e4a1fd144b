@@ -182,8 +182,6 @@ public class Main {
 					Matrix MatFCol = new Matrix(16,1);
 					Matrix augment = new Matrix(16,17);
 					Matrix a = new Matrix(4,4);
-					double xTaksir,yTaksir;
-					double outTaksir;
 					System.out.println("INTERPOLASI BICUBIC SPLINE");
 					System.out.println("Masukkan matriks 4x4 dengan format:");
 					System.out.println("f(0,0) f(1,0) f(0,1) f(1,1)");
@@ -195,9 +193,7 @@ public class Main {
 					MatFCol = Matrix.toColMatrix(MatF);
 					augment = Matrix.Augment(X, MatFCol);
 					SPL = EquationSystem.Inverse(augment);
-					System.out.println("Masukkan nilai x dan y yang ingin ditaksir: ");
-					xTaksir = in.nextDouble();
-					yTaksir = in.nextDouble();
+					EnhancedIO.OutputSPL(SPL);
 					int idxsol = 0;
 					Matrix A = new Matrix(4,4);
 					for(int j = 0; j<4; j++) {
@@ -206,19 +202,7 @@ public class Main {
 							idxsol++;
 						}
 					}
-					outTaksir = 0;
-					for(int i = 0; i<4; i++) {
-						for(int j = 0; j<4; j++) {
-							outTaksir = outTaksir + A.Mat[i][j] * Math.pow(xTaksir, i) * Math.pow(yTaksir, j);
-						}
-					}
-					System.out.print("f(");
-					EnhancedIO.OutputDoublePrecision4(xTaksir);
-					System.out.print(", ");
-					EnhancedIO.OutputDoublePrecision4(yTaksir);
-					System.out.print(") = ");
-					EnhancedIO.OutputDoublePrecision4(outTaksir);
-					System.out.println("");
+					A.printMatrix();
 					break;
 				case 6:
 					System.out.println("REGRESI LINIER BERGANDA"); 
