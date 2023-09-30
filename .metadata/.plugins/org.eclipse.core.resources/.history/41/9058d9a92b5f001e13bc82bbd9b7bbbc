@@ -152,7 +152,7 @@ public class Misc {
 					xNew = Math.pow(x,i-1);
 				}
 				
-				if((y == 0) && (j-1<=0)) {
+				if((y == 0) && (y-1<=0)) {
 					yNew = 1;
 				} else {
 					yNew = Math.pow(y,j-1);
