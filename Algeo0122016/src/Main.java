@@ -12,12 +12,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		Matrix m;
+		m = new Matrix(1000,1000);
 		int baris;
 		int kolom;
 		int banyakPersamaan;
 		int banyakVariabel;
 		Scanner in = new Scanner(System.in);
-		int inputMenu, inputSubmenu;
+		int inputMenu, inputSubmenu, inputMethod;
 		SPLTuples SPL;
 		double taksiran;
 		while (true){
@@ -32,6 +33,26 @@ public class Main {
 			inputMenu = in.nextInt();
 			switch (inputMenu){
 				case 1:
+					while(true) {
+						System.out.println("Pilih metode untuk menginput SPL:");
+						System.out.println("1. Input Keyboard");
+						System.out.println("2. Input File");
+						inputMethod = in.nextInt();
+						switch(inputMethod) {
+							case 1:
+								m = EnhancedIO.InputSPLKeyboard();
+								break;
+							case 2:
+								m = EnhancedIO.InputMatrixFile();
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+						};
+						if ((inputMethod > 0) && (inputMethod <= 2)){
+							break;
+						};
+					};
+					
 					while (true){
 						System.out.println("SISTEM PERSAMAAN LINIER");
 						System.out.println("1. Metode eliminasi Gauss");
@@ -39,7 +60,6 @@ public class Main {
 						System.out.println("3. Metode matriks balikan");
 						System.out.println("4. Kaidah Cramer");
 						inputSubmenu = in.nextInt();
-						m = EnhancedIO.InputSPL();
 						switch (inputSubmenu){
 							case 1:
 								// fungsi SPL Gauss
@@ -73,12 +93,30 @@ public class Main {
 					};
 					break;
 				case 2:
+					while(true) {
+						System.out.println("Pilih metode untuk menginput matriks yang akan dicari determinannya:");
+						System.out.println("1. Input Keyboard");
+						System.out.println("2. Input File");
+						inputMethod = in.nextInt();
+						switch(inputMethod) {
+							case 1:
+								m = EnhancedIO.InputSquareMatrixKeyboard();
+								break;
+							case 2:
+								m = EnhancedIO.InputMatrixFile();
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+						};
+						if ((inputMethod > 0) && (inputMethod <= 2)){
+							break;
+						};
+					};
 					while (true) {
 						System.out.println("DETERMINAN");
 						System.out.println("1. Metode Reduksi Baris");
 						System.out.println("2. Metode Ekspansi Kofaktor");
 						inputSubmenu = in.nextInt();
-						m = EnhancedIO.InputSquareMatrix();
 						switch(inputSubmenu) {
 							case 1:
 								EnhancedIO.OutputDet(Determinant.ReduksiBaris(m));
@@ -95,13 +133,32 @@ public class Main {
 					};
 					break;
 				case 3:
+					while(true) {
+						System.out.println("Pilih metode untuk menginput matriks yang akan dicari inversnya:");
+						System.out.println("1. Input Keyboard");
+						System.out.println("2. Input File");
+						inputMethod = in.nextInt();
+						switch(inputMethod) {
+							case 1:
+								m = EnhancedIO.InputSquareMatrixKeyboard();
+								break;
+							case 2:
+								m = EnhancedIO.InputMatrixFile();
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+						};
+						if ((inputMethod > 0) && (inputMethod <= 2)){
+							break;
+						};
+					};
 					while (true){
 						System.out.println("MATRIKS BALIKAN");
 						System.out.println("1. Metode eliminasi Gauss-Jordan");
 						System.out.println("2. Metode matriks adjoin");
 
 						inputSubmenu = in.nextInt();
-						m = EnhancedIO.InputSquareMatrix();
+
 						switch (inputSubmenu){
 							case 1:
 								Matrix m1;

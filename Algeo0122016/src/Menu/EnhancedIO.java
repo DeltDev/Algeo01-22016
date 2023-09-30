@@ -8,7 +8,7 @@ import LinearAlgebra.*;
 import java.util.Scanner;
 import SPLTuples.*;
 public class EnhancedIO { //Class ini untuk input lewat keyboard dan output secara umum
-	public static Matrix InputSquareMatrix() {
+	public static Matrix InputSquareMatrixKeyboard() {
 		int n;
 		Matrix m;
 		Scanner in = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		return m;
 	}
 	
-	public static Matrix InputSPL() {
+	public static Matrix InputSPLKeyboard() {
 		int banyakPersamaan,banyakVariabel;
 		Matrix m;
 		Scanner in = new Scanner(System.in);
@@ -44,9 +44,15 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		System.out.print("Masukkan banyak variabel peubah (n): ");
 		banyakVariabel = in.nextInt();
 		m = new Matrix(banyakVariabel,banyakVariabel+1);
-		System.out.println("Masukkan persamaan linear a[1]x[1] + a[2]x[2] + ... a[n]x[n] = b");
-		System.out.println("dengan format : a[1] a[2] ... a[n] b");
+		System.out.println("Masukkan persamaan linear");
+		System.out.println("dalam bentuk matriks augmented");
 		m.inputMatrix(banyakPersamaan,banyakVariabel+1);
+		return m;
+	}
+	
+	public static Matrix InputMatrixFile() {
+		Matrix m;
+		m = new Matrix(5,5);
 		return m;
 	}
 	public static void OutputDoublePrecision4(double d) {
