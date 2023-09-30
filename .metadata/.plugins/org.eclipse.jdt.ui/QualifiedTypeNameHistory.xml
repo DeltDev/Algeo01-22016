@@ -3,4 +3,5 @@
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="LinearAlgebra.Matrix"/>
     <fullyQualifiedTypeName name="Menu.EnhancedIO"/>
+    <fullyQualifiedTypeName name="Misc.Misc"/>
 </qualifiedTypeNameHistroy>

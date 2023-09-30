@@ -119,30 +119,5 @@ public class Matrix {
 		
 		return true;
 	}
-	public static Matrix Augment(Matrix m1, Matrix m2) {
-		Matrix aug = new Matrix(m1.row,m1.col+1);
-		for(int i = 0; i<m1.row; i++) {
-			for(int j = 0; j<m1.col; j++) {
-				aug.Mat[i][j] = m1.Mat[i][j];			
-			}
-		}
-		
-		for(int i = 0; i<m1.row; i++) {
-			aug.Mat[i][m1.col] = m2.Mat[i][0];
-		}
-		return aug;
-	}
 	
-	public static Matrix toColMatrix(Matrix m) {
-		Matrix ret = new Matrix(m.row*m.row,1);
-		int cnt = 0;
-		
-		for(int i = 0; i<m.row; i++) {
-			for(int j = 0; j<m.col; j++) {
-				ret.Mat[cnt][0] =m.Mat[i][j];
-				cnt++;
-			}
-		}
-		return ret;
-	}
 }

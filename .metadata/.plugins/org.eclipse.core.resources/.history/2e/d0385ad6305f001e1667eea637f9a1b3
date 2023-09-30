@@ -14,6 +14,6 @@ public class Test2 {
 		m2 = Misc.GenerateBCubicSplineMat();
 		m3 = Matrix.Augment(m2, m1);
 		m3.printMatrix();
-		EquationSystem.Inverse(m3);
+
 	}
 }
