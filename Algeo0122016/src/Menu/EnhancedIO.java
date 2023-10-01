@@ -54,6 +54,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		m.inputMatrix(banyakPersamaan,banyakVariabel+1);
 		return m;
 	}
+
 	public static Matrix InputSPLFile() {
 		Matrix m;
 		m = new Matrix(0,0);
@@ -108,6 +109,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		scanFile.close();
 		return m;
 	}
+
 	public static Matrix InputSquareMatrixFile() {
 		Matrix m;
 		m = new Matrix(0,0);
@@ -155,6 +157,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		scanFile.close();
 		return m;
 	}
+
 	public static void OutputDoublePrecision4(double d) {
 		System.out.print(BigDecimal.valueOf(d).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 	}
@@ -173,7 +176,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 				System.out.println("Solusinya adalah: ");
 				
 				for(int i = 0; i<SPL.Solution.length; i++) {
-					System.out.print("x["+ (i+1) +"]= ");
+					System.out.print("x["+ (i+1) +"] = ");
 					EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
 					System.out.println("");
 				}
@@ -182,12 +185,29 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			System.out.println("Solusinya tidak ada");
 		}
 	}
+
+	public static void OutputParametric(Matrix m){
+		int i, j;
+		for (i = 0; i < m.row; i++){
+			System.out.print("x["+ (i+1) +"] = ");
+			EnhancedIO.OutputDoublePrecision4(m.Mat[i][0]);
+			for (j = 1; j < m.col; j++){
+				if (m.Mat[i][j] != 0){
+					if (m.Mat[i][j] > 0){System.out.print("+");};
+					EnhancedIO.OutputDoublePrecision4(m.Mat[i][j]);
+					System.out.print("t[" + (j) + "]");
+				};
+			};
+			System.out.println("");
+		};
+	}
+
 	public static void OutputSPLInverse(SPLTuples SPL) {
 		if(SPL.isSolvable) {
 			System.out.println("Solusinya adalah: ");
 				
 			for(int i = 0; i<SPL.Solution.length; i++) {
-				System.out.print("x["+ (i+1) +"]= ");
+				System.out.print("x["+ (i+1) +"] = ");
 				EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
 				System.out.println("");
 			}
@@ -196,11 +216,12 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			System.out.println("Solusinya mungkin tidak ada atau mungkin parametrik.");
 		}
 	}
+
 	public static void OutputFunction(SPLTuples SPL, boolean regressionfunction) {
 		int i;
 		for(i = 0; i<SPL.Solution.length; i++) {
 			if(i != 0) {
-				if(SPL.Solution[i] >=0) {
+				if(SPL.Solution[i] >= 0) {
 					System.out.print(" + ");
 				} else {
 					System.out.print(" ");
@@ -208,7 +229,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			}
 			EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
 			if(regressionfunction) {
-				if(i !=0) {
+				if(i != 0) {
 					System.out.print("x");
 					System.out.print("["+i+"]");
 					if(i != 1) {
@@ -217,7 +238,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 					}
 				}
 			} else {
-				if(i !=0) {
+				if(i != 0) {
 					System.out.print("x");
 					if(i != 1) {
 						System.out.print("^");

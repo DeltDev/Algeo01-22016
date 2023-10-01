@@ -11,8 +11,8 @@ import Misc.*;
 public class Main {
 
 	public static void main(String[] args) {
-		Matrix m;
-		m = new Matrix(1000,1000);
+		Matrix m, Para;
+		m = new Matrix(1000, 1000); Para = new Matrix(1000, 1000);
 		int baris;
 		int kolom;
 		int banyakPersamaan;
@@ -65,11 +65,19 @@ public class Main {
 								// fungsi SPL Gauss
 								SPL = EquationSystem.Gauss(m);
 								EnhancedIO.OutputSPL(SPL);
+								if (SPL.isParametric){
+									Para = EquationSystem.ParametricGauss(m);
+									EnhancedIO.OutputParametric(Para);
+								};
 								break;
 							case 2:
 								// fungsi SPL Gauss-Jordan
 								SPL = EquationSystem.GaussJordan(m);
 								EnhancedIO.OutputSPL(SPL);
+								if (SPL.isParametric){
+									Para = EquationSystem.ParametricGaussJordan(m);
+									EnhancedIO.OutputParametric(Para);
+								};
 								break;
 							case 3:
 								// fungsi SPL matriks balikan

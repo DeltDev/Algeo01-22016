@@ -156,7 +156,7 @@ public class EquationSystem {
 						Mirror.Mat[i][0] += (m1.Mat[j][k]/m1.Mat[j][i]);
 					} else {
 						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
-							Mirror.Mat[i][l] += ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
+							Mirror.Mat[i][l] -= ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
 						};
 					};
 				};
@@ -166,7 +166,7 @@ public class EquationSystem {
 		// merapikan solusi untuk siap siap diprint (kalau bisa jangan tambahin apa apa lagi di bawah ini)
 		// basically hilangin kolom yang semuanya 0 dan sisanya digeser
 		boolean AllColZero;
-		for (i = 0;i < (Mirror.col - 1);i++){
+		for (i = 1;i < (Mirror.col - 1);i++){
 			AllColZero = true;
 			for (j = 0; j < Mirror.row; j++){
 				if (Mirror.Mat[j][i] != 0){AllColZero = false; break;};
@@ -232,7 +232,7 @@ public class EquationSystem {
 		return ret;
 	}
 
-	// prekondisi Gauss(m).isSolvable = true, Gauss(m).isParametric = true
+	// prekondisi GaussJordan(m).isSolvable = true, GaussJordan(m).isParametric = true
 	public static Matrix ParametricGaussJordan(Matrix m){
 		Matrix m1, Mirror;
 		m1 = new Matrix(m.row, m.col);
@@ -274,7 +274,7 @@ public class EquationSystem {
 						Mirror.Mat[i][0] += (m1.Mat[j][k]/m1.Mat[j][i]);
 					} else {
 						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
-							Mirror.Mat[i][l] += ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
+							Mirror.Mat[i][l] -= ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
 						};
 					};
 				};
@@ -284,7 +284,7 @@ public class EquationSystem {
 		// merapikan solusi untuk siap siap diprint (kalau bisa jangan tambahin apa apa lagi di bawah ini)
 		// basically hilangin kolom yang semuanya 0 dan sisanya digeser
 		boolean AllColZero;
-		for (i = 0;i < (Mirror.col - 1);i++){
+		for (i = 1;i < (Mirror.col - 1);i++){
 			AllColZero = true;
 			for (j = 0; j < Mirror.row; j++){
 				if (Mirror.Mat[j][i] != 0){AllColZero = false; break;};
