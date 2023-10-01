@@ -36,7 +36,7 @@ public class Main {
 					while(true) {
 						System.out.println("Pilih metode untuk menginput SPL:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks augmented)");
+						System.out.println("2. Input File");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:
@@ -96,7 +96,7 @@ public class Main {
 					while(true) {
 						System.out.println("Pilih metode untuk menginput matriks yang akan dicari determinannya:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks persegi)");
+						System.out.println("2. Input File");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:
@@ -136,7 +136,7 @@ public class Main {
 					while(true) {
 						System.out.println("Pilih metode untuk menginput matriks yang akan dicari inversnya:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks persegi)");
+						System.out.println("2. Input File");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:

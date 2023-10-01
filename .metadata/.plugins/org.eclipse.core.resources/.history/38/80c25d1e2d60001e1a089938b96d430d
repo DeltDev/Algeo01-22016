@@ -36,14 +36,14 @@ public class Main {
 					while(true) {
 						System.out.println("Pilih metode untuk menginput SPL:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks augmented)");
+						System.out.println("2. Input File");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:
 								m = EnhancedIO.InputSPLKeyboard();
 								break;
 							case 2:
-								m = EnhancedIO.InputSPLFile();
+								m = EnhancedIO.InputMatrixFile();
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
@@ -96,14 +96,14 @@ public class Main {
 					while(true) {
 						System.out.println("Pilih metode untuk menginput matriks yang akan dicari determinannya:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks persegi)");
+						System.out.println("2. Input File");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:
 								m = EnhancedIO.InputSquareMatrixKeyboard();
 								break;
 							case 2:
-								m = EnhancedIO.InputSquareMatrixFile();
+								m = EnhancedIO.InputMatrixFile();
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
@@ -136,14 +136,14 @@ public class Main {
 					while(true) {
 						System.out.println("Pilih metode untuk menginput matriks yang akan dicari inversnya:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks persegi)");
+						System.out.println("2. Input File");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:
 								m = EnhancedIO.InputSquareMatrixKeyboard();
 								break;
 							case 2:
-								m = EnhancedIO.InputSquareMatrixFile();
+								m = EnhancedIO.InputMatrixFile();
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");

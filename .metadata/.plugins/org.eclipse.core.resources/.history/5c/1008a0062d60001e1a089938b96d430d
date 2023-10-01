@@ -54,105 +54,24 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		m.inputMatrix(banyakPersamaan,banyakVariabel+1);
 		return m;
 	}
-	public static Matrix InputSPLFile() {
+	public static Matrix InputMatrixFile() {
 		Matrix m;
-		m = new Matrix(0,0);
 		String filedir = findFileDir();
-		File file = new File(filedir);
-		Scanner scanFile;
-		//1. hitung banyak baris dan kolom dulu
+		
 		try {
-			scanFile = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("File tidak ditemukan!");
-			return InputSPLFile();
-		}
-		int col,row;
-		col = 0;
-		row = 0;
-
-		if(col == 0) { //hitung banyak kolom dulu
-			col = scanFile.nextLine().split(" ").length;
-			row++;
-		}
-		//flush sisa text
-		while(scanFile.hasNextLine()) {
-			String flush = scanFile.nextLine();
-			row++;
-		}
-		
-		if(row<col) {
-			m = new Matrix(col-1,col);
-		} else {
-			m = new Matrix(row,col);
-		}
-
-		scanFile.close();
-		
-		//2. Parsing
-		try {
-			scanFile = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("File tidak ditemukan!");
-			return InputSPLFile();
-		}
-		
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<row; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
+			BufferedReader reader = new BufferedReader(new FileReader(filedir));
+			String line;
+			while((line = reader.readLine())!= null) {
+				System.out.println(line);
 			}
-		}
-		scanFile.close();
-		return m;
-	}
-	public static Matrix InputSquareMatrixFile() {
-		Matrix m;
-		m = new Matrix(0,0);
-		String filedir = findFileDir();
-		File file = new File(filedir);
-		Scanner scanFile;
-		//1. hitung banyak baris dan kolom dulu
-		try {
-			scanFile = new Scanner(file);
-		} catch (FileNotFoundException e) {
+			reader.close();
+		} catch (IOException e) {
 			System.out.println("File tidak ditemukan!");
-			return InputSPLFile();
+			return InputMatrixFile();
 		}
-		int n;
-		n = 0;
-		
+		m = new Matrix(5,5);
 
-		if(n == 0) { //hitung banyak kolom dulu
-			n = scanFile.nextLine().split(" ").length;
-		}
-		//flush sisa text
-		while(scanFile.hasNextLine()) {
-			String flush = scanFile.nextLine();
-		}
 		
-		m = new Matrix(n,n);
-		scanFile.close();
-		
-		//2. Parsing
-		try {
-			scanFile = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("File tidak ditemukan!");
-			return InputSPLFile();
-		}
-		
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<n; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
-			}
-		}
-		scanFile.close();
 		return m;
 	}
 	public static void OutputDoublePrecision4(double d) {
