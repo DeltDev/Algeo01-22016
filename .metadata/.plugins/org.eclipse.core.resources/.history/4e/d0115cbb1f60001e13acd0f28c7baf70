@@ -54,26 +54,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		m.inputMatrix(banyakPersamaan,banyakVariabel+1);
 		return m;
 	}
-	public static Matrix InputMatrixFile() {
-		Matrix m;
-		String filedir = findFileDir();
-		
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(filedir));
-			String line;
-			while((line = reader.readLine())!= null) {
-				System.out.println(line);
-			}
-			reader.close();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-		m = new Matrix(5,5);
 
-		
-		return m;
-	}
 	public static void OutputDoublePrecision4(double d) {
 		System.out.print(BigDecimal.valueOf(d).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 	}
@@ -149,19 +130,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		System.out.println("");
 	}
 	
-	private static String findFileDir()
-	{
-		Path currentRelativePath = Paths.get("");
-		String curdir = currentRelativePath.toAbsolutePath().toString();
-		String filedir = curdir.replace("src", "test");
 
-		String fileInput;
-		Scanner in = new Scanner(System.in);
-		System.out.print("Masukkan nama file: ");
-		fileInput = in.next();
-		filedir = filedir + '\\' + fileInput;
-		return filedir;
-	}
 	
 	
 }

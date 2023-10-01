@@ -54,6 +54,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		m.inputMatrix(banyakPersamaan,banyakVariabel+1);
 		return m;
 	}
+	
 	public static Matrix InputMatrixFile() {
 		Matrix m;
 		String filedir = findFileDir();
@@ -153,6 +154,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	{
 		Path currentRelativePath = Paths.get("");
 		String curdir = currentRelativePath.toAbsolutePath().toString();
+;
 		String filedir = curdir.replace("src", "test");
 
 		String fileInput;
