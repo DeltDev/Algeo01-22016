@@ -145,7 +145,7 @@ public class EquationSystem {
 			if (isVariable[i]){
 				Mirror.Mat[i][m1.col - 1 - i] = 1;
 			} else {
-				// cari cari
+				// cari j
 				for (j = (m1.row - 1);j >= 0;j--){ // j loop row minus
 					if (m1.Mat[j][i] != 0){break;};
 				};
@@ -159,6 +159,26 @@ public class EquationSystem {
 							Mirror.Mat[i][l] += ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
 						};
 					};
+				};
+			};
+		};
+
+		// merapikan solusi untuk siap siap diprint (kalau bisa jangan tambahin apa apa lagi di bawah ini)
+		// basically hilangin kolom yang semuanya 0 dan sisanya digeser
+		boolean AllColZero;
+		for (i = 0;i < (Mirror.col - 1);i++){
+			AllColZero = true;
+			for (j = 0; j < Mirror.row; j++){
+				if (Mirror.Mat[j][i] != 0){AllColZero = false; break;};
+			}
+			if (AllColZero){
+				for (k = i; k < (Mirror.col - 1); k++){
+					for (l = 0; l < Mirror.row; l++){
+						Mirror.Mat[l][k] = Mirror.Mat[l][k+1];
+					}
+				};
+				for (l = 0; l < Mirror.row; l++){
+					Mirror.Mat[l][Mirror.col - 1] = 0;
 				};
 			};
 		};
@@ -210,6 +230,77 @@ public class EquationSystem {
 		
 		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
 		return ret;
+	}
+
+	// prekondisi Gauss(m).isSolvable = true, Gauss(m).isParametric = true
+	public static Matrix ParametricGaussJordan(Matrix m){
+		Matrix m1, Mirror;
+		m1 = new Matrix(m.row, m.col);
+		m1 = Echelon.RREF(m); // literally the only thing changed
+		Mirror = new Matrix(m1.col-1, m1.col);
+		boolean [] isVariable = new boolean [m1.col - 1]; // true jika variabel dijadikan parameter
+		int i, j, k, l;
+
+		//searching variabel mana yang menjadi parameter
+		isVariable[0] = false;
+		for (i = (m1.col - 2);i >= 1;i--){
+			for (j = (m1.row-1);j >= 0;j--){
+				isVariable[i] = false;
+				if (m1.Mat[j][i] != 0){
+					for(k = (i - 1);k >= 0;k--){
+						if (m1.Mat[j][k] != 0){
+							isVariable[i] = true;
+							break;
+						};
+					};
+					break;
+				};
+			};
+		};
+
+		// cari solusi parameter
+		for (i = (m1.col - 2);i >= 0;i--){ // i loop col minus
+			if (isVariable[i]){
+				Mirror.Mat[i][m1.col - 1 - i] = 1;
+			} else {
+				// cari j
+				for (j = (m1.row - 1);j >= 0;j--){ // j loop row minus
+					if (m1.Mat[j][i] != 0){break;};
+				};
+
+				//cari solusi
+				for (k = (m1.col - 1);k > i;k--){ // k loop col minus
+					if (k == (m1.col - 1)){
+						Mirror.Mat[i][0] += (m1.Mat[j][k]/m1.Mat[j][i]);
+					} else {
+						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
+							Mirror.Mat[i][l] += ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
+						};
+					};
+				};
+			};
+		};
+
+		// merapikan solusi untuk siap siap diprint (kalau bisa jangan tambahin apa apa lagi di bawah ini)
+		// basically hilangin kolom yang semuanya 0 dan sisanya digeser
+		boolean AllColZero;
+		for (i = 0;i < (Mirror.col - 1);i++){
+			AllColZero = true;
+			for (j = 0; j < Mirror.row; j++){
+				if (Mirror.Mat[j][i] != 0){AllColZero = false; break;};
+			}
+			if (AllColZero){
+				for (k = i; k < (Mirror.col - 1); k++){
+					for (l = 0; l < Mirror.row; l++){
+						Mirror.Mat[l][k] = Mirror.Mat[l][k+1];
+					}
+				};
+				for (l = 0; l < Mirror.row; l++){
+					Mirror.Mat[l][Mirror.col - 1] = 0;
+				};
+			};
+		};
+		return Mirror;
 	}
 
 	public static SPLTuples Inverse(Matrix m) { //tidak feasible untuk di daur ulang karena tidak bisa menentukan solusi parametrik
