@@ -1,0 +1,8 @@
+package BicubicSITuple;
+
+import LinearAlgebra.*;
+public class BicubicSITuple {
+	public Matrix Mat;
+	public double xTaksir;
+	public double yTaksir;
+}

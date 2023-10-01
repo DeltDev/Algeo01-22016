@@ -268,21 +268,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	
 	public static BicubicSITuple InputBicubicKeyboard() {
 		BicubicSITuple ret;
-		System.out.println("INTERPOLASI BICUBIC SPLINE");
-		System.out.println("Masukkan matriks 4x4 dengan format:");
-		System.out.println("f(0,0) f(1,0) f(0,1) f(1,1)");
-		System.out.println("fx(0,0) fx(1,0) fx(0,1) fx(1,1)");
-		System.out.println("fy(0,0) fy(1,0) fy(0,1) fy(1,1)");
-		System.out.println("fxy(0,0) fxy(1,0) fxy(0,1) fxy(1,1)");
-		Matrix m = new Matrix(4,4);
-		m.inputMatrix(4, 4);
-		System.out.println("Masukkan nilai x dan y yang ingin ditaksir: ");
-		double x,y;
-		Scanner in;
-		in = new Scanner(System.in);
-		x = in.nextDouble();
-		y = in.nextDouble();
-		ret = new BicubicSITuple(m,x,y);
+		
 		return ret;
 	}
 }
