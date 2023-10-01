@@ -153,10 +153,10 @@ public class EquationSystem {
 				//cari solusi
 				for (k = (m1.col - 1);k > i;k--){ // k loop col minus
 					if (k == (m1.col - 1)){
-						Mirror.Mat[i][0] += (m1.Mat[j][k]/m1.Mat[j][i]);
+						Mirror.Mat[i][0] += m1.Mat[j][k];
 					} else {
 						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
-							Mirror.Mat[i][l] -= ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
+							Mirror.Mat[i][l] -= m1.Mat[j][k] * Mirror.Mat[k][l]; // very confusing
 						};
 					};
 				};
@@ -271,10 +271,10 @@ public class EquationSystem {
 				//cari solusi
 				for (k = (m1.col - 1);k > i;k--){ // k loop col minus
 					if (k == (m1.col - 1)){
-						Mirror.Mat[i][0] += (m1.Mat[j][k]/m1.Mat[j][i]);
+						Mirror.Mat[i][0] += m1.Mat[j][k];
 					} else {
 						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
-							Mirror.Mat[i][l] -= ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
+							Mirror.Mat[i][l] -= m1.Mat[j][k] * Mirror.Mat[k][l]; // very confusing
 						};
 					};
 				};

@@ -189,14 +189,24 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 
 	public static void OutputParametric(Matrix m){
 		int i, j;
+		boolean notfirst;
 		for (i = 0; i < m.row; i++){
 			System.out.print("x["+ (i+1) +"] = ");
-			EnhancedIO.OutputDoublePrecision4(m.Mat[i][0]);
-			for (j = 1; j < m.col; j++){
+			notfirst = false;
+			for (j = 0; j < m.col; j++){
 				if (m.Mat[i][j] != 0){
-					if (m.Mat[i][j] > 0){System.out.print("+");};
-					EnhancedIO.OutputDoublePrecision4(m.Mat[i][j]);
-					System.out.print("t[" + (j) + "]");
+					if (notfirst){
+						if (m.Mat[i][j] > 0){System.out.print("+");};
+					};
+					notfirst = true;
+					if (j == 0){
+						EnhancedIO.OutputDoublePrecision4(m.Mat[i][j]);
+					} else if (m.Mat[i][j] == -1){
+						System.out.print("-");
+					} else if (m.Mat[i][j] != 1){EnhancedIO.OutputDoublePrecision4(m.Mat[i][j]);};
+					if (j != 0){
+						System.out.print("t[" + (j) + "]");
+					};
 				};
 			};
 			System.out.println("");
