@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.*;
 import BicubicSITuple.BicubicSITuple;
+import PITuple.PITuple;
 public class EnhancedIO { //Class ini untuk input lewat keyboard dan output secara umum
 	public static Matrix InputSquareMatrixKeyboard() {
 		int n;
@@ -99,14 +100,14 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			return InputSPLFile();
 		}
 		
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<row; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
+		
+		for(int i = 0; i<row; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<line.length; j++) {
+				m.Mat[i][j] = Double.parseDouble(line[j]);
 			}
 		}
+		
 		scanFile.close();
 		return m;
 	}
@@ -147,14 +148,14 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			return InputSPLFile();
 		}
 		
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<n; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
+		
+		for(int i = 0; i<n; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<line.length; j++) {
+				m.Mat[i][j] = Double.parseDouble(line[j]);
 			}
 		}
+		
 		scanFile.close();
 		return m;
 	}
@@ -278,7 +279,6 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	
 	public static BicubicSITuple InputBicubicKeyboard() {
 		BicubicSITuple ret;
-		System.out.println("INTERPOLASI BICUBIC SPLINE");
 		System.out.println("Masukkan matriks 4x4 dengan format:");
 		System.out.println("f(0,0) f(1,0) f(0,1) f(1,1)");
 		System.out.println("fx(0,0) fx(1,0) fx(0,1) fx(1,1)");
@@ -303,7 +303,6 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		double xT,yT;
 		m = new Matrix (4,4);
 		String filedir = findFileDir();
-		System.out.println(filedir);
 		File file = new File(filedir);
 		Scanner scanFile;
 		try {
@@ -313,31 +312,102 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			return InputBicubicFile();
 		}
 		
-		int row;
-		row = 0;
+		
 		xT = 0.0;
 		yT = 0.0;
 		//parsing
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<4; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
-			}
-			
-				
+
+		for(int i = 0; i<4; i++) {
 			String [] line = scanFile.nextLine().trim().split(" ");
 			for(int j = 0; j<line.length; j++) {
+				m.Mat[i][j] = Double.parseDouble(line[j]);
+			}
+		}
+			
+				
+		String [] line = scanFile.nextLine().trim().split(" ");
+		for(int j = 0; j<line.length; j++) {
+			if(j == 0) {
+				xT = Double.parseDouble(line[j]);
+			} else {
+				yT = Double.parseDouble(line[j]);
+			}
+		}
+			
+		scanFile.close();
+		ret = new BicubicSITuple(m,xT,yT);
+		return ret;
+	}
+	
+	public static PITuple InputPIKeyboard() {
+		PITuple ret;
+		int banyakTitik;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Masukkan banyak titik: ");
+		banyakTitik = in.nextInt();
+		
+		double [] x = new double[banyakTitik];
+		double [] y = new double[banyakTitik];
+		System.out.println("Masukkan titik: ");
+		for(int i = 0; i<banyakTitik; i++) {
+			x[i] = in.nextDouble();
+			y[i] = in.nextDouble();
+		}
+		System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial yang akan dicari: ");
+		double masukan;
+		masukan = in.nextDouble();
+		ret = new PITuple(masukan,x,y);
+		return ret;
+	}
+	
+	public static PITuple InputPIFile() {
+		PITuple ret;
+		ret = new PITuple(0.0,new double[0],new double[0]);
+		String filedir = findFileDir();
+		File file = new File(filedir);
+		Scanner scanFile;
+		try {
+			scanFile = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan!");
+			return InputPIFile();
+		}
+		//1. hitung banyak titik
+		int rowcnt;
+		rowcnt = 0;
+		while(scanFile.hasNextLine()) {
+			if(scanFile.nextLine().split(" ").length == 2) {
+				rowcnt++;
+			}
+		}
+		scanFile.close();
+		double [] xRet = new double[rowcnt];
+		double [] yRet = new double[rowcnt];
+		double taks;
+		taks = 0.0;
+		try {
+			scanFile = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan!");
+			return InputPIFile();
+		}
+		
+		for(int i = 0; i<rowcnt; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<2; j++) {
 				if(j == 0) {
-					xT = Double.parseDouble(line[j]);
+					xRet[i] = Double.parseDouble(line[j]);
 				} else {
-					yT = Double.parseDouble(line[j]);
+					yRet[i] = Double.parseDouble(line[j]);
 				}
 			}
-			
 		}
-		ret = new BicubicSITuple(m,xT,yT);
+			
+				
+		String [] line = scanFile.nextLine().trim().split(" ");
+		taks = Double.parseDouble(line[0]);
+		scanFile.close();
+		ret = new PITuple(taks,xRet,yRet);
 		return ret;
 	}
 }

@@ -9,6 +9,7 @@ import java.math.*;
 import SPLTuples.*;
 import Misc.*;
 import BicubicSITuple.BicubicSITuple;
+import PITuple.PITuple;
 public class Main {
 
 	public static void main(String[] args) {
@@ -23,7 +24,9 @@ public class Main {
 		SPLTuples SPL;
 		double taksiran;
 		BicubicSITuple Bicubic;
+		PITuple PInterpol;
 		Bicubic = new BicubicSITuple(new Matrix(4,4),0.0,0.0);
+		PInterpol = new PITuple(0.0,new double[0], new double[0]);
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
@@ -196,31 +199,36 @@ public class Main {
 					};
 					break;
 				case 4:
-					
-					int banyakTitik;
 					System.out.println("INTERPOLASI POLINOM");
-					System.out.print("Masukkan banyak titik: ");
-					banyakTitik = in.nextInt();
-					
-					double [] x = new double[banyakTitik];
-					double [] y = new double[banyakTitik];
-					System.out.println("Masukkan titik: ");
-					for(int i = 0; i<banyakTitik; i++) {
-						x[i] = in.nextDouble();
-						y[i] = in.nextDouble();
-					}
-					System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial yang akan dicari: ");
-					double masukan;
-					masukan = in.nextDouble();
+					while(true) {
+						System.out.println("Pilih metode untuk menginput titik dan nilai yang akan ditaksir:");
+						System.out.println("1. Input Keyboard");
+						System.out.println("2. Input File.txt (File harus mengandung n buah titik (nilai x dan y) dan 1 angka di bawah n buah titik)");
+						inputMethod = in.nextInt();
+						switch(inputMethod) {
+							case 1:
+								PInterpol = EnhancedIO.InputPIKeyboard();
+								break;
+							case 2:
+								PInterpol = EnhancedIO.InputPIFile();
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+						};
+						if ((inputMethod > 0) && (inputMethod <= 2)){
+							break;
+						};
+					};
 					Matrix aug;
+					int banyakTitik = PInterpol.xValues.length;
 					aug = new Matrix(banyakTitik,banyakTitik+1);
 					
 					for(int i = 0; i<banyakTitik; i++) {
 						for(int j = 0; j<banyakTitik+1; j++) {
 							if(j == banyakTitik) {
-								aug.Mat[i][j] = y[i];
+								aug.Mat[i][j] = PInterpol.yValues[i];
 							} else {
-								aug.Mat[i][j] = Math.pow(x[i], j);
+								aug.Mat[i][j] = Math.pow(PInterpol.xValues[i], j);
 							}
 						}
 					}
@@ -237,20 +245,20 @@ public class Main {
 						if(i == 0) {
 							taksiran = SPL.Solution[i];
 						} else {
-							taksiran = taksiran + Math.pow(masukan, i) * SPL.Solution[i];
+							taksiran = taksiran + Math.pow(PInterpol.taksir, i) * SPL.Solution[i];
 						}
 					}
 					System.out.print("f(");
-					System.out.print(masukan);
+					EnhancedIO.OutputDoublePrecision4(PInterpol.taksir);
 					System.out.print(") = ");
 					EnhancedIO.OutputDoublePrecision4(taksiran);
 					System.out.println("");
 					break;
 				case 5:
 					while(true) {
-						System.out.println("Pilih metode untuk menginput SPL:");
+						System.out.println("Pilih metode untuk menginput nilai Bicubic Spline Interpolation:");
 						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks augmented)");
+						System.out.println("2. Input File.txt (File harus mengandung matriks 4x4 dan 2 angka di bawah matriks tersebut)");
 						inputMethod = in.nextInt();
 						switch(inputMethod) {
 							case 1:
@@ -266,6 +274,7 @@ public class Main {
 							break;
 						};
 					};
+					System.out.println("INTERPOLASI BICUBIC SPLINE");
 					Matrix MatF = new Matrix(4,4);
 					Matrix X = new Matrix(16,16);
 					Matrix MatFCol = new Matrix(16,1);
