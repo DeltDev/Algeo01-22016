@@ -10,6 +10,7 @@ import SPLTuples.*;
 import Misc.*;
 import BicubicSITuple.BicubicSITuple;
 import PITuple.PITuple;
+import MulRegTuple.MulRegTuple;
 public class Main {
 
 	public static void main(String[] args) {
@@ -25,8 +26,10 @@ public class Main {
 		double taksiran;
 		BicubicSITuple Bicubic;
 		PITuple PInterpol;
+		MulRegTuple Regresi;
 		Bicubic = new BicubicSITuple(new Matrix(4,4),0.0,0.0);
 		PInterpol = new PITuple(0.0,new double[0], new double[0]);
+		Regresi = new MulRegTuple(0,0,new Matrix(0,0), new Matrix(0,0), new double[0]);
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
@@ -40,6 +43,7 @@ public class Main {
 			switch (inputMenu){
 				case 1:
 					while(true) {
+						System.out.println("SISTEM PERSAMAAN LINEAR");
 						System.out.println("Pilih metode untuk menginput SPL:");
 						System.out.println("1. Input Keyboard");
 						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks augmented)");
@@ -60,7 +64,7 @@ public class Main {
 					};
 					
 					while (true){
-						System.out.println("SISTEM PERSAMAAN LINIER");
+						System.out.println("Pilih metode untuk menyelesaikan SPL:");
 						System.out.println("1. Metode eliminasi Gauss");
 						System.out.println("2. Metode eliminasi Gauss-Jordan");
 						System.out.println("3. Metode matriks balikan");
@@ -108,6 +112,7 @@ public class Main {
 					break;
 				case 2:
 					while(true) {
+						System.out.println("DETERMINAN");
 						System.out.println("Pilih metode untuk menginput matriks yang akan dicari determinannya:");
 						System.out.println("1. Input Keyboard");
 						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks persegi)");
@@ -127,7 +132,7 @@ public class Main {
 						};
 					};
 					while (true) {
-						System.out.println("DETERMINAN");
+						System.out.println("Pilih metode untuk menghitung determinan matriks:");
 						System.out.println("1. Metode Reduksi Baris");
 						System.out.println("2. Metode Ekspansi Kofaktor");
 						inputSubmenu = in.nextInt();
@@ -148,6 +153,7 @@ public class Main {
 					break;
 				case 3:
 					while(true) {
+						System.out.println("MATRIKS BALIKAN");
 						System.out.println("Pilih metode untuk menginput matriks yang akan dicari inversnya:");
 						System.out.println("1. Input Keyboard");
 						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks persegi)");
@@ -167,7 +173,7 @@ public class Main {
 						};
 					};
 					while (true){
-						System.out.println("MATRIKS BALIKAN");
+						System.out.println("Pilih metode untuk mencari matriks balikan:");
 						System.out.println("1. Metode eliminasi Gauss-Jordan");
 						System.out.println("2. Metode matriks adjoin");
 
@@ -248,6 +254,7 @@ public class Main {
 							taksiran = taksiran + Math.pow(PInterpol.taksir, i) * SPL.Solution[i];
 						}
 					}
+					System.out.println("Taksiran nilai f(x) yang diinput adalah:");
 					System.out.print("f(");
 					EnhancedIO.OutputDoublePrecision4(PInterpol.taksir);
 					System.out.print(") = ");
@@ -256,6 +263,7 @@ public class Main {
 					break;
 				case 5:
 					while(true) {
+						System.out.println("INTERPOLASI BICUBIC SPLINE");
 						System.out.println("Pilih metode untuk menginput nilai Bicubic Spline Interpolation:");
 						System.out.println("1. Input Keyboard");
 						System.out.println("2. Input File.txt (File harus mengandung matriks 4x4 dan 2 angka di bawah matriks tersebut)");
@@ -274,7 +282,7 @@ public class Main {
 							break;
 						};
 					};
-					System.out.println("INTERPOLASI BICUBIC SPLINE");
+					
 					Matrix MatF = new Matrix(4,4);
 					Matrix X = new Matrix(16,16);
 					Matrix MatFCol = new Matrix(16,1);
@@ -307,6 +315,7 @@ public class Main {
 							outTaksir = outTaksir + A.Mat[i][j] * Math.pow(xTaksir, i) * Math.pow(yTaksir, j);
 						}
 					}
+					System.out.println("Taksiran nilai f(x,y) yang diinput adalah:");
 					System.out.print("f(");
 					EnhancedIO.OutputDoublePrecision4(xTaksir);
 					System.out.print(", ");
@@ -316,55 +325,55 @@ public class Main {
 					System.out.println("");
 					break;
 				case 6:
-					System.out.println("REGRESI LINIER BERGANDA"); 
-					int n, k, i, j;
-					System.out.print("Masukkan banyak variabel peubah: ");
-					k = in.nextInt();
-					System.out.print("Masukkan banyak sampel: ");
-					n = in.nextInt();
-					Matrix inputNK = new Matrix (n, (k+1));
-					Matrix NEE = new Matrix ((k+1), (k+2));
-					System.out.println("Masukkan dengan format");
-					System.out.println("x[1][1] x[2][1] ... x[k][1] y[1]");
-					System.out.println("x[1][2] x[2][2] ... x[k][2] y[2]");
-					System.out.println("   :       :     :     :     :  ");
-					System.out.println("x[1][n] x[2][n] ... x[k][n] y[n]");
-					inputNK.inputMatrix(n, (k+1));
-					for (i = 0;i < (k+1);i++){ // i loop row
-						for (j = 0;j < (k+2);j++){ // j loop col
-							NEE.Mat[i][j] = Misc.Sigma(inputNK, i, j);
+					int i, j;
+					
+					
+					while(true) {
+						System.out.println("REGRESI LINIER BERGANDA"); 
+						System.out.println("Pilih metode untuk menginput sampel untuk diregresi:");
+						System.out.println("1. Input Keyboard");
+						System.out.println("2. Input File.txt (File harus mengandung matriks augmented berukuran (k+1) x n dan k angka di barisan terbawah)");
+						inputMethod = in.nextInt();
+						switch(inputMethod) {
+							case 1:
+								Regresi = EnhancedIO.InputRegKeyboard();
+								break;
+							case 2:
+								Regresi = EnhancedIO.InputRegFile();
+								break;
+							default:
+								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
+						};
+						if ((inputMethod > 0) && (inputMethod <= 2)){
+							break;
 						};
 					};
-					SPL = EquationSystem.GaussJordan(NEE);
-					double [] xTest = new double[k];
-					System.out.print("Masukkan sampel baru yang ingin ditaksir: ");
-					for(i = 0; i<k; i++) {
-						xTest[i] = in.nextDouble();
-					}
-					
+					SPL = EquationSystem.GaussJordan(Regresi.NEE);
 					taksiran = 0.0;
 					for(i = 0; i<SPL.Solution.length; i++) {
 						if(i == 0) {
 							taksiran = SPL.Solution[i];
 						} else {
-							taksiran = taksiran + xTest[i-1] * SPL.Solution[i];
+							taksiran = taksiran + Regresi.xtest[i-1] * SPL.Solution[i];
 						}
 					}
 					System.out.println("Persamaan regresi linear yang didapat adalah:");
 					System.out.print("y = ");
 					EnhancedIO.OutputFunction(SPL,true);
+					System.out.println("Nilai taksiran f(xk) yang didapat adalah:");
 					System.out.print("f(");
-					for(i = 0; i<k; i++) {
-						if(i == k-1) {
-							System.out.print(xTest[i]);
-							System.out.print(") =");
+					for(i = 0; i<Regresi.variables; i++) {
+						if(i == Regresi.variables-1) {
+							EnhancedIO.OutputDoublePrecision4(Regresi.xtest[i]);
+							System.out.print(") = ");
 						} else {
-							System.out.print(xTest[i]);
+							EnhancedIO.OutputDoublePrecision4(Regresi.xtest[i]);
 							System.out.print(", ");
 						}
 					}
 					EnhancedIO.OutputDoublePrecision4(taksiran);
 					System.out.println("");
+					
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti
