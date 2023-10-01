@@ -300,44 +300,8 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		BicubicSITuple ret;
 		ret = new BicubicSITuple(new Matrix(4,4),0.0,0.0);
 		Matrix m;
-		double xT,yT;
 		m = new Matrix (4,4);
 		String filedir = findFileDir();
-		System.out.println(filedir);
-		File file = new File(filedir);
-		Scanner scanFile;
-		try {
-			scanFile = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("File tidak ditemukan!");
-			return InputBicubicFile();
-		}
-		
-		int row;
-		row = 0;
-		xT = 0.0;
-		yT = 0.0;
-		//parsing
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<4; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
-			}
-			
-				
-			String [] line = scanFile.nextLine().trim().split(" ");
-			for(int j = 0; j<line.length; j++) {
-				if(j == 0) {
-					xT = Double.parseDouble(line[j]);
-				} else {
-					yT = Double.parseDouble(line[j]);
-				}
-			}
-			
-		}
-		ret = new BicubicSITuple(m,xT,yT);
 		return ret;
 	}
 }

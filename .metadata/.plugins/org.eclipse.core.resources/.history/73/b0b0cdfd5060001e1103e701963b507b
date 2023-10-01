@@ -335,8 +335,11 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 					yT = Double.parseDouble(line[j]);
 				}
 			}
-			
+			m.printMatrix();
 		}
+		m.printMatrix();
+		System.out.println(xT);
+		System.out.println(yT);
 		ret = new BicubicSITuple(m,xT,yT);
 		return ret;
 	}

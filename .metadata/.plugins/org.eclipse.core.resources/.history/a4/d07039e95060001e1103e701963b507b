@@ -319,24 +319,31 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		yT = 0.0;
 		//parsing
 		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<4; i++) {
+			if(row < 4) {
+				for(int i = 0; i<4; i++) {
+					String [] line = scanFile.nextLine().trim().split(" ");
+					for(int j = 0; j<line.length; j++) {
+						m.Mat[i][j] = Double.parseDouble(line[j]);
+					}
+				}
+			} else {
+				
 				String [] line = scanFile.nextLine().trim().split(" ");
 				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
+					if(j == 0) {
+						xT = Double.parseDouble(line[j]);
+					} else {
+						yT = Double.parseDouble(line[j]);
+					}
 				}
-			}
-			
 				
-			String [] line = scanFile.nextLine().trim().split(" ");
-			for(int j = 0; j<line.length; j++) {
-				if(j == 0) {
-					xT = Double.parseDouble(line[j]);
-				} else {
-					yT = Double.parseDouble(line[j]);
-				}
 			}
-			
+			m.printMatrix();
+			row++;
 		}
+		m.printMatrix();
+		System.out.println(xT);
+		System.out.println(yT);
 		ret = new BicubicSITuple(m,xT,yT);
 		return ret;
 	}
