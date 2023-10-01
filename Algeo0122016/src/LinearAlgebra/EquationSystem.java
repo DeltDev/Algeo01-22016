@@ -140,6 +140,28 @@ public class EquationSystem {
 			};
 		};
 
+		// cari solusi parameter
+		for (i = (m1.col - 2);i >= 0;i--){ // i loop col minus
+			if (isVariable[i]){
+				Mirror.Mat[i][m1.col - 1 - i] = 1;
+			} else {
+				// cari cari
+				for (j = (m1.row - 1);j >= 0;j--){ // j loop row minus
+					if (m1.Mat[j][i] != 0){break;};
+				};
+
+				//cari solusi
+				for (k = (m1.col - 1);k > i;k--){ // k loop col minus
+					if (k == (m1.col - 1)){
+						Mirror.Mat[i][0] += (m1.Mat[j][k]/m1.Mat[j][i]);
+					} else {
+						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
+							Mirror.Mat[i][l] += ((m1.Mat[j][k] * Mirror.Mat[k][l])/m1.Mat[j][i]); // very confusing
+						};
+					};
+				};
+			};
+		};
 		return Mirror;
 	}
 	
