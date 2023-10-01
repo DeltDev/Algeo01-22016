@@ -243,7 +243,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 				}
 			}
 			if(SPL.Solution[i] != 0.0000) {
-				System.out.print(SPL.Solution[i]);
+				EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
 				if(regressionfunction) {
 					if(i != 0) {
 						System.out.print("x");

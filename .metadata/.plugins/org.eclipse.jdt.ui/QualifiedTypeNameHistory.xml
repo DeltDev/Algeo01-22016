@@ -12,4 +12,6 @@
     <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
     <fullyQualifiedTypeName name="java.nio.file.Paths"/>
     <fullyQualifiedTypeName name="BicubicSITuple.BicubicSITuple"/>
+    <fullyQualifiedTypeName name="PITuple.PITuple"/>
+    <fullyQualifiedTypeName name="MulRegTuple.MulRegTuple"/>
 </qualifiedTypeNameHistroy>

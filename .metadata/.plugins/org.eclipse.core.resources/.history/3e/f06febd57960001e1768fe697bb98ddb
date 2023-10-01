@@ -234,16 +234,15 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	public static void OutputFunction(SPLTuples SPL, boolean regressionfunction) {
 		int i;
 		for(i = 0; i<SPL.Solution.length; i++) {
-			
 			if(i != 0) {
-				if(SPL.Solution[i] >= 0) {
+				if(SPL.Solution[i] > 0) {
 					System.out.print(" + ");
 				} else {
 					System.out.print(" ");
 				}
 			}
 			if(SPL.Solution[i] != 0.0000) {
-				System.out.print(SPL.Solution[i]);
+				EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
 				if(regressionfunction) {
 					if(i != 0) {
 						System.out.print("x");
