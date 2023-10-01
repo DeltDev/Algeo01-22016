@@ -257,7 +257,7 @@ public class Main {
 								Bicubic = EnhancedIO.InputBicubicKeyboard();
 								break;
 							case 2:
-								m = EnhancedIO.InputSPLFile();
+								Bicubic = EnhancedIO.InputBicubicFile();
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
