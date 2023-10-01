@@ -98,6 +98,35 @@ public class EquationSystem {
 		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
 		return ret;
 	}
+
+	// prekondisi Gauss(m).isSolvable = true, Gauss(m).isParametric = true
+	public static Matrix ParametricGauss(Matrix m){
+		Matrix m1. Mirror;
+		m1 = new Matrix(m.row, m.col);
+		m1 = Echelon.REF(m);
+		Mirror = new Matrix(m1.col-1, m1.col);
+		boolean [] isVariable = new boolean [m1.col - 1]; // true jika variabel dijadikan parameter
+		int i, j, k, l;
+
+		//searching variabel mana yang menjadi parameter
+		isVariable[0] = false;
+		for (i = (m1.col - 2);i >= 1;i--){
+			for (j = (m1.row-1);j >= 0;j--){
+				isVariable[i] = false;
+				if (m1.Mat[j][i] != 0){
+					for(k = (i - 1);k >= 0;k--){
+						if (m1.Mat[j][k] != 0){
+							isVariable[i] = true;
+							break;
+						};
+					};
+					break;
+				};
+			};
+		};
+
+		return Mirror;
+	}
 	
 	public static SPLTuples GaussJordan(Matrix m) {
 		Matrix m1;
@@ -130,6 +159,7 @@ public class EquationSystem {
 		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
 		return ret;
 	}
+
 	public static SPLTuples Inverse(Matrix m) { //tidak feasible untuk di daur ulang karena tidak bisa menentukan solusi parametrik
 		Matrix m1,m2,konstan,solution,variabel;
 		SPLTuples ret;
