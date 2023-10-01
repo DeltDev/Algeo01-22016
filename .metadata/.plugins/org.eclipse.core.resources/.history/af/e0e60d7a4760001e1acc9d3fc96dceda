@@ -288,7 +288,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	
 	public static BicubicSITuple InputBicubicFile() {
 		BicubicSITuple ret;
-		ret = new BicubicSITuple(new Matrix(4,4),0.0,0.0);
+		ret = new BicubicSITiple(new Matrix(4,4),0.0,0.0);
 		return ret;
 	}
 }

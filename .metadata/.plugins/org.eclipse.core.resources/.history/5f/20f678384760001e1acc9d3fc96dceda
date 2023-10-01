@@ -23,7 +23,6 @@ public class Main {
 		SPLTuples SPL;
 		double taksiran;
 		BicubicSITuple Bicubic;
-		Bicubic = new BicubicSITuple(new Matrix(4,4),0.0,0.0);
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");

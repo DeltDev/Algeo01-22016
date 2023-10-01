@@ -22,8 +22,6 @@ public class Main {
 		int inputMenu, inputSubmenu, inputMethod;
 		SPLTuples SPL;
 		double taksiran;
-		BicubicSITuple Bicubic;
-		Bicubic = new BicubicSITuple(new Matrix(4,4),0.0,0.0);
 		while (true){
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
@@ -247,25 +245,6 @@ public class Main {
 					System.out.println("");
 					break;
 				case 5:
-					while(true) {
-						System.out.println("Pilih metode untuk menginput SPL:");
-						System.out.println("1. Input Keyboard");
-						System.out.println("2. Input File.txt (File harus mengandung HANYA matriks augmented)");
-						inputMethod = in.nextInt();
-						switch(inputMethod) {
-							case 1:
-								Bicubic = EnhancedIO.InputBicubicKeyboard();
-								break;
-							case 2:
-								m = EnhancedIO.InputSPLFile();
-								break;
-							default:
-								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
-						};
-						if ((inputMethod > 0) && (inputMethod <= 2)){
-							break;
-						};
-					};
 					Matrix MatF = new Matrix(4,4);
 					Matrix X = new Matrix(16,16);
 					Matrix MatFCol = new Matrix(16,1);
@@ -274,8 +253,8 @@ public class Main {
 					X = Misc.GenerateBCubicSplineMat();
 					double xTaksir,yTaksir;
 					double outTaksir;
-					
-					
+					BicubicSITuple Bicubic;
+					Bicubic = EnhancedIO.InputBicubicKeyboard();
 					MatF = Bicubic.Mat;
 					
 					MatFCol = Matrix.toColMatrix(MatF);
