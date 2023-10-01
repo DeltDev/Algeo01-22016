@@ -1,0 +1,21 @@
+package FileIO;
+
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.File;
+public class FileInput {
+	
+	public static void ReadFile(String args[]) throws FileNotFoundException {
+		int [][] numArray = new int [10] [10];
+		Scanner in = new Scanner(ChooseFile());
+		while (in.hasNextLine()) {
+			for(int i = 0; i<numArray.length; i++) {
+				String [] line = in.nextLine().trim().split(" ");
+			}
+		}
+	}
+	
+	private static File ChooseFile() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+}

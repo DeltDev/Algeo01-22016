@@ -1,0 +1,62 @@
+// needed for the file class
+package test;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner; // needed for the scanner class
+
+public class read2d {
+    public static void main(String[] args) throws IOException {
+        int rows = 10;
+        int columns = 12;
+
+        int[] arr = arrayfile(rows * columns);
+    
+        int[][] md_arr = new int[rows][columns];
+
+        for(int r=0; r < rows; r++) {
+            for(int c=0; c<columns; c++) {
+            md_arr[r][c] = arr[r*c+c];
+            }
+        }
+    
+        showarray(md_arr);
+
+    }
+
+    public static int[] arrayfile(int a) throws IOException {
+        // create a scanner object to read input.
+        Scanner keyboard = new Scanner(system.in);
+
+        int arr[];
+        arr = new int[a];
+
+        System.out.print("enter the filename: ");
+        string filename = keyboard.nextline();
+        keyboard.close();
+
+        file file = new file(filename);
+        scanner inputfile = new scanner(file);
+
+        int i = 0;
+
+        while (inputfile.hasnextline()) {
+            a[i] = inputfile.nextint();
+            i++;
+        }
+        inputfile.close();
+
+        return a;
+    }
+
+    public static void showarray(int[][] c) {
+        for(int r=0; r < c.length; r++) {
+            for(int c=0; c<c[r].length; c++) {
+                system.out.print(c[r][c]+"   ");
+            }
+                system.out.print("\n\n\n");
+        }
+    
+    }
+
+}

@@ -1,0 +1,9 @@
+package FileIO;
+
+import java.io.FileNotFoundException;
+public class FileInput {
+	
+	public static void ReadFile(String args[]) {
+		int [][] numArray = new int [10] [10];
+	}
+}

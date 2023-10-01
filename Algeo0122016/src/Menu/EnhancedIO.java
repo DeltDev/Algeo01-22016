@@ -7,6 +7,11 @@ import LinearAlgebra.*;
 
 import java.util.Scanner;
 import SPLTuples.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.*;
 public class EnhancedIO { //Class ini untuk input lewat keyboard dan output secara umum
 	public static Matrix InputSquareMatrixKeyboard() {
 		int n;
@@ -52,7 +57,22 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	
 	public static Matrix InputMatrixFile() {
 		Matrix m;
+		String filedir = findFileDir();
+		
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(filedir));
+			String line;
+			while((line = reader.readLine())!= null) {
+				System.out.println(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		m = new Matrix(5,5);
+
+		
 		return m;
 	}
 	public static void OutputDoublePrecision4(double d) {
@@ -129,4 +149,21 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		}
 		System.out.println("");
 	}
+	
+	private static String findFileDir()
+	{
+		Path currentRelativePath = Paths.get("");
+		String curdir = currentRelativePath.toAbsolutePath().toString();
+;
+		String filedir = curdir.replace("src", "test");
+
+		String fileInput;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Masukkan nama file: ");
+		fileInput = in.next();
+		filedir = filedir + '\\' + fileInput;
+		return filedir;
+	}
+	
+	
 }
