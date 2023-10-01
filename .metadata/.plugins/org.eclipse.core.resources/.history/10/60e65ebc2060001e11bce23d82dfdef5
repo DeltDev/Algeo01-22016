@@ -66,8 +66,8 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			}
 			reader.close();
 		} catch (IOException e) {
-			System.out.println("File tidak ditemukan!");
-			return InputMatrixFile();
+			
+			e.printStackTrace();
 		}
 		m = new Matrix(5,5);
 
