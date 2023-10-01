@@ -1,0 +1,200 @@
+package LinearAlgebra;
+import LinearAlgebra.*;
+import SPLTuples.*;
+import Menu.EnhancedIO;
+public class EquationSystem {
+	public static void CramerRule(Matrix m) { //tidak feasible untuk di daur ulang untuk menyelesaikan solusi parametrik
+		double D;
+		D = Determinant.ReduksiBaris(m);
+		
+		Matrix clone,konstan,reset;
+		clone = new Matrix(m.row,m.row);
+		reset = new Matrix(m.row,m.row);
+		konstan = new Matrix(m.row,1);
+		for(int i = 0; i<m.row; i++){
+			for(int j = 0; j<m.row; j++){
+				clone.Mat[i][j] = m.Mat[i][j];
+			}
+		}
+		for(int i = 0; i<m.row; i++){
+			for(int j = 0; j<m.row; j++){
+				reset.Mat[i][j] = m.Mat[i][j];
+			}
+		}
+		for(int i = 0; i<m.row; i++){
+			konstan.Mat[i][0] = m.Mat[i][m.col-1];
+		}
+		double [] Det = new double[m.row];
+		double [] solution = new double[m.row];
+
+		boolean allDetNotZero;
+		allDetNotZero = true;
+		System.out.println("Solusi:");
+		for(int i = 0; i<m.row; i++) {
+			for(int j = 0; j<m.row; j++) {
+				clone.Mat[j][i] = konstan.Mat[j][0];
+			}
+			Det[i] = Determinant.ReduksiBaris(clone);
+			if(Det[i] == 0) {
+				allDetNotZero = false;
+			}
+			for(int j = 0; j<m.row; j++){
+				clone.Mat[j][i] = reset.Mat[j][i];
+			}
+		}			
+		
+		if(D == 0) {
+			if(allDetNotZero) {
+				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
+				return;
+			} else {
+				System.out.println("Sistem persamaan linear berikut memiliki solusi banyak/parametrik.");
+				return;
+			}
+		} else {
+			System.out.println("Solusinya adalah:");
+			for(int i = 0; i<m.row; i++) {
+				solution[i] = Det[i]/D;
+				System.out.print("x["+ (i+1) + "]= ");
+				EnhancedIO.OutputDoublePrecision4(solution[i]);
+				System.out.println("");
+			}
+			return;
+		}
+	}
+	
+	public static SPLTuples Gauss(Matrix m) {
+		Matrix m1;
+		m1 = new Matrix(m.row,m.col);
+		m1 = Echelon.REF(m);
+		
+		boolean isSol;
+		boolean isPara;
+		double [] Solution = new double [m.row];
+		for(int i = 0; i<m.row; i++) {
+			Solution[i] = Double.NaN;
+		}
+		isSol = true;
+		isPara = true;
+		for(int i = m.row-1; i>=0; i--) {
+			if(i == m.row-1) { //lagi di baris paling bawah
+				if(!Matrix.AllRowZero(m1, i)) { //baris paling bawah tidak 0 semua
+					 isPara = false; //solusinya cuma 1
+					 break;
+				} else { //baris paling bawah 0 semua
+					if(m1.Mat[i][m.col-1] != 0) { //pojok kanan bawah bukan nol 
+						isSol = false; //solusinya gak ada
+						isPara = false;
+						break;
+					}
+				} //cek terus sampai barisnya gak 0 semua
+			} else { // bukan di baris paling bawah
+				if(Matrix.AllRowZero(m1, i)) { //kalo baris ke-i 0 semua
+					if(m1.Mat[i][m.col-1] != 0) { //kalo konstantanya bukan 0, solusinya gak ada
+						isSol = false;
+						isPara = false;
+						break;
+					}
+				} else { //kalo ada yang gak nol, berhentiin iterasinya biar ketahuan parametrik apa bukan
+					break;
+				}
+			}
+		}
+		
+		if(isSol && !isPara) {
+			for(int i = 0; i<m.row; i++) {
+				Solution[i] = m1.Mat[i][m.col-1];
+			}
+		}
+		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
+		return ret;
+	}
+	
+	public static SPLTuples GaussJordan(Matrix m) {
+		Matrix m1;
+		m1 = new Matrix(m.row,m.col);
+		m1 = Echelon.RREF(m);
+		boolean isSol;
+		boolean isPara;
+		double [] Solution = new double [m.row];
+		for(int i = 0; i<m.row; i++) {
+			Solution[i] = Double.NaN;
+		}
+		isSol = true;
+		isPara = true;
+		for(int i = m.row-1; i>=0; i--) {
+			if(i == m.row-1) { //lagi di baris paling bawah
+				if(!Matrix.AllRowZero(m1, i)) { //baris paling bawah tidak 0 semua
+					 isPara = false; //solusinya cuma 1
+					 break;
+				} else { //baris paling bawah 0 semua
+					if(m1.Mat[i][m.col-1] != 0) { //pojok kanan bawah bukan nol 
+						isSol = false; //solusinya gak ada
+						isPara = false;
+						break;
+					}
+				} //cek terus sampai barisnya gak 0 semua
+			} else { // bukan di baris paling bawah
+				if(Matrix.AllRowZero(m1, i)) { //kalo baris ke-i 0 semua
+					if(m1.Mat[i][m.col-1] != 0) { //kalo konstantanya bukan 0, solusinya gak ada
+						isSol = false;
+						isPara = false;
+						break;
+					}
+				} else { //kalo ada yang gak nol, berhentiin iterasinya biar ketahuan parametrik apa bukan
+					break;
+				}
+			}
+		}
+		
+		if(isSol && !isPara) {
+			for(int i = 0; i<m.row; i++) {
+				Solution[i] = m1.Mat[i][m.col-1];
+			}
+		}
+		
+		SPLTuples ret = new SPLTuples(m1, Solution, isSol, isPara);
+		return ret;
+	}
+	public static SPLTuples Inverse(Matrix m) { //tidak feasible untuk di daur ulang karena tidak bisa menentukan solusi parametrik
+		Matrix m1,m2,konstan,solution,variabel;
+		SPLTuples ret;
+		boolean isSolvable,isPara;
+		solution = new Matrix(m.row,1);
+		double [] solutionarr = new double[m.row];
+		for(int i =0; i<m.row; i++) {
+			solutionarr[i] = Double.NaN;
+		}
+		m1 = new Matrix(m.row,2*m.row);
+		variabel = new Matrix(m.row,m.row);
+		for(int i = 0; i<m.row; i++) {
+			for(int j = 0; j<m.row; j++) {
+				variabel.Mat[i][j] = m.Mat[i][j];
+			}
+		}
+		m1 = Inverse.GaussJordan(variabel);
+
+		if(Matrix.AllRowZero(m1,m.row-1)) { //beda dengan gauss/gj, kalo inverse dia gak bisa ditentuin punya solusi parametrik atau gak punya solusi
+			isSolvable = false;
+			isPara = false;
+			ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);
+		} 
+		m2 = Inverse.GetInverseGJ(m1);
+
+		konstan = new Matrix(m.row,1);
+		
+		for(int i = 0; i<m.row; i++) {
+			konstan.Mat[i][0] = m.Mat[i][m.col-1];
+		}
+
+		
+		solution = Matrix.Multiply(m2, konstan);
+		for (int i = 0; i<m.row; i++) {
+			solutionarr[i] = solution.Mat[i][0];
+		}
+		isSolvable = true;
+		isPara = false;
+		ret = new SPLTuples(m1,solutionarr,isSolvable,isPara);
+		return ret;
+	}
+}
