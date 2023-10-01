@@ -116,7 +116,7 @@ public class EquationSystem {
 
 	// prekondisi Gauss(m).isSolvable = true, Gauss(m).isParametric = true
 	public static Matrix ParametricGauss(Matrix m){
-		Matrix m1. Mirror;
+		Matrix m1, Mirror;
 		m1 = new Matrix(m.row, m.col);
 		m1 = Echelon.REF(m);
 		Mirror = new Matrix(m1.col-1, m1.col);
