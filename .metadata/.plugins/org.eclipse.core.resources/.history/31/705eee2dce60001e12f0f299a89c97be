@@ -50,9 +50,11 @@ public class EquationSystem {
 		
 		if(D == 0) {
 			if(allDetNotZero) {
+				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
 				isSol = false;
 				isPara = false;
 			} else {
+				System.out.println("Sistem persamaan linear berikut memiliki solusi banyak/parametrik.");
 				isSol = true;
 				isPara = true;
 			}

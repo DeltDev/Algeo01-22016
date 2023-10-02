@@ -91,16 +91,21 @@ public class Main {
 								break;
 							case 3:
 								// fungsi SPL matriks balikan
-								// Karena matriks invers terdefinisi hanya pada matriks persegi,
-								//maka banyak persamaan linear wajib sama dengan banyak variabel
+								
 								SPL = EquationSystem.Inverse(m);
 								EnhancedIO.OutputSPLInverse(SPL);
 								break;
 							case 4:
 								// fungsi SPL Cramer
-								// Karena matriks invers terdefinisi hanya pada matriks persegi,
-								//maka banyak persamaan linear wajib sama dengan banyak variabel
-								EquationSystem.CramerRule(m);
+								//Sebenarnya fungsi cramer hanya bisa menentukan apakah solusinya unik, parametrik, atau tidak ada solusi saja, namun tidak dapat mengoutputkan solusi parametrik secara langsung
+								//Diasumsikan masih diminta solusi parametrik jika cramer's rule menentukan apakah SPL parametrik atau tidak, ulangi langkah gauss-jordan saja
+								SPL = EquationSystem.CramerRule(m);
+								EnhancedIO.OutputSPL(SPL);
+								if(SPL.isParametric) {
+									SPL = EquationSystem.GaussJordan(m);
+									Para = EquationSystem.ParametricGaussJordan(m);
+									EnhancedIO.OutputParametric(Para);
+								}
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");

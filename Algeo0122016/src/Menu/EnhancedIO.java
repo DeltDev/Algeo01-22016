@@ -29,21 +29,6 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		return m;
 	}
 	
-	/*public static Matrix InputRectMatrix() {
-		int baris,kolom;
-		Matrix m;
-		Scanner in = new Scanner(System.in);
-		System.out.print("Masukkan banyak baris matriks: ");
-		baris = in.nextInt();
-		System.out.print("Masukkan banyak kolom matriks: ");
-		kolom = in.nextInt();
-		m = new Matrix(baris,kolom);
-		System.out.println("Input isi matriks:");
-		m.inputMatrix(baris,kolom);
-		
-		return m;
-	}*/
-	
 	public static Matrix InputSPLKeyboard() {
 		int banyakPersamaan,banyakVariabel;
 		Matrix m;
@@ -235,15 +220,16 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		int i;
 		for(i = 0; i<SPL.Solution.length; i++) {
 			
-			if(i != 0) {
-				if(SPL.Solution[i] >= 0) {
-					System.out.print(" + ");
-				} else {
-					System.out.print(" ");
+			
+			if(Math.abs(SPL.Solution[i]) >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
+				if(i != 0) {
+					if(SPL.Solution[i] > 0) {
+						System.out.print(" + ");
+					} else {
+						System.out.print(" ");
+					}
 				}
-			}
-			if(SPL.Solution[i] != 0.0000) {
-				System.out.print(SPL.Solution[i]);
+				EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
 				if(regressionfunction) {
 					if(i != 0) {
 						System.out.print("x");
@@ -263,7 +249,10 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 					}
 				}
 			}
-
+		}
+		
+		if(regressionfunction) {
+			System.out.print("+ ei");
 		}
 		System.out.println("");
 	}
@@ -272,7 +261,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	{
 		Path currentRelativePath = Paths.get("");
 		String curdir = currentRelativePath.toAbsolutePath().toString();
-		String filedir = curdir.replace("src", "test");
+		String filedir = curdir.replace("bin", "test");
 
 		String fileInput;
 		Scanner in = new Scanner(System.in);

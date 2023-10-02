@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import LinearAlgebra.*;
+import Misc.Misc;
 
 import java.util.Scanner;
 import SPLTuples.*;
@@ -13,6 +14,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.*;
 import BicubicSITuple.BicubicSITuple;
+import PITuple.PITuple;
+import MulRegTuple.MulRegTuple;
 public class EnhancedIO { //Class ini untuk input lewat keyboard dan output secara umum
 	public static Matrix InputSquareMatrixKeyboard() {
 		int n;
@@ -73,10 +76,10 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		col = 0;
 		row = 0;
 
-		if(col == 0) { //hitung banyak kolom dulu
-			col = scanFile.nextLine().split(" ").length;
-			row++;
-		}
+		
+		col = scanFile.nextLine().split(" ").length;
+		row++;
+		
 		//flush sisa text
 		while(scanFile.hasNextLine()) {
 			String flush = scanFile.nextLine();
@@ -99,14 +102,14 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			return InputSPLFile();
 		}
 		
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<row; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
+		
+		for(int i = 0; i<row; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<line.length; j++) {
+				m.Mat[i][j] = Double.parseDouble(line[j]);
 			}
 		}
+		
 		scanFile.close();
 		return m;
 	}
@@ -128,9 +131,9 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		n = 0;
 		
 
-		if(n == 0) { //hitung banyak kolom dulu
-			n = scanFile.nextLine().split(" ").length;
-		}
+		
+		n = scanFile.nextLine().split(" ").length;
+		
 		//flush sisa text
 		while(scanFile.hasNextLine()) {
 			String flush = scanFile.nextLine();
@@ -147,14 +150,14 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			return InputSPLFile();
 		}
 		
-		while(scanFile.hasNextLine()) {
-			for(int i = 0; i<n; i++) {
-				String [] line = scanFile.nextLine().trim().split(" ");
-				for(int j = 0; j<line.length; j++) {
-					m.Mat[i][j] = Double.parseDouble(line[j]);
-				}
+		
+		for(int i = 0; i<n; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<line.length; j++) {
+				m.Mat[i][j] = Double.parseDouble(line[j]);
 			}
 		}
+		
 		scanFile.close();
 		return m;
 	}
@@ -231,33 +234,40 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	public static void OutputFunction(SPLTuples SPL, boolean regressionfunction) {
 		int i;
 		for(i = 0; i<SPL.Solution.length; i++) {
-			if(i != 0) {
-				if(SPL.Solution[i] >= 0) {
-					System.out.print(" + ");
+			
+			
+			if(Math.abs(SPL.Solution[i]) >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
+				if(i != 0) {
+					if(SPL.Solution[i] > 0) {
+						System.out.print(" + ");
+					} else {
+						System.out.print(" ");
+					}
+				}
+				EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
+				if(regressionfunction) {
+					if(i != 0) {
+						System.out.print("x");
+						System.out.print("["+i+"]");
+						if(i != 1) {
+							System.out.print("^");
+							System.out.print(i);
+						}
+					}
 				} else {
-					System.out.print(" ");
-				}
-			}
-			EnhancedIO.OutputDoublePrecision4(SPL.Solution[i]);
-			if(regressionfunction) {
-				if(i != 0) {
-					System.out.print("x");
-					System.out.print("["+i+"]");
-					if(i != 1) {
-						System.out.print("^");
-						System.out.print(i);
-					}
-				}
-			} else {
-				if(i != 0) {
-					System.out.print("x");
-					if(i != 1) {
-						System.out.print("^");
-						System.out.print(i);
+					if(i != 0) {
+						System.out.print("x");
+						if(i != 1) {
+							System.out.print("^");
+							System.out.print(i);
+						}
 					}
 				}
 			}
-
+		}
+		
+		if(regressionfunction) {
+			System.out.print("+ ei");
 		}
 		System.out.println("");
 	}
@@ -266,7 +276,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	{
 		Path currentRelativePath = Paths.get("");
 		String curdir = currentRelativePath.toAbsolutePath().toString();
-		String filedir = curdir.replace("src", "test");
+		String filedir = curdir.replace("bin", "test");
 
 		String fileInput;
 		Scanner in = new Scanner(System.in);
@@ -278,7 +288,6 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 	
 	public static BicubicSITuple InputBicubicKeyboard() {
 		BicubicSITuple ret;
-		System.out.println("INTERPOLASI BICUBIC SPLINE");
 		System.out.println("Masukkan matriks 4x4 dengan format:");
 		System.out.println("f(0,0) f(1,0) f(0,1) f(1,1)");
 		System.out.println("fx(0,0) fx(1,0) fx(0,1) fx(1,1)");
@@ -312,33 +321,190 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			return InputBicubicFile();
 		}
 		
-		int row;
-		row = 0;
+		
+		xT = 0.0;
+		yT = 0.0;
 		//parsing
-		while(scanFile.hasNextLine()) {
-			if(row < 4) {
-				for(int i = 0; i<4; i++) {
-					String [] line = scanFile.nextLine().trim().split(" ");
-					for(int j = 0; j<line.length; j++) {
-						m.Mat[i][j] = Double.parseDouble(line[j]);
-					}
-				}
-			} else {
-				for(int i = 0; i<2; i++) {
-					String [] line = scanFile.nextLine().trim().split(" ");
-					for(int j = 0; j<line.length; j++) {
-						if(j == 0) {
-							xT = Double.parseDouble(line[j]);
-						} else {
-							yT = Double.parseDouble(line[j]);
-						}
-					}
-				}
+
+		for(int i = 0; i<4; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<line.length; j++) {
+				m.Mat[i][j] = Double.parseDouble(line[j]);
 			}
-			row++;
+		}
+			
+				
+		String [] line = scanFile.nextLine().trim().split(" ");
+		for(int j = 0; j<line.length; j++) {
+			if(j == 0) {
+				xT = Double.parseDouble(line[j]);
+			} else {
+				yT = Double.parseDouble(line[j]);
+			}
+		}
+			
+		scanFile.close();
+		ret = new BicubicSITuple(m,xT,yT);
+		return ret;
+	}
+	
+	public static PITuple InputPIKeyboard() {
+		PITuple ret;
+		int banyakTitik;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Masukkan banyak titik: ");
+		banyakTitik = in.nextInt();
+		
+		double [] x = new double[banyakTitik];
+		double [] y = new double[banyakTitik];
+		System.out.println("Masukkan titik: ");
+		for(int i = 0; i<banyakTitik; i++) {
+			x[i] = in.nextDouble();
+			y[i] = in.nextDouble();
+		}
+		System.out.print("Masukkan nilai yang ingin ditaksir pada fungsi polinomial yang akan dicari: ");
+		double masukan;
+		masukan = in.nextDouble();
+		ret = new PITuple(masukan,x,y);
+		return ret;
+	}
+	
+	public static PITuple InputPIFile() {
+		PITuple ret;
+		ret = new PITuple(0.0,new double[0],new double[0]);
+		String filedir = findFileDir();
+		File file = new File(filedir);
+		Scanner scanFile;
+		try {
+			scanFile = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan!");
+			return InputPIFile();
+		}
+		//1. hitung banyak titik
+		int rowcnt;
+		rowcnt = 0;
+		while(scanFile.hasNextLine()) {
+			if(scanFile.nextLine().split(" ").length == 2) {
+				rowcnt++;
+			}
+		}
+		scanFile.close();
+		double [] xRet = new double[rowcnt];
+		double [] yRet = new double[rowcnt];
+		double taks;
+		taks = 0.0;
+		try {
+			scanFile = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan!");
+			return InputPIFile();
 		}
 		
-		ret = new BicubicSITuple(m,xT,yT);
+		for(int i = 0; i<rowcnt; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<2; j++) {
+				if(j == 0) {
+					xRet[i] = Double.parseDouble(line[j]);
+				} else {
+					yRet[i] = Double.parseDouble(line[j]);
+				}
+			}
+		}
+			
+				
+		String [] line = scanFile.nextLine().trim().split(" ");
+		taks = Double.parseDouble(line[0]);
+		scanFile.close();
+		ret = new PITuple(taks,xRet,yRet);
+		return ret;
+	}
+	
+	public static MulRegTuple InputRegKeyboard() {
+		MulRegTuple ret;
+		ret = new MulRegTuple(0,0,new Matrix(0,0), new Matrix(0,0), new double[0]);
+		int n, k;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Masukkan banyak variabel peubah: ");
+		k = in.nextInt();
+		System.out.print("Masukkan banyak sampel: ");
+		n = in.nextInt();
+		Matrix inputNK = new Matrix (n, (k+1));
+		Matrix NEE = new Matrix ((k+1), (k+2));
+		System.out.println("Masukkan dengan format");
+		System.out.println("x[1][1] x[2][1] ... x[k][1] y[1]");
+		System.out.println("x[1][2] x[2][2] ... x[k][2] y[2]");
+		System.out.println("   :       :     :     :     :  ");
+		System.out.println("x[1][n] x[2][n] ... x[k][n] y[n]");
+		inputNK.inputMatrix(n, (k+1));
+		for (int i = 0;i < (k+1);i++){ // i loop row
+			for (int j = 0;j < (k+2);j++){ // j loop col
+				NEE.Mat[i][j] = Misc.Sigma(inputNK, i, j);
+			};
+		};
+		//input keyboard MulRegTuple: k,n,inputNK,NEE,xTest
+		
+		double [] xTest = new double[k];
+		System.out.println("Masukkan sampel baru yang ingin ditaksir: ");
+		for(int i = 0; i<k; i++) {
+			xTest[i] = in.nextDouble();
+		}
+		ret = new MulRegTuple(k,n,inputNK,NEE,xTest);
+		return ret;
+	}
+	
+	public static MulRegTuple InputRegFile() {
+		MulRegTuple ret;
+		ret = new MulRegTuple(0,0,new Matrix(0,0), new Matrix(0,0), new double[0]);
+		String filedir = findFileDir();
+		File file = new File(filedir);
+		Scanner scanFile;
+		//1. hitung banyak variabel dan banyak sampel
+		try {
+			scanFile = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan!");
+			return InputRegFile();
+		}
+		
+		int k,n;
+		n = 0;
+		k = scanFile.nextLine().split(" ").length-1;
+		n++;
+		while(scanFile.hasNextLine()) {
+			if(scanFile.nextLine().split(" ").length == (k+1)) {
+				n++;
+			}
+		}
+		
+		scanFile.close();
+		Matrix NK = new Matrix(n,(k+1));
+		Matrix NEE = new Matrix((k+1),(k+2));
+		double [] xTest = new double[k];
+		//2. parsing
+		try {
+			scanFile = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan!");
+			return InputRegFile();
+		}
+		for(int i = 0; i<n; i++) {
+			String [] line = scanFile.nextLine().trim().split(" ");
+			for(int j = 0; j<line.length; j++) {
+				NK.Mat[i][j] = Double.parseDouble(line[j]);
+			}
+		}
+		String [] line = scanFile.nextLine().trim().split(" ");
+		for(int i = 0; i<k; i++) {
+			xTest[i] = Double.parseDouble(line[i]);
+		}
+		for (int i = 0;i < (k+1);i++){ // i loop row
+			for (int j = 0;j < (k+2);j++){ // j loop col
+				NEE.Mat[i][j] = Misc.Sigma(NK, i, j);
+			};
+		};
+		ret = new MulRegTuple(k,n,NK,NEE,xTest);
+		scanFile.close();
 		return ret;
 	}
 }

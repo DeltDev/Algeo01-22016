@@ -50,23 +50,26 @@ public class EquationSystem {
 		
 		if(D == 0) {
 			if(allDetNotZero) {
+				System.out.println("Sistem persamaan linear berikut tidak memiliki solusi.");
 				isSol = false;
 				isPara = false;
 			} else {
+				System.out.println("Sistem persamaan linear berikut memiliki solusi banyak/parametrik.");
 				isSol = true;
 				isPara = true;
 			}
 		} else {
 			isSol = true;
 			isPara = false;
-			
+			System.out.println("Solusinya adalah:");
 			for(int i = 0; i<m.row; i++) {
 				solution[i] = Det[i]/D;
+				System.out.print("x["+ (i+1) + "]= ");
+				EnhancedIO.OutputDoublePrecision4(solution[i]);
+				System.out.println("");
 			}
 			
 		}
-		ret = new SPLTuples(m,solution,isSol,isPara);
-		return ret;
 	}
 	
 	public static SPLTuples Gauss(Matrix m) {
