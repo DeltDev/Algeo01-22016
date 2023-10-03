@@ -37,7 +37,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		banyakPersamaan = in.nextInt();
 		System.out.print("Masukkan banyak variabel peubah (n): ");
 		banyakVariabel = in.nextInt();
-		m = new Matrix(banyakVariabel,banyakVariabel+1);
+		m = new Matrix(banyakPersamaan,banyakVariabel+1);
 		System.out.println("Masukkan persamaan linear");
 		System.out.println("dalam bentuk matriks augmented");
 		m.inputMatrix(banyakPersamaan,banyakVariabel+1);
