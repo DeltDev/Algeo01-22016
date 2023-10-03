@@ -61,7 +61,7 @@ public class Echelon {
 		for(int i = 1; i<m.row; i++) {
 			//cari index bukan 0 pertama
 			for (b = 0;b < m.col;b++){
-				if (m.Mat[i][b] != 0){a = b; break;};
+				if (REF1.Mat[i][b] != 0){a = b; break;};
 			};
 			if (b != m.col){
 				for(int j = 0; j<i; j++) {
