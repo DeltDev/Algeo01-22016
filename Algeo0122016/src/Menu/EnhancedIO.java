@@ -197,6 +197,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 					};
 				};
 			};
+			if (!notfirst){System.out.print("0.0000");};
 			System.out.println("");
 		};
 	}

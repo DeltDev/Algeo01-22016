@@ -76,41 +76,38 @@ public class EquationSystem {
 		
 		boolean isSol;
 		boolean isPara;
-		double [] Solution = new double [m.row];
-		for(int i = 0; i<m.row; i++) {
+		double [] Solution = new double [m.col - 1];
+		for(int i = 0; i < (m.col - 1); i++) {
 			Solution[i] = Double.NaN;
 		}
 		isSol = true;
 		isPara = true;
-		for(int i = m.row-1; i>=0; i--) {
-			if(i == m.row-1) { //lagi di baris paling bawah
-				if(!Matrix.AllRowZero(m1, i)) { //baris paling bawah tidak 0 semua
-					 isPara = false; //solusinya cuma 1
-					 break;
-				} else { //baris paling bawah 0 semua
-					if(m1.Mat[i][m.col-1] != 0) { //pojok kanan bawah bukan nol 
-						isSol = false; //solusinya gak ada
-						isPara = false;
-						break;
-					}
-				} //cek terus sampai barisnya gak 0 semua
-			} else { // bukan di baris paling bawah
-				if(Matrix.AllRowZero(m1, i)) { //kalo baris ke-i 0 semua
-					if(m1.Mat[i][m.col-1] != 0) { //kalo konstantanya bukan 0, solusinya gak ada
-						isSol = false;
-						isPara = false;
-						break;
-					}
-				} else { //kalo ada yang gak nol, berhentiin iterasinya biar ketahuan parametrik apa bukan
+		int z;
+		boolean AllRow0;
+		for(z = m.row-1; z >= 0; z--) {
+			AllRow0 = true;
+			for (int i = 0; i < (m.col - 1); i++){
+				if (m1.Mat[z][i] != 0){
+					AllRow0 = false;
 					break;
 				}
 			}
+			if (!AllRow0){
+				if (z == (m.col-2)){isPara = false;};
+				break;
+			} else {
+				if (m1.Mat[z][m.col-1] != 0){
+					isSol = false;
+					isPara = false;
+					break;
+				};
+			};
 		}
 		
 		if(isSol && !isPara) {
-			Solution[m.row-1] = m1.Mat[m.row-1][m.col-1];
+			Solution[m.col-2] = m1.Mat[m.col-2][m.col-1];
 
-			for(int i = m.row-2; i>=0; i--) {
+			for(int i = m.col-3; i>=0; i--) {
 				Solution[i] = m1.Mat[i][m.col-1];
 				for(int j = i+1; j<m.col-1; j++) {
 					Solution[i] = Solution[i] - m1.Mat[i][j]*Solution[j];
@@ -199,39 +196,36 @@ public class EquationSystem {
 		m1 = Echelon.RREF(m);
 		boolean isSol;
 		boolean isPara;
-		double [] Solution = new double [m.row];
-		for(int i = 0; i<m.row; i++) {
+		double [] Solution = new double [m.col - 1];
+		for(int i = 0; i<(m.col - 1); i++) {
 			Solution[i] = Double.NaN;
 		}
 		isSol = true;
 		isPara = true;
-		for(int i = m.row-1; i>=0; i--) {
-			if(i == m.row-1) { //lagi di baris paling bawah
-				if(!Matrix.AllRowZero(m1, i)) { //baris paling bawah tidak 0 semua
-					 isPara = false; //solusinya cuma 1
-					 break;
-				} else { //baris paling bawah 0 semua
-					if(m1.Mat[i][m.col-1] != 0) { //pojok kanan bawah bukan nol 
-						isSol = false; //solusinya gak ada
-						isPara = false;
-						break;
-					}
-				} //cek terus sampai barisnya gak 0 semua
-			} else { // bukan di baris paling bawah
-				if(Matrix.AllRowZero(m1, i)) { //kalo baris ke-i 0 semua
-					if(m1.Mat[i][m.col-1] != 0) { //kalo konstantanya bukan 0, solusinya gak ada
-						isSol = false;
-						isPara = false;
-						break;
-					}
-				} else { //kalo ada yang gak nol, berhentiin iterasinya biar ketahuan parametrik apa bukan
+		int z;
+		boolean AllRow0;
+		for(z = m.row-1; z >= 0; z--) {
+			AllRow0 = true;
+			for (int i = 0; i < (m.col - 1); i++){
+				if (m1.Mat[z][i] != 0){
+					AllRow0 = false;
 					break;
 				}
 			}
+			if (!AllRow0){
+				if (z == (m.col-2)){isPara = false;};
+				break;
+			} else {
+				if (m1.Mat[z][m.col-1] != 0){
+					isSol = false;
+					isPara = false;
+					break;
+				};
+			};
 		}
 		
 		if(isSol && !isPara) {
-			for(int i = 0; i<m.row; i++) {
+			for(int i = 0; i<(m.col - 1); i++) {
 				Solution[i] = m1.Mat[i][m.col-1];
 			}
 		}
