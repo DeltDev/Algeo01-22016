@@ -7,14 +7,16 @@ public class Echelon {
 		int c = m.col;
 		Matrix m1 = new Matrix(r,c);
 		double ratio;
+		int i, j;
+		int a = 0;
 
-		for(int i = 0; i<r; i++) {//copy matrix m ke m1 lokal
-			for(int j = 0; j<c; j++) {
+		for(i = 0; i<r; i++) {//copy matrix m ke m1 lokal
+			for(j = 0; j<c; j++) {
 				m1.Mat[i][j] = m.Mat[i][j];
 			}
 		}
-		for(int i = 0; i<r-1; i++) { //ubah matrix m jadi matriks eselon
-			for(int j = r-1; j>i; j--) {
+		for(i = 0; i<c; i++) { //ubah matrix m jadi matriks eselon
+			for(j = r-1; j>a; j--) {
 				if(m1.Mat[j][i] == 0) {
 					continue;
 				} else {
@@ -29,13 +31,19 @@ public class Echelon {
 					}
 				}
 			}
+			if (m1.Mat[j][i] != 0){a++;};
 		}
 		
 		double divider;
-		for(int i = 0; i<r; i++) {
-			divider = m1.Mat[i][i];
-			for(int j = i; j<c; j++) {
-				if(divider != 0) {
+		for(i = 0; i<r; i++) {
+			//cari index bukan 0 pertama
+			for (j = 0;j < c;j++){
+				if (m1.Mat[i][j] != 0){a = j; break;};
+			};
+			if (j == c){a = 0;};
+			divider = m1.Mat[i][a];
+			if (divider != 0){
+				for(j = i; j<c; j++) {
 					m1.Mat[i][j] = m1.Mat[i][j] / divider;
 				}
 			}
@@ -48,13 +56,21 @@ public class Echelon {
 		REF1 = new Matrix(m.row,m.col);
 		REF1 = Echelon.REF(m);
 		double mul;
+		int a, b;
+		a = -1;
 		for(int i = 1; i<m.row; i++) {
-			for(int j = 0; j<i; j++) {
-				mul = REF1.Mat[j][i];
-				for(int k = 0; k<m.col; k++) {
-					REF1.Mat[j][k] = REF1.Mat[j][k] - mul * REF1.Mat[i][k];
+			//cari index bukan 0 pertama
+			for (b = 0;b < m.col;b++){
+				if (m.Mat[i][b] != 0){a = b; break;};
+			};
+			if (b != m.col){
+				for(int j = 0; j<i; j++) {
+					mul = REF1.Mat[j][a];
+					for(int k = 0; k<m.col; k++) {
+						REF1.Mat[j][k] = REF1.Mat[j][k] - mul * REF1.Mat[i][k];
+					}
 				}
-			}
+			};
 		}
 		return REF1;
 	}
