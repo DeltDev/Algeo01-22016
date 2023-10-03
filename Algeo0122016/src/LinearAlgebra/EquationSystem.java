@@ -131,7 +131,7 @@ public class EquationSystem {
 		int i, j, k, l;
 
 		//searching variabel mana yang menjadi parameter
-		isVariable[0] = false;
+		if (m1.Mat[0][0] == 0){isVariable[0] = true;} else {isVariable[0] = false;};
 		for (i = (m1.col - 2);i >= 1;i--){
 			for (j = (m1.row-1);j >= 0;j--){
 				isVariable[i] = false;
@@ -145,6 +145,7 @@ public class EquationSystem {
 					break;
 				};
 			};
+			if (j == -1){isVariable[i] = true;};
 		};
 
 		// cari solusi parameter
@@ -249,7 +250,7 @@ public class EquationSystem {
 		int i, j, k, l;
 
 		//searching variabel mana yang menjadi parameter
-		isVariable[0] = false;
+		if (m1.Mat[0][0] == 0){isVariable[0] = true;} else {isVariable[0] = false;};
 		for (i = (m1.col - 2);i >= 1;i--){
 			for (j = (m1.row-1);j >= 0;j--){
 				isVariable[i] = false;
@@ -263,6 +264,7 @@ public class EquationSystem {
 					break;
 				};
 			};
+			if (j == -1){isVariable[i] = true;};
 		};
 
 		// cari solusi parameter
