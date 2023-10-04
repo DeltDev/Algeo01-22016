@@ -6,7 +6,7 @@ public class Echelon {
 		int r = m.row;
 		int c = m.col;
 		Matrix m1 = new Matrix(r,c);
-		double ratio;
+		double mul, div;
 		int i, j;
 		int a = 0;
 
@@ -24,10 +24,11 @@ public class Echelon {
 						m1.swapRow(j,j-1);
 						continue;
 					}
-						
-					ratio = m1.Mat[j][i] / m1.Mat[j-1][i];
+					
+					mul = m1.Mat[j][i];
+					div = m1.Mat[j-1][i];
 					for(int l = 0; l<c; l++) {
-						m1.Mat[j][l] = m1.Mat[j][l] - ratio * m1.Mat[j-1][l];
+						m1.Mat[j][l] = m1.Mat[j][l] - mul * (m1.Mat[j-1][l] / div);
 					}
 				}
 			}
@@ -42,7 +43,7 @@ public class Echelon {
 			};
 			if (j == c){a = 0;};
 			divider = m1.Mat[i][a];
-			if (divider != 0){
+			if (j != c){
 				for(j = i; j<c; j++) {
 					m1.Mat[i][j] = m1.Mat[i][j] / divider;
 				}

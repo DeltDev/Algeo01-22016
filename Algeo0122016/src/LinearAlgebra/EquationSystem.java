@@ -238,7 +238,7 @@ public class EquationSystem {
 	public static Matrix ParametricGaussJordan(Matrix m){
 		Matrix m1, Mirror;
 		m1 = new Matrix(m.row, m.col);
-		m1 = Echelon.RREF(m); // literally the only thing changed
+		m1 = Echelon.RREF(m);
 		Mirror = new Matrix(m1.col-1, m1.col);
 		boolean [] isVariable = new boolean [m1.col - 1]; // true jika variabel dijadikan parameter
 		int i, j, k, l;
@@ -275,10 +275,8 @@ public class EquationSystem {
 				for (k = (m1.col - 1);k > i;k--){ // k loop col minus
 					if (k == (m1.col - 1)){
 						Mirror.Mat[i][0] += m1.Mat[j][k];
-					} else {
-						for (l = 0;l < Mirror.col;l++){ // l loop Mirror col plus
-							Mirror.Mat[i][l] -= m1.Mat[j][k] * Mirror.Mat[k][l]; // very confusing
-						};
+					} else  if (isVariable[k]){
+						Mirror.Mat[i][m1.col - 1 - k] -= m1.Mat[j][k];
 					};
 				};
 			};
