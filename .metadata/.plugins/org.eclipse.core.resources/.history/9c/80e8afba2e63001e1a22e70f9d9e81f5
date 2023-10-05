@@ -75,7 +75,6 @@ public class Main {
 								// fungsi SPL Gauss
 								SPL = EquationSystem.Gauss(m);
 								EnhancedIO.OutputSPL(SPL);
-								SPL.Mat.printMatrix();
 								if (SPL.isParametric){
 									Para = EquationSystem.ParametricGauss(m);
 									EnhancedIO.OutputParametric(Para);
@@ -85,7 +84,6 @@ public class Main {
 								// fungsi SPL Gauss-Jordan
 								SPL = EquationSystem.GaussJordan(m);
 								EnhancedIO.OutputSPL(SPL);
-								SPL.Mat.printMatrix();
 								if (SPL.isParametric){
 									Para = EquationSystem.ParametricGaussJordan(m);
 									EnhancedIO.OutputParametric(Para);
@@ -96,7 +94,6 @@ public class Main {
 								
 								SPL = EquationSystem.Inverse(m);
 								EnhancedIO.OutputSPLInverse(SPL);
-								SPL.Mat.printMatrix();
 								break;
 							case 4:
 								// fungsi SPL Cramer
@@ -104,7 +101,6 @@ public class Main {
 								//Diasumsikan masih diminta solusi parametrik jika cramer's rule menentukan apakah SPL parametrik atau tidak, ulangi langkah gauss-jordan saja
 								SPL = EquationSystem.CramerRule(m);
 								EnhancedIO.OutputSPL(SPL);
-								SPL.Mat.printMatrix();
 								if(SPL.isParametric) {
 									SPL = EquationSystem.GaussJordan(m);
 									Para = EquationSystem.ParametricGaussJordan(m);

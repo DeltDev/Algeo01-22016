@@ -12,7 +12,7 @@ public class EquationSystem {
 		double [] solution = new double[m.row];
 		ret = new SPLTuples(m,solution,isSol,isPara);
 		D = Determinant.ReduksiBaris(m);
-		System.out.println(D);
+		
 		Matrix clone,konstan,reset;
 		clone = new Matrix(m.row,m.row);
 		reset = new Matrix(m.row,m.row);
@@ -47,7 +47,7 @@ public class EquationSystem {
 				clone.Mat[j][i] = reset.Mat[j][i];
 			}
 		}			
-		
+		EnhancedIO.OutputDoublePrecision4(D);
 		if(D == 0) {
 			if(allDetNotZero) {
 				isSol = false;

@@ -223,7 +223,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			
 			if(Math.abs(SPL.Solution[i]) >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
 				if(i != 0) {
-					if(Math.abs(SPL.Solution[i-1]) >0) {
+					if(Math.abs(SPL.Solution[i]) >= 0.0001) {
 						System.out.print(" + ");
 					} else {
 						System.out.print(" ");
