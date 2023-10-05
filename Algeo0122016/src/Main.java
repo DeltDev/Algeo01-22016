@@ -17,7 +17,7 @@ public class Main {
 		Matrix m, Para;
 		double det;
 		m = new Matrix(1000, 1000); Para = new Matrix(1000, 1000);
-		String sout,filename;
+		
 		int baris;
 		int kolom;
 		int banyakPersamaan;
@@ -33,7 +33,16 @@ public class Main {
 		PInterpol = new PITuple(0.0,new double[0], new double[0]);
 		Regresi = new MulRegTuple(0,0,new Matrix(0,0), new Matrix(0,0), new double[0]);
 		while (true){
-			sout = "";
+			System.out.println("Tugas Besar 1 Algeo IF2123");
+			System.out.println("Dikerjakan oleh AmogusSussySus");
+			System.out.println("ZachS17 - Zachary Samuel Tobing - 13522016");
+			System.out.println("DeltDev - Akbar Al Fattah - 13522036");
+			System.out.println("Devinzenzhang - Devinzen - 13522064");
+			System.out.println("");
+			System.out.println("STOP. POSTING. ABOUT. AMONG US! I'M TIRED OF SEEING IT!");
+			System.out.println("DING DING DING DING DING DING DING, DING DING DING");
+			System.out.println("OH THAT'S A BIT SUSSY!");
+			System.out.println("");
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
 			System.out.println("2. Determinan");
@@ -83,6 +92,7 @@ public class Main {
 									Para = EquationSystem.ParametricGauss(m);
 									EnhancedIO.OutputParametric(Para);
 								};
+								
 								EnhancedIO.OutputSPLFile(SPL, Para, false);
 								break;
 							case 2:
