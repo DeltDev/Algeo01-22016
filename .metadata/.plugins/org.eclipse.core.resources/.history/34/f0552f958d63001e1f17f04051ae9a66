@@ -755,7 +755,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		}
 	}
 	
-	public static void OutputMulRegFile(SPLTuples SPL, MulRegTuple Regresi,double taksiran) {
+	public static void OutputPIFile(SPLTuples SPL, double x,double taksiran) {
 		int inputSave;
 		Scanner in = new Scanner(System.in);
 		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
@@ -767,8 +767,8 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			filedir = findFileDir();
 			try {
 			      FileWriter tulis = new FileWriter(filedir);
-			      tulis.write("Persamaan regresi linear yang didapat adalah:\n");
-			      tulis.write("y = ");
+			      tulis.write("Polinomial interpolasi yang didapat adalah:\n");
+			      tulis.write("f(x) = ");
 
 			      int i;
 					for(i = 0; i<SPL.Solution.length; i++) {
@@ -784,7 +784,6 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 							tulis.write(BigDecimal.valueOf(SPL.Solution[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 							if(i != 0) {
 								tulis.write("x");
-								tulis.write("["+Integer.toString(i)+"]");
 								if(i != 1) {
 									tulis.write("^");
 									tulis.write(Integer.toString(i));
@@ -794,17 +793,10 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 						}
 					}
 			      tulis.write("\n");
-			      tulis.write("Nilai taksiran f(xk) yang didapat adalah:\n");
+			      tulis.write("Taksiran nilai f(x) yang diinput adalah:\n");
 			      tulis.write("f(");
-			      for(i = 0; i<Regresi.variables; i++) {
-						if(i == Regresi.variables-1) {
-							tulis.write(BigDecimal.valueOf(Regresi.xtest[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-							tulis.write(") = ");
-						} else {
-							tulis.write(BigDecimal.valueOf(Regresi.xtest[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-							tulis.write(", ");
-						}
-			      }
+			      tulis.write(BigDecimal.valueOf(x).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
+			      tulis.write(") = ");
 			      tulis.write(BigDecimal.valueOf(taksiran).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 			      tulis.write("\n");
 			      tulis.close();

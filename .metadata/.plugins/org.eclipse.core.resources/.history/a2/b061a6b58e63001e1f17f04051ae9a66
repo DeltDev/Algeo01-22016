@@ -794,8 +794,8 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 						}
 					}
 			      tulis.write("\n");
-			      tulis.write("Nilai taksiran f(xk) yang didapat adalah:\n");
-			      tulis.write("f(");
+			      System.out.println("Nilai taksiran f(xk) yang didapat adalah:");
+			      System.out.print("f(");
 			      for(i = 0; i<Regresi.variables; i++) {
 						if(i == Regresi.variables-1) {
 							tulis.write(BigDecimal.valueOf(Regresi.xtest[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());

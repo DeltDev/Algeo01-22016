@@ -755,7 +755,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		}
 	}
 	
-	public static void OutputMulRegFile(SPLTuples SPL, MulRegTuple Regresi,double taksiran) {
+	public static void OutputMulRegFile(SPLTuples SPL, double x,double taksiran) {
 		int inputSave;
 		Scanner in = new Scanner(System.in);
 		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
@@ -794,17 +794,10 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 						}
 					}
 			      tulis.write("\n");
-			      tulis.write("Nilai taksiran f(xk) yang didapat adalah:\n");
+			      tulis.write("Taksiran nilai f(x) yang diinput adalah:\n");
 			      tulis.write("f(");
-			      for(i = 0; i<Regresi.variables; i++) {
-						if(i == Regresi.variables-1) {
-							tulis.write(BigDecimal.valueOf(Regresi.xtest[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-							tulis.write(") = ");
-						} else {
-							tulis.write(BigDecimal.valueOf(Regresi.xtest[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-							tulis.write(", ");
-						}
-			      }
+			      tulis.write(BigDecimal.valueOf(x).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
+			      tulis.write(") = ");
 			      tulis.write(BigDecimal.valueOf(taksiran).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 			      tulis.write("\n");
 			      tulis.close();

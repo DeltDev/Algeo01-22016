@@ -396,7 +396,7 @@ public class Main {
 					}
 					EnhancedIO.OutputDoublePrecision4(taksiran);
 					System.out.println("");
-					EnhancedIO.OutputMulRegFile(SPL, Regresi, taksiran);
+					
 					break;
 				case 7:
 					System.out.println("KELUAR"); // nanti
