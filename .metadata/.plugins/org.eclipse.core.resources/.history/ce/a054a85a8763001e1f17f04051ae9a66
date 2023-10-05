@@ -39,7 +39,6 @@ public class Inverse {
 		double det = Determinant.EkspansiKofaktor(m);
 		if(det == 0) {
 			System.out.println("Matriks tersebut tidak memiliki invers.");
-			EnhancedIO.OutputNoInverseFile();
 			return;
 		}
 		int i, j, i2, j2;

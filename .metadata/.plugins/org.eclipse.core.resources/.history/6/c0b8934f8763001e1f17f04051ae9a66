@@ -204,7 +204,6 @@ public class Main {
 								m1 = Inverse.GaussJordan(m);
 								if(Matrix.AllRowZero(m1,m1.row-1)) {
 									System.out.println("Matriks tersebut tidak memiliki invers.");
-									EnhancedIO.OutputNoInverseFile();
 								} else {
 									Matrix m2;
 									m2 = Inverse.GetInverseGJ(m1);

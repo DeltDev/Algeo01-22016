@@ -261,7 +261,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 
 		String fileInput;
 		Scanner in = new Scanner(System.in);
-		System.out.print("Masukkan nama file (wajib diakhiri dengan .txt): ");
+		System.out.print("Masukkan nama file: ");
 		fileInput = in.next();
 		filedir = filedir + '\\' + fileInput;
 		return filedir;
@@ -630,37 +630,9 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			filedir = findFileDir();
 			try {
 			      FileWriter tulis = new FileWriter(filedir);
-			      tulis.write("Invers matriks tersebut adalah:\n");
-			      for(int i = 0; i<m.row; i++) {
-			    	  for(int j = 0; j<m.col; j++) {
-			    		  tulis.write(BigDecimal.valueOf(m.Mat[i][j]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			    		  tulis.write(" ");
-			    	  }
-			    	  tulis.write("\n");
-			      }
-			      tulis.close();
-			      System.out.print("File tersimpan di ");
-			      System.out.println(filedir);
-			} catch (IOException e) {
-			      System.out.println("Terjadi error.");
-			      e.printStackTrace();
-			}
-		}
-	}
-	
-	public static void OutputNoInverseFile() {
-		int inputSave;
-		Scanner in = new Scanner(System.in);
-		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
-		System.out.println("1. Ya");
-		System.out.println("Angka selain 1: Tidak");
-		inputSave = in.nextInt();
-		if(inputSave == 1) {
-			String filedir;
-			filedir = findFileDir();
-			try {
-			      FileWriter tulis = new FileWriter(filedir);
-			      tulis.write("Matriks tersebut tidak memiliki invers.");
+			      tulis.write("Determinan dari matriks tersebut adalah: ");
+			      tulis.write(BigDecimal.valueOf(d).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
+			      tulis.write("\n");
 			      tulis.close();
 			      System.out.print("File tersimpan di ");
 			      System.out.println(filedir);

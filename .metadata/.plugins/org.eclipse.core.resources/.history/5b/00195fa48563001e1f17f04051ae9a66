@@ -15,7 +15,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		Matrix m, Para;
-		double det;
 		m = new Matrix(1000, 1000); Para = new Matrix(1000, 1000);
 		String sout,filename;
 		int baris;
@@ -153,14 +152,10 @@ public class Main {
 						inputSubmenu = in.nextInt();
 						switch(inputSubmenu) {
 							case 1:
-								det = Determinant.ReduksiBaris(m);
-								EnhancedIO.OutputDet(det);
-								EnhancedIO.OutputDetFile(det);
+								EnhancedIO.OutputDet(Determinant.ReduksiBaris(m));
 								break;
 							case 2:
-								det = Determinant.EkspansiKofaktor(m);
-								EnhancedIO.OutputDet(det);
-								EnhancedIO.OutputDetFile(det);
+								EnhancedIO.OutputDet(Determinant.EkspansiKofaktor(m));
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 2 -_-");
@@ -204,13 +199,11 @@ public class Main {
 								m1 = Inverse.GaussJordan(m);
 								if(Matrix.AllRowZero(m1,m1.row-1)) {
 									System.out.println("Matriks tersebut tidak memiliki invers.");
-									EnhancedIO.OutputNoInverseFile();
 								} else {
 									Matrix m2;
 									m2 = Inverse.GetInverseGJ(m1);
 									System.out.println("Invers matriks tersebut adalah:");
 									m2.printMatrix();
-									EnhancedIO.OutputInverseMatrixFile(m2);
 								}
 								break;
 							case 2:

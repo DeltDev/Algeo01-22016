@@ -1,6 +1,5 @@
 package LinearAlgebra;
 import LinearAlgebra.*;
-import Menu.EnhancedIO;
 public class Inverse {
 	public static Matrix GaussJordan(Matrix m) {
 		//asumsikan m punya invers
@@ -39,7 +38,6 @@ public class Inverse {
 		double det = Determinant.EkspansiKofaktor(m);
 		if(det == 0) {
 			System.out.println("Matriks tersebut tidak memiliki invers.");
-			EnhancedIO.OutputNoInverseFile();
 			return;
 		}
 		int i, j, i2, j2;
@@ -73,7 +71,6 @@ public class Inverse {
 			Inv = Inv.Transpose();
 			System.out.println("Invers matriks tersebut adalah:");
 			Inv.printMatrix();
-			EnhancedIO.OutputInverseMatrixFile(Inv);
 		}
 		return;
 	}
