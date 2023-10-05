@@ -689,8 +689,9 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			      tulis.write(", ");
 			      tulis.write(BigDecimal.valueOf(y).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 			      tulis.write(") = ");
-			      tulis.write(BigDecimal.valueOf(taksir).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write("\n");
+			      tulis.write(tulis.write(BigDecimal.valueOf(taksir).setScale(4,RoundingMode.HALF_EVEN).toPlainString()););
+			      
+			      System.out.println("");
 			      tulis.close();
 			      System.out.print("File tersimpan di ");
 			      System.out.println(filedir);

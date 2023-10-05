@@ -683,15 +683,14 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			filedir = findFileDir();
 			try {
 			      FileWriter tulis = new FileWriter(filedir);
-			      tulis.write("Taksiran nilai f(x,y) yang diinput adalah:\n");
-			      tulis.write("f(");
-			      tulis.write(BigDecimal.valueOf(x).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(", ");
-			      tulis.write(BigDecimal.valueOf(y).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(") = ");
-			      tulis.write(BigDecimal.valueOf(taksir).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write("\n");
-			      tulis.close();
+			      System.out.println("Taksiran nilai f(x,y) yang diinput adalah:");
+			      System.out.print("f(");
+			      EnhancedIO.OutputDoublePrecision4(xTaksir);
+			      System.out.print(", ");
+			      EnhancedIO.OutputDoublePrecision4(yTaksir);
+			      System.out.print(") = ");
+			      EnhancedIO.OutputDoublePrecision4(outTaksir);
+			      System.out.println("");
 			      System.out.print("File tersimpan di ");
 			      System.out.println(filedir);
 			} catch (IOException e) {

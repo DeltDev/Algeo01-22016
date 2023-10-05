@@ -344,7 +344,6 @@ public class Main {
 					System.out.print(") = ");
 					EnhancedIO.OutputDoublePrecision4(outTaksir);
 					System.out.println("");
-					EnhancedIO.OutputBSIFile(xTaksir, yTaksir, outTaksir);
 					break;
 				case 6:
 					int i, j;

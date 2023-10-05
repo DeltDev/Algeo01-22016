@@ -670,34 +670,4 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			}
 		}
 	}
-	
-	public static void OutputBSIFile(double x, double y, double taksir) {
-		int inputSave;
-		Scanner in = new Scanner(System.in);
-		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
-		System.out.println("1. Ya");
-		System.out.println("Angka selain 1: Tidak");
-		inputSave = in.nextInt();
-		if(inputSave == 1) {
-			String filedir;
-			filedir = findFileDir();
-			try {
-			      FileWriter tulis = new FileWriter(filedir);
-			      tulis.write("Taksiran nilai f(x,y) yang diinput adalah:\n");
-			      tulis.write("f(");
-			      tulis.write(BigDecimal.valueOf(x).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(", ");
-			      tulis.write(BigDecimal.valueOf(y).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(") = ");
-			      tulis.write(BigDecimal.valueOf(taksir).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write("\n");
-			      tulis.close();
-			      System.out.print("File tersimpan di ");
-			      System.out.println(filedir);
-			} catch (IOException e) {
-			      System.out.println("Terjadi error.");
-			      e.printStackTrace();
-			}
-		}
-	}
 }

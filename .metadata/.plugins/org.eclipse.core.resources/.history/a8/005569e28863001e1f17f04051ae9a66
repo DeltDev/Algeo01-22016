@@ -671,7 +671,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		}
 	}
 	
-	public static void OutputBSIFile(double x, double y, double taksir) {
+	public static void OutputBSIFile() {
 		int inputSave;
 		Scanner in = new Scanner(System.in);
 		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
@@ -683,14 +683,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			filedir = findFileDir();
 			try {
 			      FileWriter tulis = new FileWriter(filedir);
-			      tulis.write("Taksiran nilai f(x,y) yang diinput adalah:\n");
-			      tulis.write("f(");
-			      tulis.write(BigDecimal.valueOf(x).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(", ");
-			      tulis.write(BigDecimal.valueOf(y).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(") = ");
-			      tulis.write(BigDecimal.valueOf(taksir).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write("\n");
+			      tulis.write("Matriks tersebut tidak memiliki invers.");
 			      tulis.close();
 			      System.out.print("File tersimpan di ");
 			      System.out.println(filedir);
