@@ -488,4 +488,108 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		scanFile.close();
 		return ret;
 	}
+	
+	public static void OutputSPLUniqueFile(SPLTuples SPL) {
+		String filedir;
+		filedir = findFileDir();
+		try {
+		      FileWriter tulis = new FileWriter(filedir);
+		      tulis.write("Solusinya adalah: \n");
+		      for(int i = 0; i<SPL.Solution.length; i++) {
+					tulis.write("x["+ (i+1) +"] = ");
+					tulis.write(BigDecimal.valueOf(SPL.Solution[i]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
+					tulis.write("\n");
+		      }
+		      tulis.close();
+		      System.out.print("File tersimpan di ");
+		      System.out.println(filedir);
+		} catch (IOException e) {
+		      System.out.println("Terjadi error.");
+		      e.printStackTrace();
+		}
+	}
+	
+	public static void OutputSPLParaFile(Matrix m) {
+		String filedir;
+		filedir = findFileDir();
+		try {
+		      FileWriter tulis = new FileWriter(filedir);
+		      tulis.write("Solusinya parametrik \n");
+		      int i, j;
+				boolean notfirst;
+				for (i = 0; i < m.row; i++){
+					tulis.write("x["+ (i+1) +"] = ");
+					
+					notfirst = false;
+					for (j = 0; j < m.col; j++){
+						if (m.Mat[i][j] != 0){
+							if (notfirst){
+								if (m.Mat[i][j] > 0){
+									tulis.write("+");
+								};
+							};
+							notfirst = true;
+							if (j == 0){
+								tulis.write(BigDecimal.valueOf(m.Mat[i][j]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
+							} else if (m.Mat[i][j] == -1){
+								tulis.write("-");
+							} else if (m.Mat[i][j] != 1){
+								tulis.write(BigDecimal.valueOf(m.Mat[i][j]).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
+							};
+							if (j != 0){
+								tulis.write("t[" + (j) + "]");
+							};
+						};
+					};
+					if (!notfirst){tulis.write("0.0000");};
+					tulis.write("\n");
+				};
+		      tulis.close();
+		      System.out.print("File tersimpan di ");
+		      System.out.println(filedir);
+		} catch (IOException e) {
+		      System.out.println("Terjadi error.");
+		      e.printStackTrace();
+		}
+	}
+	public static void OutputSPLNoSolutionFile(boolean isInv) {
+		String filedir;
+		filedir = findFileDir();
+		try {
+		      FileWriter tulis = new FileWriter(filedir);
+		      if(isInv) {
+		    	  tulis.write("Solusinya mungkin tidak ada atau mungkin parametrik.");
+		      } else {
+		    	  tulis.write("Solusinya tidak ada \n");
+		      }
+		      
+		      
+		      tulis.close();
+		      System.out.print("File tersimpan di ");
+		      System.out.println(filedir);
+		} catch (IOException e) {
+		      System.out.println("Terjadi error.");
+		      e.printStackTrace();
+		}
+	}
+	
+	public static void OutputSPLFile(SPLTuples SPL, Matrix Para, boolean isInv) {
+		int inputSave;
+		Scanner in = new Scanner(System.in);
+		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
+		System.out.println("1. Ya");
+		System.out.println("Angka selain 1: Tidak");
+		inputSave = in.nextInt();
+		if(inputSave == 1) {
+			if(SPL.isSolvable) {
+				if(!SPL.isParametric) {
+					EnhancedIO.OutputSPLUniqueFile(SPL);
+				} else {
+					EnhancedIO.OutputSPLParaFile(Para);
+				}
+			} else {
+				EnhancedIO.OutputSPLNoSolutionFile(isInv);
+			}
+		}
+	}
 }

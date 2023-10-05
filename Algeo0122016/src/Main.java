@@ -16,12 +16,13 @@ public class Main {
 	public static void main(String[] args) {
 		Matrix m, Para;
 		m = new Matrix(1000, 1000); Para = new Matrix(1000, 1000);
+		String sout,filename;
 		int baris;
 		int kolom;
 		int banyakPersamaan;
 		int banyakVariabel;
 		Scanner in = new Scanner(System.in);
-		int inputMenu, inputSubmenu, inputMethod;
+		int inputMenu, inputSubmenu, inputMethod,inputSave;
 		SPLTuples SPL;
 		double taksiran;
 		BicubicSITuple Bicubic;
@@ -31,6 +32,7 @@ public class Main {
 		PInterpol = new PITuple(0.0,new double[0], new double[0]);
 		Regresi = new MulRegTuple(0,0,new Matrix(0,0), new Matrix(0,0), new double[0]);
 		while (true){
+			sout = "";
 			System.out.println("MENU");
 			System.out.println("1. Sistem Persamaan Linier");
 			System.out.println("2. Determinan");
@@ -80,6 +82,7 @@ public class Main {
 									Para = EquationSystem.ParametricGauss(m);
 									EnhancedIO.OutputParametric(Para);
 								};
+								EnhancedIO.OutputSPLFile(SPL, Para, false);
 								break;
 							case 2:
 								// fungsi SPL Gauss-Jordan
@@ -90,13 +93,14 @@ public class Main {
 									Para = EquationSystem.ParametricGaussJordan(m);
 									EnhancedIO.OutputParametric(Para);
 								};
+								EnhancedIO.OutputSPLFile(SPL, Para, false);
 								break;
 							case 3:
 								// fungsi SPL matriks balikan
 								
 								SPL = EquationSystem.Inverse(m);
 								EnhancedIO.OutputSPLInverse(SPL);
-								
+								EnhancedIO.OutputSPLFile(SPL, Para, true);
 								break;
 							case 4:
 								// fungsi SPL Cramer
@@ -110,6 +114,7 @@ public class Main {
 									Para = EquationSystem.ParametricGaussJordan(m);
 									EnhancedIO.OutputParametric(Para);
 								}
+								EnhancedIO.OutputSPLFile(SPL, Para, false);
 								break;
 							default:
 								System.out.println("Masukkan angka diantara 1 sampai 4 -_-");
