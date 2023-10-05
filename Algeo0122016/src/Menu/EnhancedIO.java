@@ -223,7 +223,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			
 			if(Math.abs(SPL.Solution[i]) >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
 				if(i != 0) {
-					if(Math.abs(SPL.Solution[i-1]) >0) {
+					if(SPL.Solution[i] >=0.0) {
 						System.out.print(" + ");
 					} else {
 						System.out.print(" ");
@@ -719,9 +719,9 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 			      int i;
 					for(i = 0; i<SPL.Solution.length; i++) {
 						
-						if(Math.abs(SPL.Solution[i]) >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
+						if(SPL.Solution[i] >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
 							if(i != 0) {
-								if(Math.abs(SPL.Solution[i-1]) >0) {
+								if(Math.abs(SPL.Solution[i]) >0) {
 									tulis.write(" + ");
 								} else {
 									tulis.write(" ");
@@ -775,7 +775,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 						
 						if(Math.abs(SPL.Solution[i]) >= 0.0001) { //cek koefisien yang dianggap sangat kecil sehingga dapat diabaikan
 							if(i != 0) {
-								if(Math.abs(SPL.Solution[i-1]) >0) {
+								if(SPL.Solution[i] >=0) {
 									tulis.write(" + ");
 								} else {
 									tulis.write(" ");
