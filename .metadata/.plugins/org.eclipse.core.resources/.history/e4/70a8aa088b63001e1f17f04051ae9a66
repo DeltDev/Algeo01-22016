@@ -281,7 +281,7 @@ public class Main {
 					System.out.print(") = ");
 					EnhancedIO.OutputDoublePrecision4(taksiran);
 					System.out.println("");
-					EnhancedIO.OutputPIFile(SPL, PInterpol.taksir, taksiran);
+					EnhancedIO.OutputPIFile(SPL, taksiran, banyakTitik, taksiran);
 					break;
 				case 5:
 					while(true) {

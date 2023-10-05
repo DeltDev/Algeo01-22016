@@ -701,7 +701,7 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 		}
 	}
 	
-	public static void OutputPIFile(SPLTuples SPL, double x,double taksiran) {
+	public static void OutputPIFile(SPLTuples SPL, double x, double taksir) {
 		int inputSave;
 		Scanner in = new Scanner(System.in);
 		System.out.println("Apakah Anda ingin menyimpan data ini ke file?");
@@ -732,18 +732,12 @@ public class EnhancedIO { //Class ini untuk input lewat keyboard dan output seca
 								tulis.write("x");
 								if(i != 1) {
 									tulis.write("^");
-									tulis.write(Integer.toString(i));
+									tulis.write(i);
 								}
 							}
 							
 						}
 					}
-			      tulis.write("\n");
-			      tulis.write("Taksiran nilai f(x) yang diinput adalah:\n");
-			      tulis.write("f(");
-			      tulis.write(BigDecimal.valueOf(x).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
-			      tulis.write(") = ");
-			      tulis.write(BigDecimal.valueOf(taksiran).setScale(4,RoundingMode.HALF_EVEN).toPlainString());
 			      tulis.write("\n");
 			      tulis.close();
 			      System.out.print("File tersimpan di ");
